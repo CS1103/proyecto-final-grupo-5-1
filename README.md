@@ -79,5 +79,4 @@ SOFTWARE.
 
 ---
 
-[Back To The Top](#title)
-[Back To The Top test](#top)
+[Back To The Top](#top)
