@@ -91,7 +91,7 @@ Programming](https://www.aaai.org/Papers/AAAI/2000/AAAI00-029.pdf)
 
 MIT License
 
-Copyright (c) 2022 Enrique, Allyson, Mariel, Noemi, Leonardo
+Copyright (c) 2022 Enrique, Allyson, Mariel, Noemi, Leonardo, Adrian
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
