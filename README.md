@@ -10,7 +10,7 @@
 - [Description](#description)
 - [Installation](#installation)
 - [How To Use](#how-to-use)
-- [References](#references & links)
+- [References](#references-&-links)
 - [License](#license)
 
 
@@ -54,4 +54,4 @@ SOFTWARE.
 
 ---
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#title)
