@@ -8,17 +8,13 @@
 
 <!-- logo y titulo -->
 <div align="center">
-
   <a href="https://github.com/CS1103/proyecto-final-grupo-5-1">
-    <img src="hex.jpg" alt="hex board" width="100" height="100">
+    <img src="MD_files/Hex.jpg" alt="hex board" width="100" height="100">
   </a>
-
   <h1>Title</h1>
-
   <p>
     Breve descripción del proyecto
   </p>
-
 </div>
 
 
@@ -40,7 +36,6 @@
     <li><a href="#licencia">
       Licencia
     </a></li>
-
   </ol>
 </details>
 
