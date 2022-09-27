@@ -1,40 +1,32 @@
 # Title
 
+---
+
 ## Description
 
-Creating ReadMe's for your Github repository can be tedious.  I hope this template can save you time and effort as well as provide you with some consistency across your projects.
 
 ### Table of Contents
-You're sections headers will be used to reference location of destination.
 
 - [Description](#description)
+- [Installation](#installation)
 - [How To Use](#how-to-use)
-- [References](#references)
+- [References](#references & links)
 - [License](#license)
 
-#### Technologies
-
-- Technology 1
-- Technology 2
-
-[Back To The Top](#read-me-template)
 
 ---
+
+
+## Installation
+
+
 
 ## How To Use
 
-#### Installation
-
-
-
-[Back To The Top](#read-me-template)
-
 ---
 
-## References
-[Back To The Top](#read-me-template)
+## References & Links
 
----
 
 ## License
 
