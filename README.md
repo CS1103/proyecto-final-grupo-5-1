@@ -1,36 +1,70 @@
-# Title
+<!-- Mejor compatibilidad -->
+<a name="readme-top"></a>
+
+<!-- PROJECT SHIELDS -->
+<!-- [![displayed text][displayed image url]][link url] -->
+
+
+
+<!-- logo y titulo -->
+<div align="center">
+
+  <a href="https://github.com/CS1103/proyecto-final-grupo-5-1">
+    <img src="hex.jpg" alt="hex board" width="100" height="100">
+  </a>
+
+  <h1>Title</h1>
+
+  <p>
+    Breve descripción del proyecto
+  </p>
+
+</div>
+
+
+<details open>
+  <summary>Tabla de contenidos</summary>
+  <ol>
+    <li><a href="#acerca-del-proyecto">
+        Acerca del proyecto
+    </a></li>
+    <li><a href="#instalacion">
+      Instalación
+    </a></li>
+    <li><a href="#como-usar">
+      Como usar
+    </a></li>
+    <li><a href="#Referencias y links">
+      License
+    </a></li>
+    <li><a href="#licencia">
+      Licencia
+    </a></li>
+
+  </ol>
+</details>
 
 ---
 
-## Description
+## Acerca del proyecto
 
-## Temas de interes
+### Temas de interes
 
 - Monte Carlo Tree Search
 - Strategy stealing argument
 - four color theorem
 
-### Table of Contents
-
-- [Description](#description)
-- [Installation](#installation)
-- [How To Use](#how-to-use)
-- [References](#references--links)
-- [License](#license)
-
-
----
 
 
 ## Installation
 
 
 
-## How To Use
+## Como usar
 
 ---
 
-## References & Links
+## Referencias y links
 
 - [The Game of Hex: An Automatic Theorem Proving Approach to Game
 Programming](https://www.aaai.org/Papers/AAAI/2000/AAAI00-029.pdf)  
@@ -53,7 +87,7 @@ Programming](https://www.aaai.org/Papers/AAAI/2000/AAAI00-029.pdf)
   Repositorio de código de Neurobenzene, Red neuronal usada en MoHex3, incluye un instalable de MoHex3.
 
 
-## License
+## Licencia
 
 MIT License
 
@@ -79,5 +113,4 @@ SOFTWARE.
 
 ---
 
-[Back To The Top](#title)
-[Back To The Top test](#top)
+[Back To The Top](#readme-top)
