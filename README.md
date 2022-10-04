@@ -5,7 +5,6 @@
 <!-- [![displayed text][displayed image url]][link url] -->
 
 
-
 <!-- logo y titulo -->
 <div align="center">
   <a href="https://github.com/CS1103/proyecto-final-grupo-5-1">
