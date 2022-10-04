@@ -1,4 +1,4 @@
-<!-- Mejor compatibilidad -->
+<!-- Mejor compatibilidad --> 
 <a name="readme-top"></a>
 
 <!-- PROJECT SHIELDS -->
@@ -22,7 +22,7 @@
   <summary>Tabla de contenidos</summary>
   <ol>
     <li><a href="#acerca-del-proyecto">
-        Acerca del proyecto
+      Acerca del proyecto
     </a></li>
     <li><a href="#instalacion">
       Instalación
