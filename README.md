@@ -12,7 +12,7 @@
   </a>
   <h1>Title</h1>
   <p>
-    Breve descripción del proyecto
+    Muy breve descripción del proyecto
   </p>
 </div>
 
@@ -20,20 +20,45 @@
 <details open>
   <summary>Tabla de contenidos</summary>
   <ol>
+    <u>
     <li><a href="#acerca-del-proyecto">
       Acerca del proyecto
+      <ul>
+        <li><a href="#descripción">Descripción</a></li>
+        <li><a href="#caracteristicas">Características</a></li>
+        <li><a href="#tecnologías">Tecnologías</a></li>
+        <li><a href="#temas-de-interes">Temas de interes</a></li>
+      </ul>
+    </u>
     </a></li>
     <li><a href="#instalacion">
       Instalación
+      <ul>
+        <li><a href="#requisitos">Requisitos</a></li>
+        <li><a href="#pasos-de-instalacion">Pasos de instalación</a></li>
+      </ul>
     </a></li>
-    <li><a href="#como-usar">
-      Como usar
-    </a></li>
-    <li><a href="#Referencias y links">
-      License
+    <li><a href="#instrucciones-de-uso">
+      Instrucciones de uso
     </a></li>
     <li><a href="#licencia">
       Licencia
+    </a></li>
+    <li><a href="#diagramas">
+      Diagramas
+      <ul>
+        <li><a href="#grafo-del-tablero">Grafo del tablero</a></li>
+        <u><li><a href="#diagrama-de-clases">Diagrama de clases</a></li></u>
+      </ul>
+    </a></li>
+    <li><a href="#link-del-video">
+      Link del video
+    </a></li>
+    <li><a href="#autores">
+      Autores
+    </a></li>
+    <li><a href="#referencias-y-links">
+      Referencias y links
     </a></li>
   </ol>
 </details>
@@ -41,6 +66,12 @@
 ---
 
 ## Acerca del proyecto
+
+### Descripción
+
+### Características
+
+### Tecnologías
 
 ### Temas de interes
 
@@ -52,11 +83,37 @@
 
 ## Installation
 
+### Requisitos
+
+### Pasos de instalación
 
 
-## Como usar
+## Instrucciones de uso
 
----
+
+
+## Licencia
+
+Distribuido bajo la licencia MIT. Ver `LICENSE.txt` para más información.
+
+## Diagramas
+
+### Grafo del tablero
+
+### Diagrama de clases
+
+## Link del video
+
+## Autores
+
+Completar con los nombres completos de los autores
+
+- Allyson
+- Mariel
+- Noemi
+- Leonardo
+- Adrian
+- Enrique Francisco Flores Teniente
 
 ## Referencias y links
 
@@ -81,29 +138,6 @@ Programming](https://www.aaai.org/Papers/AAAI/2000/AAAI00-029.pdf)
   Repositorio de código de Neurobenzene, Red neuronal usada en MoHex3, incluye un instalable de MoHex3.
 
 
-## Licencia
-
-MIT License
-
-Copyright (c) 2022 Enrique, Allyson, Mariel, Noemi, Leonardo, Adrian
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
 ---
 
