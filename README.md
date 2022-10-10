@@ -94,13 +94,13 @@
 
 ## Licencia
 
-Distribuido bajo la licencia MIT. Ver [`LICENSE.txt`](LICENSE.txt) para más información.
+Distribuido bajo la licencia MIT. Ver [`LICENSE`](LICENSE) para más información.
 
 ## Diagramas
 
 ### Grafo del tablero
 
-![Grafo del tablero](MD_files/grafo.png)]
+![Grafo del tablero](MD_files/grafo.png)
 
 ### Diagrama de clases
 
