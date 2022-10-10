@@ -102,7 +102,7 @@ Distribuido bajo la licencia MIT. Ver [`LICENSE`](LICENSE) para más informació
 ![Grafo del tablero](MD_files/grafo.png)
 
 - Podemos observar que es posible identificar cada casilla por una letra(A...K) y un número(1...11).
-- Se cumple que cada casilla tiene 6 vecinos, excepto las casillas en los bordes del tablero, que tienen 3 vecinos.
+- Se cumple que cada casilla tiene 6 vecinos, excepto las casillas en los bordes del tablero, que tienen 4 y las casillas en las esquinas, que tienen 2.
 - Los vecinos de una casilla central X, N son (X, N - 1); (X, N + 1); (X - 1, N); (X - 1, N + 1); (X + 1, N); (X + 1, N - 1)
 
 Si quisieramos utilizar una matriz como contenedor para el tablero, estas serian las relaciónes de la casilla **3,3**
