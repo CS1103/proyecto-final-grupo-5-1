@@ -110,10 +110,10 @@ Distribuido bajo la licencia MIT. Ver [`LICENSE`](LICENSE) para más informació
 
 Completar con los nombres completos de los autores
 
-- Allyson
-- Mariel
-- Noemi
-- Leonardo
+- Allyson Tiphany Sánchez Báez
+- Mariel Carolina Tovar Tolentino
+- Noemi Alejandra Huarino Anchillo
+- Leonardo Daniel Isidro Salazar
 - Adrian
 - Enrique Francisco Flores Teniente
 
