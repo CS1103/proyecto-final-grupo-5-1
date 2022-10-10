@@ -25,17 +25,17 @@
       Acerca del proyecto
       <ul>
         <li><a href="#descripción">Descripción</a></li>
-        <li><a href="#caracteristicas">Características</a></li>
+        <li><a href="#características">Características</a></li>
         <li><a href="#tecnologías">Tecnologías</a></li>
         <li><a href="#temas-de-interes">Temas de interes</a></li>
       </ul>
     </u>
     </a></li>
-    <li><a href="#instalacion">
+    <li><a href="#instalación">
       Instalación
       <ul>
         <li><a href="#requisitos">Requisitos</a></li>
-        <li><a href="#pasos-de-instalacion">Pasos de instalación</a></li>
+        <li><a href="#pasos-de-instalación">Pasos de instalación</a></li>
       </ul>
     </a></li>
     <li><a href="#instrucciones-de-uso">
@@ -80,8 +80,7 @@
 - four color theorem
 
 
-
-## Installation
+## Instalación
 
 ### Requisitos
 
