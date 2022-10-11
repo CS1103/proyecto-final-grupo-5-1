@@ -70,25 +70,39 @@
 ### Descripción
 
 ### Características
+#### Características Principales
+- Swap: 
+- Tiempo límite: 
+
+#### Caracteristicas Adicionales
+- Multiples juego simultáneos
+- Bot de múltiples dificutlades
+- Configuración dinámica del juego
 
 ### Tecnologías
+- Lenguaje de programación c++
+- graphvz
+- librería GUI
 
 ### Temas de interes
-
 - Monte Carlo Tree Search
 - Strategy stealing argument
 - four color theorem
 
 
 ## Instalación
-
 ### Requisitos
+- g++ v20 
 
 ### Pasos de instalación
-
+1. Clonación de repositario
+2. Ejecutar el instalador
+3. Ejecutar el juego Hex
 
 ## Instrucciones de uso
+### Instrucciones
 
+### Reglas de juego
 El juego Hex se lleva a cabo en un tablero de tamaño NxN. Adicionalmente, es jugado por dos jugadores.
 
 - Al comienzo de cada partida el tablero está vacío.
@@ -124,6 +138,8 @@ Si quisieramos utilizar una matriz como contenedor para el tablero, estas serian
 
 
 ### Diagrama de clases
+![Diagrama](MD_files/digrama_clases.png)
+
 
 ## Link del video
 
