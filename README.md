@@ -8,9 +8,9 @@
 <!-- logo y titulo -->
 <div align="center">
   <a href="https://github.com/CS1103/proyecto-final-grupo-5-1">
-    <img src="MD_files/Hex.jpg" alt="hex board" width="100" height="100">
+    <img src="MD_files/Hex.jpg" alt="hex board" width="150" height="150">
   </a>
-  <h1>Title</h1>
+  <h1>Juego Hex</h1>
   <p>
     Muy breve descripción del proyecto
   </p>
@@ -18,7 +18,7 @@
 
 
 <details open>
-  <summary>Tabla de contenidos</summary>
+  <summary>Tabla de contenidos:</summary>
   <ol>
     <u>
     <li><a href="#acerca-del-proyecto">
@@ -27,7 +27,7 @@
         <li><a href="#descripción">Descripción</a></li>
         <li><a href="#características">Características</a></li>
         <li><a href="#tecnologías">Tecnologías</a></li>
-        <li><a href="#temas-de-interes">Temas de interes</a></li>
+        <li><a href="#temas-de-interés">Temas de interés</a></li>
       </ul>
     </u>
     </a></li>
@@ -75,29 +75,34 @@
 - Tiempo límite: 
 
 #### Caracteristicas Adicionales
-- Multiples juego simultáneos
-- Bot de múltiples dificutlades
+- Juego multiplayer simultáneo
+- Bot de múltiples dificultades
 - Configuración dinámica del juego
 
 ### Tecnologías
-- Lenguaje de programación c++
-- graphvz
-- librería GUI
+- Lenguaje de programación C++11 o posterior
+- Graphvz
+- Librería GUI
 
-### Temas de interes
+### Temas de interés
 - Monte Carlo Tree Search
 - Strategy stealing argument
-- four color theorem
+- Four color theorem
 
 
 ## Instalación
 ### Requisitos
-- g++ v20 
+- Sistema Operativo MS Windows (10 u 11)
+- Terminal Git Bash
+- Compilador g++ v20 
 
 ### Pasos de instalación
-1. Clonación de repositario
-2. Ejecutar el instalador
-3. Ejecutar el juego Hex
+1. Clonación de repositorio con 
+```bash
+git clone https://github.com/CS1103/proyecto-final-grupo-5-1
+```
+3. Ejecutar el instalador
+4. Ejecutar el juego Hex
 
 ## Instrucciones de uso
 ### Instrucciones
@@ -122,19 +127,24 @@ Distribuido bajo la licencia MIT. Ver [`LICENSE`](LICENSE) para más informació
 
 ### Grafo del tablero
 
-![Grafo del tablero](MD_files/grafo.png)
+<div align="center"> <img src="MD_files/grafo.png" alt="Grafo del tablero" width="500" height="1800"/> </div>
+<br>
 
-- Podemos observar que es posible identificar cada casilla por una letra(A...K) y un número(1...11).
+- Podemos observar que es posible identificar cada casilla por una letra (A...K) y un número (1...11).
 - Se cumple que cada casilla tiene 6 vecinos, excepto las casillas en los bordes del tablero, que tienen 4 y las casillas en las esquinas, que tienen 2.
-- Los vecinos de una casilla central X, N son (X, N - 1); (X, N + 1); (X - 1, N); (X - 1, N + 1); (X + 1, N); (X + 1, N - 1)
+- Los vecinos de una casilla central X, N son (X, N - 1); (X, N + 1); (X - 1, N); (X - 1, N + 1); (X + 1, N); (X + 1, N - 1).
 
 Si quisieramos utilizar una matriz como contenedor para el tablero, estas serian las relaciónes de la casilla **3,3**
+
+<div align="center">
 
 | _1_ | _2_ | _3_     | _4_ |
 |-----|-----|---------|-----|
 | _2_ |     | 3,2     | 4,2 |
 | _3_ | 2,3 | **3,3** | 4,3 |
 | _4_ | 2,4 | 3,4     |     |
+
+</div>
 
 
 ### Diagrama de clases
@@ -151,7 +161,7 @@ Completar con los nombres completos de los autores
 - Mariel Carolina Tovar Tolentino
 - Noemi Alejandra Huarino Anchillo
 - Leonardo Daniel Isidro Salazar
-- Adrian Sandoval Huamani
+- Adrian Sandoval Huamaní
 - Enrique Francisco Flores Teniente
 
 ## Referencias y links
