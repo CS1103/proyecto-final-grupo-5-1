@@ -89,7 +89,7 @@
 
 ## Instrucciones de uso
 
-El juego Hex se lleva a cabo en un tablero de tamaño NxN con forma de rombo. Adicionalmente, es jugado por dos jugadores.
+El juego Hex se lleva a cabo en un tablero de tamaño NxN con forma de cuadrado. Adicionalmente, es jugado por dos jugadores.
 
 - Al comienzo de cada partida el tablero está vacío.
 - Cada jugador cuenta con fichas de un color, este color no puede ser igual para ambos jugadores. 
