@@ -89,6 +89,15 @@
 
 ## Instrucciones de uso
 
+El juego Hex se lleva a cabo en un tablero de tamaño NxN con forma de rombo. Adicionalmente, es jugado por dos jugadores.
+
+- Al comienzo de cada partida el tablero está vacío.
+- Cada jugador cuenta con fichas de un color, este color no puede ser igual para ambos jugadores. 
+- Cada jugador elige con qué color va a jugar y, por tanto, cuáles son los bordes que debe conectar; como los bordes a conectar deben ser opuestos, han de conectarse el noroeste con el sureste para un jugador, y el nordeste con el suroeste para el otro. 
+- Los movimientos se harán por turnos alternativos de cada jugador y es una ficha por turno.
+- La finalidad del juego es ir formando una hilera de fichas ininterrumpida entre uno de los lados del rombo que es el tablero y el opuesto, uniendo de este modo ambos lados.
+- Los jugadores no podrán mover las fichas ya incorporadas.
+- Gana el jugador que antes consiga completar la hilera.
 
 
 ## Licencia
@@ -126,7 +135,7 @@ Completar con los nombres completos de los autores
 - Mariel Carolina Tovar Tolentino
 - Noemi Alejandra Huarino Anchillo
 - Leonardo Daniel Isidro Salazar
-- Adrian
+- Adrian Sandoval Huamani
 - Enrique Francisco Flores Teniente
 
 ## Referencias y links
