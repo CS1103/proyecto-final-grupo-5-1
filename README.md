@@ -187,7 +187,6 @@ Programming](https://www.aaai.org/Papers/AAAI/2000/AAAI00-029.pdf)
   Repositorio de código de Neurobenzene, Red neuronal usada en MoHex3, incluye un instalable de MoHex3.
 
 
-
 ---
 
 [Back To The Top](#readme-top)
