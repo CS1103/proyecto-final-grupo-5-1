@@ -156,9 +156,6 @@ Si quisieramos utilizar una matriz como contenedor para el tablero, estas serian
 ## Link del video
 
 ## Autores
-
-Completar con los nombres completos de los autores
-
 - Allyson Tiphany Sánchez Báez
 - Mariel Carolina Tovar Tolentino
 - Noemi Alejandra Huarino Anchillo
