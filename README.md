@@ -10,9 +10,10 @@
   <a href="https://github.com/CS1103/proyecto-final-grupo-5-1">
     <img src="MD_files/Hex.jpg" alt="hex board" width="150" height="150">
   </a>
-  <h1>Juego Hex</h1>
+  <h1>Hex Game hecho con C++</h1>
+  
   <p>
-    Muy breve descripción del proyecto
+  Somos estudiantes del curso de Programación III de la Universidad de Ingeniería y Tecnología de Lima,Perú; hemos aplicado los conocimientos aprendidos durante este curso para el desarrollo eficiente de este juego.
   </p>
 </div>
 
@@ -68,6 +69,7 @@
 ## Acerca del proyecto
 
 ### Descripción
+El proyecto consiste en la elaboración del juego Hex tradicional pero con la implementación adicional de nuevas características. El juego tiene como objetivo ser más flexible para el usuario ya que se da la posibilidad de hacer cambios a las características de su juego antes, durante y después de haber sido empezado. Por otro lado, el usuario tiene la opción de elegir dos tipos de tablero uno de 7x7 y el otro de 11x11; además existen dos opciones de juego, contra otro jugador de forma local o contra la computadora. 
 
 ### Características
 #### Características Principales
@@ -109,7 +111,7 @@ git clone https://github.com/CS1103/proyecto-final-grupo-5-1
 
 ### Reglas de juego
 El juego Hex se lleva a cabo en un tablero de tamaño NxN. Adicionalmente, es jugado por dos jugadores.
-
+ 
 - Al comienzo de cada partida el tablero está vacío.
 - Cada jugador cuenta con fichas de un color, este color no puede ser igual para ambos jugadores. 
 - Cada jugador elige con qué color va a jugar y, por tanto, cuáles son los bordes que debe conectar; como los bordes a conectar deben ser opuestos, han de conectarse el noroeste con el sureste para un jugador, y el nordeste con el suroeste para el otro. 
