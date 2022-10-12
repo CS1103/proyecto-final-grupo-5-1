@@ -12,7 +12,7 @@
   </a>
   <h1>Hex Game hecho con c++</h1>
   <p>
-El proyecto consiste en la elaboración del juego Hex tradicional pero con la implementación adicional de nuevas características. El juego tiene como objetivo ser más flexible para el usuario ya que se da la posibilidad de hacer cambios a su tipo de juego antes, durante y después de haber empezado el juego. Por otro lado, el usuario tiene la opción de elegir dos tipos de tablero uno de 7x7 y el otro de 11x11; además existen dos opciones de juego, contra otro jugador de forma local o contra la computadora. 
+El proyecto consiste en la elaboración del juego Hex tradicional pero con la implementación adicional de nuevas características. El juego tiene como objetivo ser más flexible para el usuario ya que se da la posibilidad de hacer cambios a las características de su juego antes, durante y después de haber sido empezado. Por otro lado, el usuario tiene la opción de elegir dos tipos de tablero uno de 7x7 y el otro de 11x11; además existen dos opciones de juego, contra otro jugador de forma local o contra la computadora. 
   </p>
 </div>
 
