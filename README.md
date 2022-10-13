@@ -189,6 +189,38 @@ Programming](https://www.aaai.org/Papers/AAAI/2000/AAAI00-029.pdf)
   Repositorio de código de Neurobenzene, Red neuronal usada en MoHex3, incluye un instalable de MoHex3.
 
 
+## Convenciones
+
+#### Header token definition
+
+```cpp
+#ifndef PASCALCASENAME_H
+#define PASCALCASENAME_H
+
+class PascalCaseName{
+
+private:
+
+protected:
+
+public:
+
+};
+
+#endif // !PASCALCASENAME_H
+```
+
+#### Siempre seguir la regla de 0 (Propuesta)
+
+```
+- You should NEVER implement a destructor, copy constructor, move constructor or assignment operators in your code.
+- You should NEVER use a raw pointer to manage a resource.
+
+```
+
+
+
+
 ---
 
 [Back To The Top](#readme-top)
