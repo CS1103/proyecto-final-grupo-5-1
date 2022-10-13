@@ -189,6 +189,28 @@ Programming](https://www.aaai.org/Papers/AAAI/2000/AAAI00-029.pdf)
   Repositorio de código de Neurobenzene, Red neuronal usada en MoHex3, incluye un instalable de MoHex3.
 
 
+## Convenciones
+
+#### Header token definition
+
+```
+#ifndef CLASS_H
+#define CLASS_H
+...
+#endif
+```
+
+#### Siempre seguir la regla de 0 (Propuesta)
+
+```
+- You should NEVER implement a destructor, copy constructor, move constructor or assignment operators in your code.
+- You should NEVER use a raw pointer to manage a resource.
+
+```
+
+
+
+
 ---
 
 [Back To The Top](#readme-top)
