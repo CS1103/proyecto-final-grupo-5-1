@@ -193,11 +193,21 @@ Programming](https://www.aaai.org/Papers/AAAI/2000/AAAI00-029.pdf)
 
 #### Header token definition
 
-```
-#ifndef CLASS_H
-#define CLASS_H
-...
-#endif
+```cpp
+#ifndef PASCALCASENAME_H
+#define PASCALCASENAME_H
+
+class PascalCaseName{
+
+private:
+
+protected:
+
+public:
+
+};
+
+#endif // !PASCALCASENAME_H
 ```
 
 #### Siempre seguir la regla de 0 (Propuesta)
