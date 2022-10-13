@@ -10,10 +10,11 @@
   <a href="https://github.com/CS1103/proyecto-final-grupo-5-1">
     <img src="MD_files/Hex.jpg" alt="hex board" width="150" height="150">
   </a>
-  <h1>Hex Game hecho con C++</h1>
+  <h1>Chiquis's Hex game</h1>
   
   <p>
-  Somos estudiantes del curso de Programación III de la Universidad de Ingeniería y Tecnología de Lima,Perú; hemos aplicado los conocimientos aprendidos durante este curso para el desarrollo eficiente de este juego.
+  Somos estudiantes del curso de Programación III de la Universidad de Ingeniería y Tecnología de Lima, Perú.  
+  Hemos aplicado conocimientos aprendidos durante el curso de Programación para desarrollar un juego de Hex en C++.
   </p>
 </div>
 
@@ -48,7 +49,7 @@
     <li><a href="#diagramas">
       Diagramas
       <ul>
-        <li><a href="#grafo-del-tablero">Grafo del tablero</a></li>
+        <li><a href="#grafo-del-tablero">Grafo del tablero-11x11</a></li>
         <u><li><a href="#diagrama-de-clases">Diagrama de clases</a></li></u>
       </ul>
     </a></li>
@@ -127,9 +128,9 @@ Distribuido bajo la licencia MIT. Ver [`LICENSE`](LICENSE) para más informació
 
 ## Diagramas
 
-### Grafo del tablero
+### Grafo del tablero 11x11
 
-<div align="center"> <img src="MD_files/grafo.png" alt="Grafo del tablero" width="500" height="1800"/> </div>
+<div align="center"> <img src="MD_files/graph.png" alt="Grafo del tablero" width="1000"/> </div>
 <br>
 
 - Podemos observar que es posible identificar cada casilla por una letra (A...K) y un número (1...11).
@@ -145,6 +146,8 @@ Si quisieramos utilizar una matriz como contenedor para el tablero, estas serian
 | _2_ |     | 3,2     | 4,2 |
 | _3_ | 2,3 | **3,3** | 4,3 |
 | _4_ | 2,4 | 3,4     |     |
+
+<img src="MD_files/square_graph.png" alt="Grafo cuadrado del tablero" width="100%" height="100%"/>
 
 </div>
 
