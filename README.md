@@ -74,8 +74,13 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 
 ### Características
 #### Características Principales
-- Swap: 
-- Tiempo límite: 
+- **Swap:** 
+
+  El juego se realiza en un intercambio de un movimiento de una casilla por jugador. El juego no ejecuta ninguna acción si el jugador intenta realizar movimientos durante el turno del otro jugador y esto ocurre en todo el tiempo de partida.
+
+- **Tiempo límite:**
+
+  El juego tiene un tiempo límite de partida sin detención con una duración de --- minutos. Si el juego acaba sin reciir un ganador, los declara a los dos jugadores como partida perdida.
 
 #### Caracteristicas Adicionales
 - Juego multiplayer simultáneo
@@ -83,7 +88,7 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 - Configuración dinámica del juego
 
 ### Tecnologías
-- Lenguaje de programación C++11 o posterior
+- Lenguaje de programación C++17 o posterior
 - Graphvz
 - Librería GUI
 
