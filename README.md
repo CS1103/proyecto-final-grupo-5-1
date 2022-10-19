@@ -1,4 +1,4 @@
-![Descripción de la imagen]( C:\Users\NOEMI\Pictures\Screenshots\hex_portada.png)
+![hex_portada](https://user-images.githubusercontent.com/91573449/196759753-c45b2f0e-448d-4c7f-a87d-8f82215cbc4f.png)
 
 <!-- Mejor compatibilidad --> 
 <a name="readme-top"></a>
