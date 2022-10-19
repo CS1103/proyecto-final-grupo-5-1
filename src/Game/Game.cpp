@@ -14,7 +14,7 @@ using namespace std;
  while (game is not over)
  {
     
-    turno = new turn(tablero)
+    turno = new turn(tablero, numero_turno, color_actual)
 
     turno->play()
 
