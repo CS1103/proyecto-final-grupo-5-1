@@ -1,3 +1,6 @@
+![](hex_portada.png)
+
+---
 <!-- Mejor compatibilidad --> 
 <a name="readme-top"></a>
 
