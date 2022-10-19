@@ -196,6 +196,20 @@ Programming](https://www.aaai.org/Papers/AAAI/2000/AAAI00-029.pdf)
 
 ## Convenciones
 
+#### Naming conventions
+
+- clases = PascalCaseName
+- methods = camelCaseName
+- constants = CONSTANT_VARIABLE
+- variables = simple_variable_name
+- functions = VerbPascalCase (start with verb)
+  - function parameters = camelCaseParameter
+- prepending variables (optional):
+  - attribute = m...
+  - pointers = p...
+  - reference = r...
+  - static = s...
+
 #### Header token definition
 
 ```cpp
