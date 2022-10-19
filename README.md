@@ -1,10 +1,11 @@
+![Descripción de la imagen]( C:\Users\NOEMI\Pictures\Screenshots\hex_portada.png)
+
 <!-- Mejor compatibilidad --> 
 <a name="readme-top"></a>
 
 <!-- PROJECT SHIELDS -->
 <!-- [![displayed text][displayed image url]][link url] -->
 
- <image src="C:\Users\NOEMI\Pictures\Screenshots\hex_portada.png" alt="Descripción de la imagen">
 <!-- logo y titulo -->
 <div align="center">
   <a href="https://github.com/CS1103/proyecto-final-grupo-5-1">
