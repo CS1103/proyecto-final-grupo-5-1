@@ -4,6 +4,7 @@
 <!-- PROJECT SHIELDS -->
 <!-- [![displayed text][displayed image url]][link url] -->
 
+![](hex_portada.png)
 
 <!-- logo y titulo -->
 <div align="center">
