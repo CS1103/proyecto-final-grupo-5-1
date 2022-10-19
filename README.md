@@ -4,11 +4,11 @@
 <!-- PROJECT SHIELDS -->
 <!-- [![displayed text][displayed image url]][link url] -->
 
-![](hex_portada.png)
 
 <!-- logo y titulo -->
 <div align="center">
   <a href="https://github.com/CS1103/proyecto-final-grupo-5-1">
+    <img src= "hex_portada.png">
     <img src="MD_files/Hex.jpg" alt="hex board" width="150" height="150">
   </a>
   <h1>Chiquis's Hex game</h1>
