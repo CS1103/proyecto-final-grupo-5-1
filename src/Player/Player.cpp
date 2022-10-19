@@ -1,6 +1,6 @@
 #include "Player.h"
 
-bool validateName(std::string name){
+bool validateName(const std::string &name){
 
   // Validate name size
   if (name.length() > 20 || name.length() < 1){
