@@ -1,4 +1,4 @@
-![PORTADA_HEX](https://user-images.githubusercontent.com/91573449/196764399-833e3e59-82fa-4420-8267-beec351953ab.png)
+![Captura de pantalla (222)](https://user-images.githubusercontent.com/91573449/196765963-514d7760-fa14-4f5a-bd41-e9195dc115ca.png)
 
 <!-- Mejor compatibilidad --> 
 <a name="readme-top"></a>
