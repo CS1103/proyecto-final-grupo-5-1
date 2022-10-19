@@ -1,4 +1,4 @@
-#include <string>
+#include <stdexcept>
 
 #ifndef PLAYER_H
 #define PLAYER_H
@@ -13,9 +13,14 @@ char m_color;
 
 public:
 
-void ChangeName(std::string new_name);
-void ChangeColor(char new_color);
+Player(const std::string &name, char &color);
+
+bool ChangeName(const std::string &new_name);
+bool ChangeColor(char &new_color);
 bool IsWinner();
+
+std::string GetName() const;
+char GetColor() const;
 
 };
 

@@ -16,8 +16,6 @@ using namespace std;
     
     turno = new turn(tablero, numero_turno, color_actual)
 
-
-
     do{
 
       //TODO
@@ -26,7 +24,6 @@ using namespace std;
 
       is_valid = turno->valid play(casilla x, casilla y):
     } while (is_valid)
-
 
     game_over = turno->game_over()
 

@@ -1,8 +1,8 @@
 #include "Turn.h"
 
-Turn::Turn(Board &board, const char &turnColor): (
+Turn::Turn(Board &board, const char &turnColor):
   mr_board(board),
-  mc_turn_color(turnColor) ) {}
+  mc_turn_color(turnColor) {}
 
 bool Turn::validPlay(const unsigned int &square_x, const unsigned int &square_y){
 
