@@ -1,20 +1,22 @@
 #ifndef TURN_H
 #define TURN_H
 
-#include "../Square/Square.h"
+#include "../Board/Board.h"
 
 class Turn {
 
 private:
 
-  Square& mr_square;
-  const unsigned int mc_turn;
+  Board &mr_board;
   const char mc_turn_color;
 
 public:
 
-  Turn(Square& square, const unsigned int turnNumber, const char turnColor);
+  Turn(Board &board, const char &turnColor);
 
+  bool validPlay(const unsigned int &square_x, const unsigned int &square_y);
+
+  bool isGameOver();
 
 };
 
