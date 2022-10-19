@@ -1,4 +1,4 @@
-![hex_portada](https://user-images.githubusercontent.com/91573449/196759753-c45b2f0e-448d-4c7f-a87d-8f82215cbc4f.png)
+![PORTADA_HEX](https://user-images.githubusercontent.com/91573449/196764399-833e3e59-82fa-4420-8267-beec351953ab.png)
 
 <!-- Mejor compatibilidad --> 
 <a name="readme-top"></a>
@@ -14,7 +14,7 @@
   <h1>Chiquis's Hex game</h1>
   
   <p>
-  Somos estudiantes del curso de Programación III de la Universidad de Ingeniería y Tecnología de Lima, Perú.  
+  Hola! 👨‍💻. Somos estudiantes del curso de Programación III de la Universidad de Ingeniería y Tecnología de Lima, Perú.  
   Hemos aplicado conocimientos aprendidos durante el curso de Programación para desarrollar un juego de Hex en C++.
   </p>
 </div>
