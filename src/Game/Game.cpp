@@ -13,8 +13,11 @@ using namespace std;
  
  while (game is not over)
  {
-    
-    turno = new turn(tablero, numero_turno, color_actual)
+
+  std::thread timer([](){
+    turno.start_timer(game.config.time); //temporal
+    break;
+  })
 
     do{
 
@@ -23,7 +26,9 @@ using namespace std;
       // Utilizar vista?
 
       is_valid = turno->valid play(casilla x, casilla y):
-    } while (is_valid)
+    } while (!is_valid)
+
+    turno->stop_timer()
 
     game_over = turno->game_over()
 
