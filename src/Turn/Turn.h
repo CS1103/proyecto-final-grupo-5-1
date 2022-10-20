@@ -2,21 +2,31 @@
 #define TURN_H
 
 #include "../Board/Board.h"
+#include <chrono>
+#include <thread>
 
 class Turn {
 
 private:
 
   Board &mr_board;
-  const char mc_turn_color;
+  char mc_turn_color;
+  bool m_time_limit_over;
 
 public:
 
   Turn(Board &board, const char &turnColor);
 
-  bool validPlay(const unsigned int &square_x, const unsigned int &square_y);
+  bool validPlay(const unsigned int &squareX, const unsigned int &squareY);
 
   bool isGameOver();
+
+  void startTimer(const std::chrono::seconds &timeLimit);
+
+  bool isTimeLimitOver();
+
+  void stopTimer();
+
 
 };
 

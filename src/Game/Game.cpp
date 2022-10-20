@@ -14,23 +14,27 @@ using namespace std;
  while (game is not over)
  {
 
-  std::thread timer([](){
-    turno.start_timer(game.config.time); //temporal
-    break;
-  })
+  turno->startTimer();
 
-    do{
+  do{
 
-      //TODO
-      // GET MOVIMIENTO x, y
-      // Utilizar vista?
+    //Alternativas del temporizador:
 
-      is_valid = turno->valid play(casilla x, casilla y):
-    } while (!is_valid)
+    // ALTERNATIVA 2: Utilizar eventos
+    // GET MOVIMIENTO x, y
+    // Utilizar vista?
+    
+    // ALTERNATIVA 1: Validar tras cada movimiento (funcional)
+    if turno->isTimeLimitOver(){
+      break
+    }
 
-    turno->stop_timer()
+    is_valid = turno->valid play(casilla x, casilla y):
+  } while (!is_valid)
 
-    game_over = turno->game_over()
+  turno->stop_timer()
+
+  game_over = turno->game_over()
 
  }
 
