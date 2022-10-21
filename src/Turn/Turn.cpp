@@ -3,26 +3,31 @@
 
 Turn::Turn(Board &board, const P_Color &playerColor, const std::chrono::seconds &timeLimit):
   mr_board(board),
-  mc_player_color(playerColor)
-{
-  m_countdown_timer = std::jthread([&timeLimit](){
+  mc_player_color(playerColor),
 
-    std::this_thread::sleep_for(timeLimit);
-
-  });
-}
+  // Limit the time for the player to make a move
+  m_countdown_timer(std::jthread([&timeLimit](){
+    std::this_thread::sleep_for(timeLimit);  }))  {}
 
 
 bool Turn::validPlay(const unsigned int &squareX, const unsigned int &squareY){
 
-  auto color = static_cast<SQ_Color>(static_cast<char>(mc_player_color));
+  // One of this must work
+  //auto color = static_cast<SQ_Color>(static_cast<char>(mc_player_color));
+  auto color = static_cast<SQ_Color>(mc_player_color);
   return mr_board.setSquare(squareX, squareY, color);
 
 }
 
-bool Turn::isGameOver() const{
+std::optional<P_Color> Turn::isGameOver() const{
 
-  return mr_board.verifyConnection();
+  if(mr_board.verifyConnection(P_Color::RED)){
+    return P_Color::RED;
+  }
+  if(mr_board.verifyConnection(P_Color::BLUE)){
+    return P_Color::BLUE;
+  }
+  return std::nullopt;
 
 }
 

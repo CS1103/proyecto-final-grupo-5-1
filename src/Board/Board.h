@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "../Square/Square.h"
+#include "../Player/Player.h"
 
 class Board {
 
@@ -14,7 +15,7 @@ public:
 
   void updateBoard();
 
-  bool verifyConnection();
+  bool verifyConnection(const P_Color &color);
 
   bool setSquare(unsigned int squareX, unsigned int squareY, SQ_Color turnColor);
 

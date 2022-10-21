@@ -7,3 +7,10 @@ bool Square::setColor(SQ_Color color){
   }
   return false;
 }
+
+SQ_Color Square::getColor(){
+  return this->color;
+}
+
+Square::Square(SQ_Color color):
+  color(color) {}
