@@ -12,19 +12,12 @@ bool ValidateName(const std::string &name){
 
 }
 
-Player::Player(const std::string &name, char &color){
+Player::Player(const std::string &name, P_Color &color){
 
   if(ValidateName(name)){
     this->m_name = name; }
   else{
     throw std::invalid_argument("Invalid name"); }
-
-  color = tolower(color);
-
-  if (color == 'r' || color == 'b'){
-    this->m_color = color; }
-  else{
-    throw std::invalid_argument("Invalid color"); }
 
 }
 
@@ -37,14 +30,10 @@ bool Player::changeName(const std::string &newName){
   return false;
 }
 
-bool Player::changeColor(char &newColor){
+void Player::changeColor(P_Color &newColor){
 
-  newColor = tolower(newColor);
-  if (newColor == 'r' || newColor == 'b'){
-    this->m_color = newColor;
-    return true;
-  }
-  return false;
+  this->m_color = newColor;
+
 }
 
 bool Player::isWinner() const{
@@ -53,4 +42,9 @@ bool Player::isWinner() const{
 
 std::string Player::getName() const{
   return this->m_name;
+}
+
+
+P_Color Player::getColor() const{
+  return this->m_color;
 }

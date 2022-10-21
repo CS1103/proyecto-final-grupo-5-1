@@ -1,6 +1,8 @@
 #include <stdexcept>
 #include <algorithm>
 
+enum class P_Color: char { BLUE = 'b', RED = 'r' };
+
 #ifndef PLAYER_H
 #define PLAYER_H
 
@@ -12,18 +14,18 @@ private:
 
 std::string m_name;
 bool m_is_winner;
-char m_color;
+P_Color m_color;
 
 public:
 
-Player(const std::string &name, char &color);
+Player(const std::string &name, P_Color &color);
 
 bool changeName(const std::string &newName);
-bool changeColor(char &newColor);
+void changeColor(P_Color &newColor);
 
 [[nodiscard]] bool isWinner() const;
 [[nodiscard]] std::string getName() const;
-[[nodiscard]] char getColor() const;
+[[nodiscard]] P_Color getColor() const;
 
 };
 

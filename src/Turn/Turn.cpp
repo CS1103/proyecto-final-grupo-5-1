@@ -1,9 +1,9 @@
 #include "Turn.h"
 
 
-Turn::Turn(Board &board, const char &turnColor, const std::chrono::seconds &timeLimit):
+Turn::Turn(Board &board, const P_Color &playerColor, const std::chrono::seconds &timeLimit):
   mr_board(board),
-  mc_turn_color(turnColor)
+  mc_player_color(playerColor)
 {
   m_countdown_timer = std::jthread([&timeLimit](){
 
@@ -15,7 +15,8 @@ Turn::Turn(Board &board, const char &turnColor, const std::chrono::seconds &time
 
 bool Turn::validPlay(const unsigned int &squareX, const unsigned int &squareY){
 
-  return mr_board.setSquare(squareX, squareY, mc_turn_color);
+  auto color = static_cast<SQ_Color>(static_cast<char>(mc_player_color));
+  return mr_board.setSquare(squareX, squareY, color);
 
 }
 

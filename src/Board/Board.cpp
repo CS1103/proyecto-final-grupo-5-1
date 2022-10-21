@@ -12,3 +12,14 @@ Board::Board(const unsigned int &size){
 
   }
 }
+
+bool Board::verifyConnection(){
+  return true;
+}
+
+bool Board::setSquare(unsigned int squareX, unsigned int squareY, SQ_Color turnColor){
+  return tablero[squareX][squareY].setColor(turnColor);
+}
+
+void Board::updateBoard(){
+}
