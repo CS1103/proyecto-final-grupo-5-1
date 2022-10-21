@@ -1,29 +1,35 @@
 #include "Turn.h"
 
-Turn::Turn(Board &board, const char &turnColor):
+
+Turn::Turn(Board &board, const char &turnColor, const std::chrono::seconds &timeLimit):
   mr_board(board),
-  mc_turn_color(turnColor) {}
+  mc_turn_color(turnColor)
+{
+  m_countdown_timer = std::jthread([&timeLimit](){
+
+    std::this_thread::sleep_for(timeLimit);
+
+  });
+}
+
 
 bool Turn::validPlay(const unsigned int &squareX, const unsigned int &squareY){
 
-  if( mr_board.setSquare(square_x, square_y, mc_turn_color) ){
-    return true;
-  }
-  return false;
+  return mr_board.setSquare(squareX, squareY, mc_turn_color);
 
 }
 
 bool Turn::isGameOver(){
-  if (mr_board.verifyConnection()){
-    return true;
-  }
-  return false;
+
+  return mr_board.verifyConnection();
 
 }
 
-void Turn::startTimer(){
-
-
+bool Turn::isTimeUp() const{
+  return this -> m_time_limit_over;
 }
 
-bool
+
+void Turn::stopTimer(){
+  m_countdown_timer.request_stop();
+}

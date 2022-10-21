@@ -14,7 +14,8 @@ using namespace std;
  while (game is not over)
  {
 
-  turno->startTimer();
+  turno = Turno(board, color, config.tiempo)
+
 
   do{
 
