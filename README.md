@@ -92,7 +92,7 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 - Lenguaje de programación C++17 o posterior
 - Administrador de paquetes Cmake v3 o posterior
 - Graphvz
-- Librería GUI
+- Librería GUI SFML
 
 ### Temas de interés
 - Monte Carlo Tree Search
