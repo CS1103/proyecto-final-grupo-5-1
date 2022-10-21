@@ -22,7 +22,7 @@ public:
 
   bool validPlay(const unsigned int &squareX, const unsigned int &squareY);
 
-  bool isGameOver();
+  [[nodiscard]] bool isGameOver() const;
 
   [[nodiscard]] bool isTimeUp() const;
 

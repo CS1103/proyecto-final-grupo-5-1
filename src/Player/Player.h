@@ -1,7 +1,10 @@
 #include <stdexcept>
+#include <algorithm>
 
 #ifndef PLAYER_H
 #define PLAYER_H
+
+const unsigned int MAX_NAME_LENGTH = 20;
 
 class Player {
 
@@ -15,12 +18,12 @@ public:
 
 Player(const std::string &name, char &color);
 
-bool ChangeName(const std::string &new_name);
-bool ChangeColor(char &new_color);
-bool IsWinner();
+bool changeName(const std::string &newName);
+bool changeColor(char &newColor);
 
-std::string GetName() const;
-char GetColor() const;
+[[nodiscard]] bool isWinner() const;
+[[nodiscard]] std::string getName() const;
+[[nodiscard]] char getColor() const;
 
 };
 

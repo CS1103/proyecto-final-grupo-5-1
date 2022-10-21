@@ -1,66 +1,56 @@
 #include "Player.h"
 
-bool validateName(const std::string &name){
+bool ValidateName(const std::string &name){
 
   // Validate name size
-  if (name.length() > 20 || name.length() < 1){
-    return false;
-  }
+  bool is_valid_size = name.length() > MAX_NAME_LENGTH || name.length() < 1;
 
   // Validate name characters as alphanumeric
-  for(auto ch: name){
-    if(!isalnum(ch)) {
-      return false;
-    }
-  }
+  bool has_valid_chars = std::ranges::all_of(name, isalnum);
 
-  return true;
+  return is_valid_size && has_valid_chars;
 
 }
 
 Player::Player(const std::string &name, char &color){
 
-  if(validateName(name))
-    this->m_name = name;
-  else
-    throw std::invalid_argument("Invalid name");
+  if(ValidateName(name)){
+    this->m_name = name; }
+  else{
+    throw std::invalid_argument("Invalid name"); }
 
   color = tolower(color);
 
-  if (color == 'r' || color == 'b')
-    this->m_color = color;
-  else
-    throw std::invalid_argument("Invalid color");
+  if (color == 'r' || color == 'b'){
+    this->m_color = color; }
+  else{
+    throw std::invalid_argument("Invalid color"); }
 
 }
 
 
-bool Player::ChangeName(const std::string &new_name){
-  if(validateName(new_name)){
-    this->m_name = new_name;
+bool Player::changeName(const std::string &newName){
+  if(ValidateName(newName)){
+    this->m_name = newName;
     return true;
   }
   return false;
 }
 
-bool Player::ChangeColor(char &new_color){
+bool Player::changeColor(char &newColor){
 
-  new_color = tolower(new_color);
-  if (new_color == 'r' || new_color == 'b'){
-    this->m_color = new_color;
+  newColor = tolower(newColor);
+  if (newColor == 'r' || newColor == 'b'){
+    this->m_color = newColor;
     return true;
   }
   return false;
 }
 
-bool Player::IsWinner(){
+bool Player::isWinner() const{
   return this->m_is_winner;
 }
 
-std::string Player::GetName() const{
+std::string Player::getName() const{
   return this->m_name;
-}
-
-char Player::GetColor() const{
-  return this->m_color;
 }

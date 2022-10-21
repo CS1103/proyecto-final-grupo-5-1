@@ -19,7 +19,7 @@ bool Turn::validPlay(const unsigned int &squareX, const unsigned int &squareY){
 
 }
 
-bool Turn::isGameOver(){
+bool Turn::isGameOver() const{
 
   return mr_board.verifyConnection();
 
