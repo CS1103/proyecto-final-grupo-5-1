@@ -3,6 +3,7 @@
 using namespace std;
 
 
+// PSEUDOCODIGO
 
 /*
  Iniciar Juego:
@@ -10,6 +11,9 @@ using namespace std;
  config_opcional = vista.configurarJuego()
  if config_opcional != None:
     cambiar configuracion
+
+
+  board = Board(config.tamaño)
  
  while (game is not over)
  {
