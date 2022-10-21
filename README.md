@@ -77,19 +77,20 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 #### Características Principales
 - **Swap:** 
 
-  El juego se realiza en un intercambio de un movimiento de una casilla por jugador. El juego no ejecuta ninguna acción si el jugador intenta realizar movimientos durante el turno del otro jugador y esto ocurre en todo el tiempo de partida.
+  El juego se realiza en un intercambio de un movimiento de una casilla por jugador. El juego no ejecuta ninguna acción para el jugador cuando intenta realizar movimientos durante el turno del otro jugador.
 
 - **Tiempo límite:**
 
-  El juego tiene un tiempo límite de partida sin detención con una duración de --- minutos. Si el juego acaba sin reciir un ganador, los declara a los dos jugadores como partida perdida.
+  El juego tiene un tiempo límite de partida sin detención con una duración de --- minutos. Si el juego acaba sin recibir un ganador, declara a los dos jugadores como partida perdida.
 
 #### Caracteristicas Adicionales
-- Juego multiplayer simultáneo
-- Bot de múltiples dificultades
-- Configuración dinámica del juego
+- Juego multiplayer simultáneo en tiempo real para dos jugadores conectados en diferentes dispositivos.
+- Bot de múltiples dificultades para un solo jugador.
+- Configuración dinámica del juego para una mejor adaptabilidad y experiencia del jugador en partidas.
 
 ### Tecnologías
 - Lenguaje de programación C++17 o posterior
+- Administrador de paquetes Cmake v3 o posterior
 - Graphvz
 - Librería GUI
 
@@ -110,8 +111,15 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 ```bash
 git clone https://github.com/CS1103/proyecto-final-grupo-5-1
 ```
-3. Ejecutar el instalador
-4. Ejecutar el juego Hex
+3. Ejecutar el instalador con
+```bash
+
+```
+
+4. Ejecutar el juego Hex con
+```bash
+
+```
 
 ## Instrucciones de uso
 ### Instrucciones

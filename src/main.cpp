@@ -13,5 +13,6 @@ int main (int argc, char *argv[])
   sistema = new System();
   sistema->crear_juego(config_base);
   
+  system("pause");
   return 0;
 }
