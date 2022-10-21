@@ -16,7 +16,9 @@ public:
   bool setColor(SQ_Color color);
   SQ_Color getColor();
 
-
 };
+
+class StartSquare: public Square { using Square::Square; };
+class EndSquare: public Square { using Square::Square; };
 
 #endif // !SQUARE_H

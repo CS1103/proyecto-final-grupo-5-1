@@ -1,6 +1,7 @@
 #include "Board.h"
 #include <queue>
 
+
 Board::Board(const unsigned int &size){
   tablero.resize(size);
   for (auto &vec: tablero) {
@@ -18,77 +19,88 @@ std::vector<std::vector<Square>> Format(const P_Color &color, std::vector<std::v
   size_t size = tableroBase.size();
   switch (color) {
     case P_Color::BLUE:
-      tableroBase.insert(tableroBase.begin(), std::vector<Square>(size, Square(SQ_Color::BLUE)));
+
+      tableroBase.insert(tableroBase.begin(), std::vector<Square>(size - 1, Square(SQ_Color::BLUE)));
+      tableroBase[0][size] = StartSquare(SQ_Color::BLUE);
+
+      tableroBase.insert(tableroBase.end(), std::vector<Square>(size - 1, Square(SQ_Color::BLUE)));
+      tableroBase[0][size] = EndSquare(SQ_Color::BLUE);
+
       return tableroBase;
+
     case P_Color::RED:
-      for(auto &vec: tableroBase){
-        vec.insert(vec.begin(), Square(SQ_Color::RED));
+
+      for(auto it = tableroBase.begin(); it != (tableroBase.end() - 1); ++it){
+        it->insert(it->begin(), Square(SQ_Color::RED));
+        it->insert(it->end(), Square(SQ_Color::RED));
       }
+
+      tableroBase[size].insert(tableroBase[size].begin(), StartSquare(SQ_Color::RED));
+      tableroBase[size].insert(tableroBase[size].end(), EndSquare(SQ_Color::RED));
+
+
       return tableroBase;
   }
 }
 
 
-bool Board::verifyConnection(const P_Color &color){
+bool Board::verifyConnection(const P_Color &playerColor){
 
   // 1) Create BFS queue q
   std::queue<Square> queue;
 
-  std::vector<std::vector<Square>> formated_tablero = Format(color, tablero);
+  std::vector<std::vector<Square>> formated_tablero = Format(playerColor, tablero);
 
   // 2)scan the matrix
   for(auto& vec: formated_tablero){
     for(auto& casilla: vec){
-      if(static_cast<SQ_Color>(color) == casilla.getColor()){
+      if(typeid(casilla) == typeid(StartSquare)){ // Is there a better way?
         queue.push(casilla);
         break;
       }
     }
   }
 
-  /*
-  // 3) run BFS algorithm with q.
+  // BFS
   while (!queue.empty()) {
     
-    Square casilla = queue.front();
+    // Store as top_casilla and pop
+    Square top_casilla = queue.front();
     queue.pop();
-    pos_x = casilla.getX();
 
-      int i = x.i;
-      int j = x.j;
+    // if they are invalid paths (empty or enemy)
+    SQ_Color top_color = top_casilla.getColor();
+    if (top_color == SQ_Color::EMPTY || top_color == static_cast<SQ_Color>(playerColor)) {
+        continue;
+    }
 
-      // skipping cells which are not valid.
-      // if outside the matrix bounds
-      if (i < 0 || i > R || j < 0 || j > C)
-          continue;
+    if(typeid(top_casilla) == typeid(EndSquare)){ // Is there a better way?
+        return true;
+    }
 
-      // if they are walls (value is 0).
-      if (M[i][j] == 0)
-          continue;
+    // marking as wall upon successful visitation
+    top_casilla.setColor(SQ_Color::EMPTY);
 
-      // 3.1) if in the BFS algorithm process there was a
-      // vertex x=(i,j) such that M[i][j] is 2 stop and
-      // return true
-      if (M[i][j] == 2)
-          return true;
 
-      // marking as wall upon successful visitation
-      M[i][j] = 0;
+    // PUSH THE NEIGHBOURS
+    // Evualate at Square?
+    for(auto& neighbor: top_casilla.getNeighbors()){
+      queue.push(neighbor);
+    }
 
-      // pushing to queue u=(i,j+1),u=(i,j-1)
-      //                 u=(i+1,j),u=(i-1,j)
-      for (int k = -1; k <= 1; k += 2) {
-          q.push(BFSElement(i + k, j));
-          q.push(BFSElement(i, j + k));
-      }
+    // Evaluate at Board?
+    /*
+    for (int k = -1; k <= 1; k += 2) {
+        q.push(BFSElement(i + k, j));
+        q.push(BFSElement(i, j + k));
+    }
+    */
   }
 
   // BFS algorithm terminated without returning true
   // then there was no element M[i][j] which is 2, then
   // return false
   return false;
-  */
-  return true;
 }
 
 bool Board::setSquare(unsigned int squareX, unsigned int squareY, SQ_Color turnColor){
