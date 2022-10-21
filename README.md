@@ -97,12 +97,12 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 - Monte Carlo Tree Search
 - Strategy stealing argument
 - Four color theorem
+- Breadth first search on queues
 
 
 ## Instalación
 ### Requisitos
-- Sistema Operativo MS Windows (10 u 11)
-- Terminal Git Bash
+- sh-compatible shell
 - Compilador g++ v20 o posterior
 - Administrador de paquetes Cmake v3 o posterior
 - Librerias SFML de GCC (previamente no incluidas)
