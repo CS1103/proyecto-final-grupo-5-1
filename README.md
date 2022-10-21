@@ -90,9 +90,8 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 
 ### Tecnologías
 - Lenguaje de programación C++17 o posterior
-- Administrador de paquetes Cmake v3 o posterior
-- Graphvz
-- Librería GUI SFML
+- Graphvz, sintaxis para diseñar grafos.
+- Librería GUI SFML, API de C++ para animación gráfica.
 
 ### Temas de interés
 - Monte Carlo Tree Search
@@ -104,7 +103,9 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 ### Requisitos
 - Sistema Operativo MS Windows (10 u 11)
 - Terminal Git Bash
-- Compilador g++ v20 
+- Compilador g++ v20 o posterior
+- Administrador de paquetes Cmake v3 o posterior
+- Librerias SFML de GCC (previamente no incluidas)
 
 ### Pasos de instalación
 1. Clonación de repositorio con 
