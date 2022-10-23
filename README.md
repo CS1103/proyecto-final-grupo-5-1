@@ -23,7 +23,6 @@
 <details open>
   <summary>Tabla de contenidos:</summary>
   <ol>
-    <u>
     <li><a href="#acerca-del-proyecto">
       Acerca del proyecto
       <ul>
@@ -33,7 +32,6 @@
         <li><a href="#temas-de-interés">Temas de interés</a></li>
         <li><a href="#algoritmos-y-contenedores-utilizados">Algoritmos y contenedores utilizados</a></li>
       </ul>
-    </u>
     </a></li>
     <li><a href="#instalación">
       Instalación
@@ -52,7 +50,7 @@
       Diagramas
       <ul>
         <li><a href="#grafo-del-tablero">Grafo del tablero-11x11</a></li>
-        <u><li><a href="#diagrama-de-clases">Diagrama de clases</a></li></u>
+        <li><a href="#diagrama-de-clases">Diagrama de clases</a></li>
       </ul>
     </a></li>
     <li><a href="#link-del-video">
@@ -102,10 +100,10 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 
 ### Algoritmos y contenedores utilizados
 
-- BFS (Breadth First Search)
+- BFS (Breadth First Search):  
 explicación aqui
 
-- Queue
+- Queue:  
 explicación aqui
 
 
