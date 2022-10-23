@@ -1,6 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include <memory>
 #include <vector>
 #include "../Square/Square.h"
 #include "../Player/Player.h"
@@ -8,7 +9,7 @@
 class Board {
 
 private:
-  std::vector<std::vector<Square>> tablero;
+  std::vector<std::vector<std::shared_ptr<Square>>> tablero;
 
 public:
   Board(const unsigned int &size);
@@ -18,6 +19,8 @@ public:
   bool verifyConnection(const P_Color &color);
 
   bool setSquare(unsigned int squareX, unsigned int squareY, SQ_Color turnColor);
+
+  [[nodiscard]] std::vector<std::shared_ptr<Square>> getNeighbors(const Square* square) const;
 
 };
 
