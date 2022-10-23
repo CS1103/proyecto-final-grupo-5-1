@@ -1,0 +1,20 @@
+CompileFlags:
+
+  # Treat code as C++, use C++20 standard, enable more warnings.
+  Add: [-xc++, -std=c++20, -Wall]
+
+Diagnostics:
+
+  # Tweak Clang-Tidy checks.
+  ClangTidy:
+    Add: [performance*, modernize*, readability*]
+    Remove: [modernize-use-trailing-return-type]
+    CheckOptions:
+      readability-identifier-naming.VariableCase: lower_case
+      readability-identifier-naming.ClassCase: CamelCase
+      readability-identifier-naming.ConstantCase: UPPER_CASE
+      readability-identifier-naming.FunctionCase: CamelCase
+      readability-identifier-naming.MethodCase: camelBack
+      readability-identifier-naming.ParameterCase: camelBack
+
+  UnusedIncludes: Strict
