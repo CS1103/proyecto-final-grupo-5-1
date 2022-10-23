@@ -31,6 +31,7 @@
         <li><a href="#características">Características</a></li>
         <li><a href="#tecnologías">Tecnologías</a></li>
         <li><a href="#temas-de-interés">Temas de interés</a></li>
+        <li><a href="#algoritmos-y-contenedores-utilizados">Algoritmos y contenedores utilizados</a></li>
       </ul>
     </u>
     </a></li>
@@ -98,6 +99,14 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 - Strategy stealing argument
 - Four color theorem
 - Breadth first search on queues
+
+### Algoritmos y contenedores utilizados
+
+- BFS (Breadth First Search)
+explicación aqui
+
+- Queue
+explicación aqui
 
 
 ## Instalación
