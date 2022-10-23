@@ -15,7 +15,7 @@
   
   <p>
   Hola! 👨‍💻. Somos estudiantes del curso de Programación III de la Universidad de Ingeniería y Tecnología de Lima, Perú.  
-  Hemos aplicado conocimientos aprendidos durante el curso de Programación para desarrollar un juego de Hex en C++.
+  Hemos aplicado conocimientos aprendidos durante el curso de Programación para desarrollar el juego Hex en C++.
   </p>
 </div>
 
