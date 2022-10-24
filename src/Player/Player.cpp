@@ -2,17 +2,26 @@
 
 bool ValidateName(const std::string &name){
 
+  std::string error;
+
   // Validate name size
   bool is_valid_size = name.length() > MAX_NAME_LENGTH || name.length() < 1;
 
-  // Validate name characters as alphanumeric
-  bool has_valid_chars = std::ranges::all_of(name, isalnum);
+  error += is_valid_size ? "Name must be between 1 and " + std::to_string(MAX_NAME_LENGTH) + " characters\n": "";
 
-  return is_valid_size && has_valid_chars;
+  bool has_valid_chars = std::ranges::all_of(name,[](const auto &als){return isalnum(als) || isspace(als); });
+
+  error += has_valid_chars ? "Name must only contain alphanumeric characters and spaces\n": "";
+
+  if(error.empty()){
+    return true;
+  }
+
+  throw std::invalid_argument(error);
 
 }
 
-Player::Player(const std::string &name, P_Color &color){
+Player::Player(const std::string &name, const P_Color &color){
 
   if(ValidateName(name)){
     this->m_name = name; }

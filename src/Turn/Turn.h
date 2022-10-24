@@ -2,7 +2,7 @@
 #define TURN_H
 
 #include "../Board/Board.h"
-//#include "../Player/Player.h" // Temporal include
+#include "../Player/Player.h" // Temporal include
 #include <chrono>
 #include <thread>
 #include <optional>

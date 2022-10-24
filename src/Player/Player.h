@@ -1,10 +1,10 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include <stdexcept>
 #include <algorithm>
 
 enum class P_Color: char { BLUE = 'b', RED = 'r' };
-
-#ifndef PLAYER_H
-#define PLAYER_H
 
 const unsigned int MAX_NAME_LENGTH = 20;
 
@@ -18,7 +18,7 @@ P_Color m_color;
 
 public:
 
-Player(const std::string &name, P_Color &color);
+Player(const std::string &name,const P_Color &color);
 
 bool changeName(const std::string &newName);
 void changeColor(P_Color &newColor);
