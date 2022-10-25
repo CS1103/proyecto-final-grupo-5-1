@@ -10,7 +10,7 @@ set(CMAKE_CXX_FLAGS "-Wall")
 
 # DEFINE desired modules
 
-#set(Modules "Board" "Game" "Config" "Player" "Square" "Turn" "View" "PlayerController" "System")
+#set(Modules "Board" "Game" "Config" "Player" "Square" "Turn" "View" "PlayerController" "System" "Bot")
 set(Modules "Square" "Board" "Player" "Turn")
 
 set (INCLUDE_DIRS "src")
@@ -22,6 +22,14 @@ foreach (Module ${Modules})
     list(APPEND SOURCES "src/${Module}/${Module}.cpp")
 endforeach()
 
+# IF using Bot
+#list(APPEND SOURCES "src/Bot/Engines.cpp")
+
+
+set (Bot_engines list(FIND Modules "Bot"))
+
+IF (${Bot_engines} GREATER -1)
+    list(APPEND SOURCES "src/Bot/Engines.cpp")
 
 list(APPEND SOURCES "src/test.cpp")
 #list(APPEND SOURCES "src/main.cpp")
