@@ -144,4 +144,3 @@ bool Board::verifyConnection(const P_Color &playerColor){
 bool Board::setSquare(unsigned int squareX, unsigned int squareY, SQ_Color turnColor){
   return tablero[squareX][squareY]->setColor(turnColor);
 }
-

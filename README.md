@@ -70,10 +70,13 @@
 ## Acerca del proyecto
 
 ### Descripción
+
 El proyecto consiste en la elaboración del juego Hex tradicional pero con la implementación adicional de nuevas características. El juego tiene como objetivo ser más flexible para el usuario ya que se da la posibilidad de hacer cambios a las características de su juego antes, durante y después de haber sido empezado. Por otro lado, el usuario tiene la opción de elegir dos tipos de tablero uno de 7x7 y el otro de 11x11; además existen dos opciones de juego, contra otro jugador de forma local o contra la computadora. 
 
 ### Características
+
 #### Características Principales
+
 - **Swap:** 
 
   El juego se realiza en un intercambio de un movimiento de una casilla por jugador. El juego no ejecuta ninguna acción para el jugador cuando intenta realizar movimientos durante el turno del otro jugador.
@@ -83,16 +86,19 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
   El juego tiene un tiempo límite de partida sin detención con una duración de --- minutos. Si el juego acaba sin recibir un ganador, declara a los dos jugadores como partida perdida.
 
 #### Caracteristicas Adicionales
+
 - Juego multiplayer simultáneo en tiempo real para dos jugadores conectados en diferentes dispositivos.
 - Bot de múltiples dificultades para un solo jugador.
 - Configuración dinámica del juego para una mejor adaptabilidad y experiencia del jugador en partidas.
 
 ### Tecnologías
+
 - Lenguaje de programación C++17 o posterior
 - Graphvz, sintaxis para diseñar grafos.
 - Librería GUI SFML, API de C++ para animación gráfica.
 
 ### Temas de interés
+
 - Monte Carlo Tree Search
 - Strategy stealing argument
 - Four color theorem
@@ -106,33 +112,41 @@ explicación aqui
 - Queue:  
 explicación aqui
 
-
 ## Instalación
+
 ### Requisitos
+
 - sh-compatible shell
 - Compilador g++ v20 o posterior
 - Administrador de paquetes Cmake v3 o posterior
 - Librerias SFML de GCC (previamente no incluidas)
 
 ### Pasos de instalación
-1. Clonación de repositorio con 
+
+1. Clonación de repositorio con
+
 ```bash
 git clone https://github.com/CS1103/proyecto-final-grupo-5-1
 ```
+
 3. Ejecutar el instalador con
+
 ```bash
 
 ```
 
 4. Ejecutar el juego Hex con
+
 ```bash
 
 ```
 
 ## Instrucciones de uso
+
 ### Instrucciones
 
 ### Reglas de juego
+
 El juego Hex se lleva a cabo en un tablero de tamaño NxN. Adicionalmente, es jugado por dos jugadores.
  
 - Al comienzo de cada partida el tablero está vacío.
@@ -142,7 +156,6 @@ El juego Hex se lleva a cabo en un tablero de tamaño NxN. Adicionalmente, es ju
 - La finalidad del juego es ir formando una hilera de fichas ininterrumpida entre uno de los lados del rombo que es el tablero y el opuesto, uniendo de este modo ambos lados.
 - Los jugadores no podrán mover las fichas ya incorporadas.
 - Gana el jugador que antes consiga completar la hilera.
-
 
 ## Licencia
 
@@ -175,12 +188,14 @@ Si quisieramos utilizar una matriz como contenedor para el tablero, estas serian
 
 
 ### Diagrama de clases
+
 ![Diagrama](MD_files/digrama_clases.png)
 
 
 ## Link del video
 
 ## Autores
+
 - Allyson Tiphany Sánchez Báez
 - Mariel Carolina Tovar Tolentino
 - Noemi Alejandra Huarino Anchillo
@@ -254,9 +269,6 @@ public:
 - You should NEVER use a raw pointer to manage a resource.
 
 ```
-
-
-
 
 ---
 
