@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <string>
 
 bool ValidateName(const std::string &name){
 

@@ -14,8 +14,6 @@ private:
 public:
   Board(const unsigned int &size);
 
-  void updateBoard();
-
   bool verifyConnection(const P_Color &color);
 
   bool setSquare(unsigned int squareX, unsigned int squareY, SQ_Color turnColor);
