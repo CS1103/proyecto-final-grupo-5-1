@@ -146,5 +146,6 @@ bool Board::setSquare(unsigned int squareX, unsigned int squareY, SQ_Color turnC
   return tablero[squareX][squareY]->setColor(turnColor);
 }
 
+
 void Board::updateBoard(){
 }

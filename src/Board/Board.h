@@ -20,8 +20,6 @@ public:
 
   bool setSquare(unsigned int squareX, unsigned int squareY, SQ_Color turnColor);
 
-  [[nodiscard]] std::vector<std::shared_ptr<Square>> getNeighbors(const Square* square) const;
-
 };
 
 #endif // !BOARD_H
