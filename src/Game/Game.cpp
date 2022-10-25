@@ -1,7 +1,8 @@
-#include <iostream>
 #include "Game.h"
-using namespace std;
 
+Game::Game(const Config &config, const std::shared_ptr<Player> &player1, const std::shared_ptr<Player> &player2):
+  config(config),
+  players({player1, player2}) {}
 
 // PSEUDOCODIGO
 
