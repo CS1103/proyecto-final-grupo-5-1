@@ -2,13 +2,14 @@
 .vscode/
 .vs
 .idea/
-idea/
 
 # cmake builds
 build/
 cmake-build-debug/
+cmake-build-hex/
 
 # files testing
+out/
 *.out
 *.exe
 src/test.cpp
