@@ -1,9 +1,13 @@
-build/
+# IDE's configs ignores
 .vscode/
 .vs
 idea/
+
+# cmake builds
+build/
 cmake-build-debug/
 
+# files testing
 *.out
 *.exe
 srt/test.cpp
