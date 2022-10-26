@@ -1,6 +1,7 @@
 # IDE's configs ignores
 .vscode/
 .vs
+.idea/
 idea/
 
 # cmake builds
