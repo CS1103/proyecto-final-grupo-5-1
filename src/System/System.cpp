@@ -1,13 +1,27 @@
 #include "System.h"
 
-/*System::System(){
+System::System(){
+    // onstruir vista
+    vista
+    controlladoraPersonas
+    PersonController pControler();
+    vectorJuegos
 
-}*/
+}
 
 void System::run(){
+    // Datos de jugadores
+    //Config config = vista.getConfig()
+
     // Configuracion
-    Config config;
+    Config config(TipoJ::HUMANO_HUMANO, std::chrono::seconds(180));
+
+    // Añadir jugadores
+    pController.addPlayer(make_shared<Player>(Player("name")) )
+    pController.addPlayer(make_shared<Player>(Player("name2")) )
 
     // Llamar a game
-    Game(config, player1, player2);
+    Game juego1(config, pController[0], pController.at(1));
+    juego1.startGame();
+
 }

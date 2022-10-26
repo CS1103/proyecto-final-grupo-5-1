@@ -13,6 +13,8 @@ private:
     // Vector de games
     std::vector<std::unique_ptr<Game>> games;
 
+    View vista;
+
 public:
   System() = default;
   void run();
