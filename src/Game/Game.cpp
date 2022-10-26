@@ -1,7 +1,7 @@
 #include "Game.h"
 
 Game::Game(const Config &config, const std::shared_ptr<Player> &player1, const std::shared_ptr<Player> &player2):
-  config(config),
+  m_config(config),
   players({player1, player2}) {}
 
 // PSEUDOCODIGO

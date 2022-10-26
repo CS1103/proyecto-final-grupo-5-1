@@ -10,6 +10,8 @@ bool ValidateName(const std::string &name){
 
   error += is_valid_size ? "": "Name must be between 1 and " + to_string(MAX_NAME_LENGTH) + " characters\n";
 
+  // isalnum -> chequea si el numero es un alphanumerico (letra o digito)
+  // isspace -> chequea si es un espacio en blanco
   bool has_valid_chars = ranges::all_of(name,[](const auto &als){return isalnum(als) || isspace(als); });
 
   error += has_valid_chars ? "": "Name must only contain alphanumeric characters and spaces\n";
@@ -28,6 +30,7 @@ Player::Player(const string &name, const P_Color &color){
     this->m_name = name; }
   else{
     throw invalid_argument("Invalid name"); }
+  // genera una excepción cuando se detecta un problema, lo que nos permite crear un error personalizado.
 
 }
 

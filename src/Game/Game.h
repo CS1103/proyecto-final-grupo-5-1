@@ -17,7 +17,7 @@ public:
 
 private:
 
-  Config config;
+  Config m_config;
   std::vector<std::shared_ptr<Player>> players;
   
 };
