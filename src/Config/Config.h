@@ -6,13 +6,17 @@ enum class TipoJ: unsigned int { HUMANO_HUMANO = 0, HUMANO_COMPUTADOR = 1, COMPU
 #include <chrono>
 
 struct Config {
-
+    // Atributos
   std::chrono::seconds m_time_limit;
   TipoJ m_tipoJ;
+  const unsigned int mc_board_size;
 
-  Config(TipoJ tipoJ = TipoJ::HUMANO_HUMANO, std::chrono::seconds timeLimit = std::chrono::seconds(0));
+  // Constructor
+  Config(TipoJ tipoJ = TipoJ::HUMANO_HUMANO, std::chrono::seconds timeLimit = std::chrono::seconds(0), const unsigned int s)
+  // Metodos
   void setTimeLimit(std::chrono::seconds timeLimit);
   void setTipoJ(TipoJ tipoJ);
+  void setBoardSize(const unsigned int s);
 
 };
 

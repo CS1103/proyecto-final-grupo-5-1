@@ -6,19 +6,16 @@
 #include "../PlayerController/PlayerController.h"
 #include "../Game/Game.h"
 
-class System
-  
-{
+class System{
+private:
+    // Vector de players
+    PlayerController players;
+    // Vector de games
+    std::vector<std::unique_ptr<Game>> games;
 
 public:
-  System();
+  System() = default;
   void run();
-
-private:
-
-  PlayerController players;
-  std::vector<std::unique_ptr<Game>> games;
-  
 };
 
 #endif // !SYSTEM_H

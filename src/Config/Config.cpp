@@ -10,3 +10,6 @@ void Config::setTimeLimit(std::chrono::seconds timeLimit){
 void Config::setTipoJ(TipoJ tipoJ){
   this->m_tipoJ = tipoJ;
 }
+void setBoardSize(const unsigned int s){
+    this->mc_board_size = s;
+}

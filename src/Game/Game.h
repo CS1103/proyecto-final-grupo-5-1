@@ -7,6 +7,8 @@
 #include "../Config/Config.h"
 #include "../Player/Player.h"
 #include "../Board/Board.h"
+#include "../Square/Square.h"
+#include "../Turn/Turn.h"
 
 class Game{
 private:
