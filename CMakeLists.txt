@@ -28,8 +28,8 @@ endforeach()
 
 set (Bot_engines list(FIND Modules "Bot"))
 
-IF (${Bot_engines} GREATER -1)
-    list(APPEND SOURCES "src/Bot/Engines.cpp")
+#IF (${Bot_engines} GREATER -1)
+#    list(APPEND SOURCES "src/Bot/Engines.cpp")
 
 list(APPEND SOURCES "src/test.cpp")
 #list(APPEND SOURCES "src/main.cpp")

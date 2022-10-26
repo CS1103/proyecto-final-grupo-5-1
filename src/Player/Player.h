@@ -11,21 +11,19 @@ const unsigned int MAX_NAME_LENGTH = 20;
 class Player {
 
 private:
-
-std::string m_name;
-bool m_is_winner;
-P_Color m_color;
+    std::string m_name;
+    bool m_is_winner;
+    P_Color m_color;
 
 public:
+    Player(const std::string &name,const P_Color &color);
 
-Player(const std::string &name,const P_Color &color);
+    bool changeName(const std::string &newName);
+    void changeColor(P_Color &newColor);
 
-bool changeName(const std::string &newName);
-void changeColor(P_Color &newColor);
-
-[[nodiscard]] bool isWinner() const;
-[[nodiscard]] std::string getName() const;
-[[nodiscard]] P_Color getColor() const;
+    [[nodiscard]] bool isWinner() const;
+    [[nodiscard]] std::string getName() const;
+    [[nodiscard]] P_Color getColor() const;
 
 };
 

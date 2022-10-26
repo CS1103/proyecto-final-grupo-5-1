@@ -4,6 +4,37 @@ Game::Game(const Config &config, const std::shared_ptr<Player> &player1, const s
   m_config(config),
   players({player1, player2}) {}
 
+
+std::optional<Player> Game::startGame(){
+    // Player
+    shared_ptr<Player> player1 = players[0];
+
+    // There is an additional config
+    if(m_config != NULL){
+        // Change default config
+    }
+    // Create board
+    Board game_board = Board(config.size);
+
+    // Running game
+    bool m_playing = true;
+    bool hay_ganador = false;
+    bool hay_tiempo = false;
+
+    while(m_playing){
+
+
+        // Continua corriendo si queda tiempo
+        hay_tiempo =
+
+        // Continua corriendo si no hay ganador
+        hay_ganador = players[0]->isWinner() == false and players[1]->isWinner()== false;
+
+        if(hay_ganador)
+            m_playing = true;
+
+    }
+}
 // PSEUDOCODIGO
 
 /*
