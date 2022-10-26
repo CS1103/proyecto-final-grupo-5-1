@@ -6,14 +6,12 @@
 
 #include "../Player/Player.h"
 
-using namespace std;
-
 class PlayerController
 {
 public:
   PlayerController();
-  void addPlayer(shared_ptr<Player> player);
-  void removePlayer(shared_ptr<Player> player);
+  void addPlayer(std::shared_ptr<Player> player);
+  void removePlayer(std::shared_ptr<Player> player);
   void getPlayerAt(unsigned int index);
 
 private:

@@ -1,29 +1,28 @@
 #include "Board.h"
 #include <queue>
 #include <algorithm>
-using namespace std;
 
 Board::Board(const unsigned int &size){
   tablero.resize(size);
   for (auto &vec: tablero) {
     vec.resize(size);
     for (auto &casilla: vec) {
-      casilla = make_unique<Square>(Square(SQ_Color::EMPTY)); // Use Default Constructor
+      casilla = std::make_unique<Square>(Square(SQ_Color::EMPTY)); // Use Default Constructor
     }
 
   }
 }
 
-void Format(const P_Color &color, const vector<vector<shared_ptr<Square>>> &tablerobase, vector<vector<std::shared_ptr<Square>>> &returnTablero){
+void Format(const P_Color &color, const std::vector<std::vector<std::shared_ptr<Square>>> &tablerobase, std::vector<std::vector<std::shared_ptr<Square>>> &returnTablero){
 
 
   for(const auto &vec: tablerobase){
 
-    vector<shared_ptr<Square>> temp;
+    std::vector<std::shared_ptr<Square>> temp;
     temp.reserve(vec.size());
 
     for (const auto& elem: vec){
-        temp.push_back(make_unique<Square>(*elem));
+        temp.push_back(std::make_unique<Square>(*elem));
     }
     returnTablero.push_back(move(temp));
   }
@@ -36,24 +35,24 @@ void Format(const P_Color &color, const vector<vector<shared_ptr<Square>>> &tabl
   switch (color) {
     case P_Color::BLUE:{
 
-      vector<shared_ptr<Square>> tmp_vec;
+      std::vector<std::shared_ptr<Square>> tmp_vec;
       tmp_vec.resize(size - 1);
       for(auto &obj: tmp_vec){
-          obj = make_unique<Square>(Square(SQ_Color::BLUE));
+          obj = std::make_unique<Square>(Square(SQ_Color::BLUE));
       }
 
-      vector<shared_ptr<Square>> tmp_vec2;
+      std::vector<std::shared_ptr<Square>> tmp_vec2;
       tmp_vec2.resize(size - 1);
       for(auto &obj: tmp_vec2){
-          obj = make_unique<Square>(Square(SQ_Color::BLUE));
+          obj = std::make_unique<Square>(Square(SQ_Color::BLUE));
       }
 
       returnTablero.insert(returnTablero.begin(), move(tmp_vec));
 
-      returnTablero[0].emplace_back(make_unique<StartSquare>(SQ_Color::BLUE));
+      returnTablero[0].emplace_back(std::make_unique<StartSquare>(SQ_Color::BLUE));
 
       returnTablero.insert(returnTablero.end(), move(tmp_vec2));
-      returnTablero[size + 1 ].emplace_back(make_unique<EndSquare>(SQ_Color::BLUE));
+      returnTablero[size + 1 ].emplace_back(std::make_unique<EndSquare>(SQ_Color::BLUE));
 
       break;
 
@@ -63,12 +62,12 @@ void Format(const P_Color &color, const vector<vector<shared_ptr<Square>>> &tabl
     case P_Color::RED:{
 
       for(auto it = returnTablero.begin(); it != (returnTablero.end() - 1); ++it){
-        it->insert(it->begin(), make_unique<Square>(SQ_Color::RED));
-        it->insert(it->end(), make_unique<Square>(SQ_Color::RED));
+        it->insert(it->begin(), std::make_unique<Square>(SQ_Color::RED));
+        it->insert(it->end(), std::make_unique<Square>(SQ_Color::RED));
       }
 
-      returnTablero[size - 1].insert(returnTablero[size - 1].begin(), make_unique<StartSquare>(SQ_Color::RED));
-      returnTablero[size - 1].insert(returnTablero[size-1].end(), make_unique<EndSquare>(SQ_Color::RED));
+      returnTablero[size - 1].insert(returnTablero[size - 1].begin(), std::make_unique<StartSquare>(SQ_Color::RED));
+      returnTablero[size - 1].insert(returnTablero[size-1].end(), std::make_unique<EndSquare>(SQ_Color::RED));
       break;
     }
   }
@@ -77,9 +76,9 @@ void Format(const P_Color &color, const vector<vector<shared_ptr<Square>>> &tabl
 
 bool Board::verifyConnection(const P_Color &playerColor){
 
-  queue<shared_ptr<Square>> queue;
+  std::queue<std::shared_ptr<Square>> queue;
 
-  vector<vector<shared_ptr<Square>>> formated_tablero;
+  std::vector<std::vector<std::shared_ptr<Square>>> formated_tablero;
   Format(playerColor, tablero, formated_tablero);
 
   for(auto& vec: formated_tablero){
@@ -95,7 +94,7 @@ bool Board::verifyConnection(const P_Color &playerColor){
   while (!queue.empty()) {
     
     // Store as top_casilla and pop
-    shared_ptr<Square> top_casilla = move(queue.front());
+    std::shared_ptr<Square> top_casilla = move(queue.front());
     queue.pop();
 
     // if they are invalid paths (empty or enemy)

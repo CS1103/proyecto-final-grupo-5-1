@@ -5,11 +5,11 @@
 #include <vector>
 #include "../Square/Square.h"
 #include "../Player/Player.h"
-using namespace std;
+
 class Board {
 
 private:
-  vector<vector<shared_ptr<Square>>> tablero;
+  std::vector<std::vector<std::shared_ptr<Square>>> tablero;
 
 public:
   Board(const unsigned int &size);
