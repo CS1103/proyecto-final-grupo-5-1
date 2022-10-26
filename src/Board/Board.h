@@ -19,5 +19,4 @@ public:
   bool setSquare(unsigned int squareX, unsigned int squareY, SQ_Color turnColor);
 
 };
-
 #endif // !BOARD_H
