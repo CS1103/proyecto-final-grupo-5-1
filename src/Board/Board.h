@@ -6,10 +6,19 @@
 #include "../Square/Square.h"
 #include "../Player/Player.h"
 
+// USING
+
+using ptr_square = std::shared_ptr<Square>;
+using ptr_player = std::shared_ptr<Player>;
+
+template <typename T>
+using matrix = std::vector<std::vector<T>>;
+
+
 class Board {
 
 private:
-  std::vector<std::vector<std::shared_ptr<Square>>> tablero;
+  matrix<ptr_square> tablero;
 
 public:
   Board(const unsigned int &size);
