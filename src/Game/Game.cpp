@@ -40,12 +40,12 @@ std::optional<Player> Game::startGame() {
     if (winner) {
       // vista.printWinner(winner);
       break;
-    } else {
-      current_player =
-          (current_player == 0) ? current_player = 1 : current_player = 0;
-      current_color = (current_color == SQ_Color::BLUE)
-                          ? current_color = SQ_Color::RED
-                          : current_color = SQ_Color::BLUE;
-    }
+    }  
+    current_player =
+        (current_player == 0) ? current_player = 1 : current_player = 0;
+    current_color = (current_color == SQ_Color::BLUE)
+                        ? current_color = SQ_Color::RED
+                        : current_color = SQ_Color::BLUE;
+   
   }
 }

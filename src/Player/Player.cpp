@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <string>
 
 const unsigned int MAX_NAME_LENGTH = 20;
 

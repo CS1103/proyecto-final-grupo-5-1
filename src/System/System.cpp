@@ -1,4 +1,5 @@
 #include "System.h"
+// #include <memory>
 
 System::System() {
   // Construir vista
@@ -14,7 +15,7 @@ void System::run() {
   Config config(TipoJ::HUMANO_HUMANO, std::chrono::seconds(180));
 
   // Añadir jugadores
-  pController.addPlayer(make_shared<Player>(Player("name")))
+  pController.addPlayer(std::make_shared<Player>(Player("name")))
       pController.addPlayer(make_shared<Player>(Player("name2")))
 
       // Llamar a game
