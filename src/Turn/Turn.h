@@ -4,22 +4,21 @@
 #include "../Board/Board.h"
 #include "../Player/Player.h" // Temporal include
 #include <chrono>
-#include <thread>
 #include <optional>
+#include <thread>
 
 class Turn {
 
 private:
-
   Board &mr_board;
-  //Board mr_board;
+  // Board mr_board;
   P_Color mc_player_color;
   bool m_time_limit_over;
   std::jthread m_countdown_timer;
 
 public:
-
-  Turn(Board &board, const P_Color &playerColor, const std::chrono::seconds &timeLimit);
+  Turn(const Board &board, const P_Color &playerColor,
+       const std::chrono::seconds &timeLimit);
 
   bool validPlay(const unsigned int &squareX, const unsigned int &squareY);
 
@@ -28,8 +27,6 @@ public:
   [[nodiscard]] bool isTimeUp() const;
 
   void stopTimer();
-
-
 };
 
 #endif // !TURN_H

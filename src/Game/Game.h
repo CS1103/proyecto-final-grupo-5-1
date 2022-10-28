@@ -1,24 +1,26 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <vector>
-#include <memory>
-#include <optional>
+#include "../Board/Board.h"
 #include "../Config/Config.h"
 #include "../Player/Player.h"
-#include "../Board/Board.h"
 #include "../Square/Square.h"
 #include "../Turn/Turn.h"
+#include "../utils.h"
+#include <memory>
+#include <optional>
+#include <vector>
 
-class Game{
+class Game {
 private:
-    // Aditional configuration to each game
-    Config m_config;
-    // Player1 & player2
-    std::vector<std::shared_ptr<Player>> players;
+  // Aditional configuration to each game
+  Config m_config;
+  // Player1 & player2
+  std::vector<ptr_player> players;
 
 public:
-  Game(const Config &config, const std::shared_ptr<Player> &player1, const std::shared_ptr<Player> &player2);
+  Game(const Config &config, const ptr_player &player1,
+       const ptr_player &player2);
   std::optional<Player> startGame();
 };
 

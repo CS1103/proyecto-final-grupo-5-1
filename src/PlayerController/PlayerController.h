@@ -1,23 +1,22 @@
 #ifndef PLAYER_CONTROLLER_H
 #define PLAYER_CONTROLLER_H
 
-#include <vector>
+#include <initializer_list>
 #include <memory>
+#include <vector>
 
-#include "../Player/Player.h"
+#include "../utils.h"
 
-class PlayerController
-{
+class PlayerController {
 public:
-  PlayerController();
-  void addPlayer(std::shared_ptr<Player> player);
-  void removePlayer(std::shared_ptr<Player> player);
-  void getPlayerAt(unsigned int index);
+  PlayerController(const std::initializer_list<std::string> &names);
+  void addPlayer(const ptr_player &player);
+  void removePlayer(const ptr_player &player);
+  ptr_player operator[](const unsigned int &index) const;
+  ptr_player operator[](const std::string &name) const;
 
 private:
-  std::vector<std::shared_ptr<Player>> mp_players;
-
-  
+  std::vector<ptr_player> mp_players;
 };
 
 #endif // !PLAYER_CONTROLLER_H

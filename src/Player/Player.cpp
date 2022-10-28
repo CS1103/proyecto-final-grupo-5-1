@@ -1,62 +1,60 @@
 #include "Player.h"
 
-bool ValidateName(const std::string &name){
+const unsigned int MAX_NAME_LENGTH = 20;
+
+bool ValidateName(const std::string &name) {
 
   std::string error;
 
   // Validate name size
   bool is_valid_size = name.length() <= MAX_NAME_LENGTH && name.length() >= 1;
 
-  error += is_valid_size ? "": "Name must be between 1 and " + std::to_string(MAX_NAME_LENGTH) + " characters\n";
+  error += is_valid_size
+               ? ""
+               : "Name must be between 1 and " +
+                     std::to_string(MAX_NAME_LENGTH) + " characters\n";
 
   // isalnum -> chequea si el numero es un alphanumerico (letra o digito)
   // isspace -> chequea si es un espacio en blanco
-  bool has_valid_chars = std::ranges::all_of(name,[](const auto &als){return isalnum(als) || isspace(als); });
+  bool has_valid_chars = std::ranges::all_of(
+      name, [](const auto &als) { return isalnum(als) || isspace(als); });
 
-  error += has_valid_chars ? "": "Name must only contain alphanumeric characters and spaces\n";
+  error += has_valid_chars
+               ? ""
+               : "Name must only contain alphanumeric characters and spaces\n";
 
-  if(error.empty()){
+  if (error.empty()) {
     return true;
   }
 
   throw std::invalid_argument(error);
-
 }
 
-Player::Player(const std::string &name, const P_Color &color){
+Player::Player(const std::string &name, const P_Color &color) : m_color(color) {
 
-  if(ValidateName(name)){
-    this->m_name = name; }
-  else{
-    throw std::invalid_argument("Invalid name"); }
-  // genera una excepción cuando se detecta un problema, lo que nos permite crear un error personalizado.
-
+  if (ValidateName(name)) {
+    this->m_name = name;
+  } else {
+    throw std::invalid_argument("Invalid name");
+  }
 }
 
-
-bool Player::changeName(const std::string &newName){
-  if(ValidateName(newName)){
+bool Player::changeName(const std::string &newName) {
+  if (ValidateName(newName)) {
     this->m_name = newName;
     return true;
   }
   return false;
 }
 
-void Player::changeColor(P_Color &newColor){
+bool operator==(const std::shared_ptr<Player> &pPointer,
+                const std::shared_ptr<Player> &pName) {
 
-  this->m_color = newColor;
-
+  return pPointer->getName() == pName;
 }
 
-bool Player::isWinner() const{
-  return this->m_is_winner;
-}
+void Player::changeColor(P_Color &newColor) { this->m_color = newColor; }
 
-std::string Player::getName() const{
-  return this->m_name;
-}
+std::string Player::getName() const { return this->m_name; }
 
-
-P_Color Player::getColor() const{
-  return this->m_color;
-}
+P_Color Player::getColor() const { return this->m_color; }
