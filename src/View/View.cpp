@@ -1,5 +1,6 @@
 #include "View.h"
 #include <iostream>
+#include <utility>
 
 const unsigned int RIGHT_DISPLACEMENT = 600;
 
@@ -11,16 +12,15 @@ View::View() {
   // Initialize windows
   this->window = std::make_unique<sf::RenderWindow>(
       sf::VideoMode(WIDTH, HEIGHT), "Hex Game");
+  // sf::VideoMode::getDesktopMode(), "Hex Game");
 
   // Initialize textures
   if (!sprites["background"].second.loadFromFile("../Static/Background.png")) {
     throw "Could not load background.png";
   }
-
   if (!sprites["title"].second.loadFromFile("../Static/Title.png")) {
     throw "Could not load Title.png";
   }
-
   if (!sprites["play_button"].second.loadFromFile("../Static/PlayButton.png")) {
     throw "Could not load PlayButton.png";
   }
@@ -31,23 +31,24 @@ View::View() {
   sprites["play_button"].first.setTexture(sprites["play_button"].second);
 
   // Position sprites on the middle of the screen
-  sprites["title"].first.setPosition(
-      WIDTH / 2 - sprites["title"].first.getGlobalBounds().width / 2,
-      HEIGHT / 2 - sprites["title"].first.getGlobalBounds().height / 2);
+  unsigned int middle = window->getSize().x / 2 -
+                        sprites["title"].first.getGlobalBounds().width / 2;
 
+  sprites["title"].first.setPosition(
+      middle, window->getSize().y / 2 -
+                  sprites["title"].first.getGlobalBounds().height / 2);
   // Position play_button bellow the title
   sprites["play_button"].first.setPosition(
-      WIDTH / 2 - sprites["play_button"].first.getGlobalBounds().width / 2,
-
-      sprites["title"].first.getPosition().y +
-          sprites["title"].first.getGlobalBounds().height +
-          sprites["play_button"].first.getGlobalBounds().height / 4);
+      middle, sprites["title"].first.getPosition().y +
+                  sprites["title"].first.getGlobalBounds().height +
+                  sprites["play_button"].first.getGlobalBounds().height / 4);
 }
 
-// Smooth animation for sprite: x change, y change, duration
-void ComputeSpeed(sf::Sprite &sprite, const int &xChange, const int &yChange,
-                  const seconds &duration) {
-  unsigned int distance = sqrt(pow(xChange, 1) + pow(yChange, 2));
+// For each sprite, draw it on the window
+void View::drawSprites() {
+  for (auto &sprite : sprites) {
+    window->draw(sprite.second.first);
+  }
 }
 
 void View::startScreen() {
@@ -55,12 +56,10 @@ void View::startScreen() {
   sf::Event event;
   bool has_game_started = false;
 
+  // Render startScreen
   while (window->isOpen() && !has_game_started) {
 
-    // Display Initial screen
-    window->draw(sprites["background"].first);
-    window->draw(sprites["title"].first);
-    window->draw(sprites["play_button"].first);
+    drawSprites();
 
     // Capture title clicked event
     while (window->pollEvent(event)) {
@@ -83,41 +82,87 @@ void View::startScreen() {
         break;
 
       default:
-        continue;
+        break;
       }
     }
     window->display();
   }
 
-  auto last = std::chrono::steady_clock::now();
+  // sprite, init_speed, acceleration, total_distance
 
-  float small_move_right_speed = 0.06;
+  auto last = std::chrono::steady_clock::now();
+  std::chrono::steady_clock::time_point now;
+
+  float small_move_right_speed = 0.06; // initial speed
   float total_move = 0;
 
-  while (window->isOpen() && total_move <= 3500) {
+  while (window->isOpen() && total_move <= 3500) { // Total distance
 
-    auto now = std::chrono::steady_clock::now();
+    now = std::chrono::steady_clock::now();
 
-    auto delta_time =
+    deltaTime =
         std::chrono::duration_cast<std::chrono::milliseconds>(now - last);
 
     last = now;
 
-    std::cout << "dt:\t" << delta_time.count() << std::endl;
-
     // Move title sprite SMALL_MOVE_RIGHT_DISTANCE
-    float move_r = small_move_right_speed * delta_time.count();
+    float move_r = small_move_right_speed * deltaTime.count();
     total_move += std::abs(move_r);
 
     small_move_right_speed +=
-        (total_move < RIGHT_DISPLACEMENT / 2) ? 0.005 : -0.02;
+        (total_move < RIGHT_DISPLACEMENT / 2) ? 0.005 : -0.02; // acceleration
 
     sprites["play_button"].first.move(move_r, 0);
     sprites["title"].first.move(move_r, 0);
 
-    window->draw(sprites["background"].first);
-    window->draw(sprites["title"].first);
-    window->draw(sprites["play_button"].first);
+    drawSprites();
+
+    window->display();
+  }
+}
+
+Movement::Movement(std::string sprite, const sf::Vector2f &speed,
+                   const sf::Vector2f &acceleration,
+                   const sf::Vector2f &distance)
+    : sprite(std::move(sprite)), speed(speed), acceleration(acceleration),
+      max_distance(distance) {}
+
+void View::moveSprites(std::vector<Movement> &movements) {
+
+  auto last = std::chrono::steady_clock::now();
+  std::chrono::steady_clock::time_point now;
+
+  sf::Vector2f distance(0, 0);
+
+  while (window->isOpen()) { // Total distance
+
+    now = std::chrono::steady_clock::now();
+    deltaTime =
+        std::chrono::duration_cast<std::chrono::milliseconds>(now - last);
+    last = now;
+
+    for (auto &move : movements) {
+
+      if (move.max_distance.x > 0) {
+        distance.x = move.speed.x * deltaTime.count();
+        move.max_distance.x -= std::abs(distance.x);
+        move.speed.x += move.acceleration.x;
+      } else {
+        distance.x = 0;
+      }
+
+      if (move.max_distance.y > 0) {
+        distance.y = move.speed.y * deltaTime.count();
+        move.max_distance.y -= std::abs(distance.y);
+        move.speed.y += move.acceleration.y;
+      } else {
+        distance.y = 0;
+      }
+
+      sprites[move.sprite].first.move(distance.x, distance.y);
+    }
+
+    drawSprites();
 
     window->display();
   }
