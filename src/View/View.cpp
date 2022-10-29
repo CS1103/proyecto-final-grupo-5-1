@@ -1,8 +1,7 @@
 #include "View.h"
 #include <iostream>
 
-const unsigned int RIGHT_DISPLACEMENT = 1000;
-const unsigned int LEFT_DISPLACEMENT = 300;
+const unsigned int RIGHT_DISPLACEMENT = 600;
 
 const unsigned int WIDTH = 800;
 const unsigned int HEIGHT = 600;
@@ -92,10 +91,10 @@ void View::startScreen() {
 
   auto last = std::chrono::steady_clock::now();
 
-  float small_move_right_speed = 0.5;
+  float small_move_right_speed = 0.06;
   float total_move = 0;
 
-  while (window->isOpen() && total_move <= RIGHT_DISPLACEMENT) {
+  while (window->isOpen() && total_move <= 3500) {
 
     auto now = std::chrono::steady_clock::now();
 
@@ -108,10 +107,10 @@ void View::startScreen() {
 
     // Move title sprite SMALL_MOVE_RIGHT_DISTANCE
     float move_r = small_move_right_speed * delta_time.count();
-    total_move += move_r;
+    total_move += std::abs(move_r);
 
     small_move_right_speed +=
-        (total_move < RIGHT_DISPLACEMENT / 2) ? 0.01 : -0.01;
+        (total_move < RIGHT_DISPLACEMENT / 2) ? 0.005 : -0.02;
 
     sprites["play_button"].first.move(move_r, 0);
     sprites["title"].first.move(move_r, 0);
