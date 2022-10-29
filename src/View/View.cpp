@@ -1,145 +1,125 @@
-////////////////////////////////////////////////////////////
-// Headers
-////////////////////////////////////////////////////////////
-#include <SFML/Window.hpp>
-#include <SFML/OpenGL.hpp>
+#include "View.h"
+#include <iostream>
 
-////////////////////////////////////////////////////////////
-/// Entry point of application
-/// 
-/// \return Application exit code
-///
-////////////////////////////////////////////////////////////
-int main()
-{
-    // Request a 24-bits depth buffer when creating the window
-    sf::ContextSettings contextSettings;
-    contextSettings.depthBits = 24;
+const unsigned int RIGHT_DISPLACEMENT = 1000;
+const unsigned int LEFT_DISPLACEMENT = 300;
 
-    // Create the main window
-    sf::Window window(sf::VideoMode(640, 480), "SFML window with OpenGL", sf::Style::Default, contextSettings);
+const unsigned int WIDTH = 800;
+const unsigned int HEIGHT = 600;
 
-    // Make it the active window for OpenGL calls
-    window.setActive();
+View::View() {
 
-    // Set the color and depth clear values
-    glClearDepth(1.f);
-    glClearColor(0.f, 0.f, 0.f, 1.f);
+  // Initialize windows
+  this->window = std::make_unique<sf::RenderWindow>(
+      sf::VideoMode(WIDTH, HEIGHT), "Hex Game");
 
-    // Enable Z-buffer read and write
-    glEnable(GL_DEPTH_TEST);
-    glDepthMask(GL_TRUE);
+  // Initialize textures
+  if (!sprites["background"].second.loadFromFile("../Static/Background.png")) {
+    throw "Could not load background.png";
+  }
 
-    // Disable lighting and texturing
-    glDisable(GL_LIGHTING);
-    glDisable(GL_TEXTURE_2D);
+  if (!sprites["title"].second.loadFromFile("../Static/Title.png")) {
+    throw "Could not load Title.png";
+  }
 
-    // Configure the viewport (the same size as the window)
-    glViewport(0, 0, window.getSize().x, window.getSize().y);
+  if (!sprites["play_button"].second.loadFromFile("../Static/PlayButton.png")) {
+    throw "Could not load PlayButton.png";
+  }
 
-    // Setup a perspective projection
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    GLfloat ratio = static_cast<float>(window.getSize().x) / window.getSize().y;
-    glFrustum(-ratio, ratio, -1.f, 1.f, 1.f, 500.f);
+  // Initialize sprites
+  sprites["background"].first.setTexture(sprites["background"].second);
+  sprites["title"].first.setTexture(sprites["title"].second);
+  sprites["play_button"].first.setTexture(sprites["play_button"].second);
 
-    // Define a 3D cube (6 faces made of 2 triangles composed by 3 vertices)
-    GLfloat cube[] =
-    {
-        // positions    // colors (r, g, b, a)
-        -50, -50, -50,  0, 0, 1, 1,
-        -50,  50, -50,  0, 0, 1, 1,
-        -50, -50,  50,  0, 0, 1, 1,
-        -50, -50,  50,  0, 0, 1, 1,
-        -50,  50, -50,  0, 0, 1, 1,
-        -50,  50,  50,  0, 0, 1, 1,
+  // Position sprites on the middle of the screen
+  sprites["title"].first.setPosition(
+      WIDTH / 2 - sprites["title"].first.getGlobalBounds().width / 2,
+      HEIGHT / 2 - sprites["title"].first.getGlobalBounds().height / 2);
 
-         50, -50, -50,  0, 1, 0, 1,
-         50,  50, -50,  0, 1, 0, 1,
-         50, -50,  50,  0, 1, 0, 1,
-         50, -50,  50,  0, 1, 0, 1,
-         50,  50, -50,  0, 1, 0, 1,
-         50,  50,  50,  0, 1, 0, 1,
+  // Position play_button bellow the title
+  sprites["play_button"].first.setPosition(
+      WIDTH / 2 - sprites["play_button"].first.getGlobalBounds().width / 2,
 
-        -50, -50, -50,  1, 0, 0, 1,
-         50, -50, -50,  1, 0, 0, 1,
-        -50, -50,  50,  1, 0, 0, 1,
-        -50, -50,  50,  1, 0, 0, 1,
-         50, -50, -50,  1, 0, 0, 1,
-         50, -50,  50,  1, 0, 0, 1,
+      sprites["title"].first.getPosition().y +
+          sprites["title"].first.getGlobalBounds().height +
+          sprites["play_button"].first.getGlobalBounds().height / 4);
+}
 
-        -50,  50, -50,  0, 1, 1, 1,
-         50,  50, -50,  0, 1, 1, 1,
-        -50,  50,  50,  0, 1, 1, 1,
-        -50,  50,  50,  0, 1, 1, 1,
-         50,  50, -50,  0, 1, 1, 1,
-         50,  50,  50,  0, 1, 1, 1,
+// Smooth animation for sprite: x change, y change, duration
+void ComputeSpeed(sf::Sprite &sprite, const int &xChange, const int &yChange,
+                  const seconds &duration) {
+  unsigned int distance = sqrt(pow(xChange, 1) + pow(yChange, 2));
+}
 
-        -50, -50, -50,  1, 0, 1, 1,
-         50, -50, -50,  1, 0, 1, 1,
-        -50,  50, -50,  1, 0, 1, 1,
-        -50,  50, -50,  1, 0, 1, 1,
-         50, -50, -50,  1, 0, 1, 1,
-         50,  50, -50,  1, 0, 1, 1,
+void View::startScreen() {
 
-        -50, -50,  50,  1, 1, 0, 1,
-         50, -50,  50,  1, 1, 0, 1,
-        -50,  50,  50,  1, 1, 0, 1,
-        -50,  50,  50,  1, 1, 0, 1,
-         50, -50,  50,  1, 1, 0, 1,
-         50,  50,  50,  1, 1, 0, 1,
-    };
+  sf::Event event;
+  bool has_game_started = false;
 
-    // Enable position and color vertex components
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_COLOR_ARRAY);
-    glVertexPointer(3, GL_FLOAT, 7 * sizeof(GLfloat), cube);
-    glColorPointer(4, GL_FLOAT, 7 * sizeof(GLfloat), cube + 3);
+  while (window->isOpen() && !has_game_started) {
 
-    // Disable normal and texture coordinates vertex components
-    glDisableClientState(GL_NORMAL_ARRAY);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    // Display Initial screen
+    window->draw(sprites["background"].first);
+    window->draw(sprites["title"].first);
+    window->draw(sprites["play_button"].first);
 
-    // Create a clock for measuring the time elapsed
-    sf::Clock clock;
+    // Capture title clicked event
+    while (window->pollEvent(event)) {
+      switch (event.type) {
 
-    // Start the game loop
-    while (window.isOpen())
-    {
-        // Process events
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            // Close window: exit
-            if (event.type == sf::Event::Closed)
-                window.close();
+      case sf::Event::MouseButtonPressed:
 
-            // Escape key: exit
-            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))
-                window.close();
-
-            // Resize event: adjust the viewport
-            if (event.type == sf::Event::Resized)
-                glViewport(0, 0, event.size.width, event.size.height);
+        // If the left mouse button clicked play_button sprite Do something
+        if (event.mouseButton.button == sf::Mouse::Left) {
+          if (sprites["play_button"].first.getGlobalBounds().contains(
+                  event.mouseButton.x, event.mouseButton.y)) {
+            std::cout << "start\n";
+            has_game_started = true;
+          }
         }
+        break;
 
-        // Clear the color and depth buffers
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      case sf::Event::Closed:
+        window->close();
+        break;
 
-        // Apply some transformations to rotate the cube
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-        glTranslatef(0.f, 0.f, -200.f);
-        glRotatef(clock.getElapsedTime().asSeconds() * 50, 1.f, 0.f, 0.f);
-        glRotatef(clock.getElapsedTime().asSeconds() * 30, 0.f, 1.f, 0.f);
-        glRotatef(clock.getElapsedTime().asSeconds() * 90, 0.f, 0.f, 1.f);
-
-        // Draw the cube
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-
-        // Finally, display the rendered frame on screen
-        window.display();
+      default:
+        continue;
+      }
     }
+    window->display();
+  }
 
-    return EXIT_SUCCESS;
+  auto last = std::chrono::steady_clock::now();
+
+  float small_move_right_speed = 0.5;
+  float total_move = 0;
+
+  while (window->isOpen() && total_move <= RIGHT_DISPLACEMENT) {
+
+    auto now = std::chrono::steady_clock::now();
+
+    auto delta_time =
+        std::chrono::duration_cast<std::chrono::milliseconds>(now - last);
+
+    last = now;
+
+    std::cout << "dt:\t" << delta_time.count() << std::endl;
+
+    // Move title sprite SMALL_MOVE_RIGHT_DISTANCE
+    float move_r = small_move_right_speed * delta_time.count();
+    total_move += move_r;
+
+    small_move_right_speed +=
+        (total_move < RIGHT_DISPLACEMENT / 2) ? 0.01 : -0.01;
+
+    sprites["play_button"].first.move(move_r, 0);
+    sprites["title"].first.move(move_r, 0);
+
+    window->draw(sprites["background"].first);
+    window->draw(sprites["title"].first);
+    window->draw(sprites["play_button"].first);
+
+    window->display();
+  }
 }
