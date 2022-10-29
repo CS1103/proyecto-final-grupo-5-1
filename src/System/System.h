@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <memory>
+#include "../View/View.h"
 #include "../PlayerController/PlayerController.h"
 #include "../Game/Game.h"
 
