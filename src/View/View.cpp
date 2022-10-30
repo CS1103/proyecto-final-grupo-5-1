@@ -1,11 +1,60 @@
 #include "View.h"
-#include <iostream>
-#include <utility>
-
-const unsigned int RIGHT_DISPLACEMENT = 600;
 
 const unsigned int WIDTH = 800;
 const unsigned int HEIGHT = 600;
+
+const float SPEED_RATIO = 100000;
+const float ACCEL_RATIO = 10000000;
+
+Movement::Movement(std::string sprite, sf::Vector2f speed,
+                   sf::Vector2f acceleration, sf::Vector2f distance)
+    : sprite(std::move(sprite)), speed(speed / SPEED_RATIO),
+      acceleration(acceleration / ACCEL_RATIO), max_distance(distance) {}
+
+void View::moveSprites(std::vector<Movement> movements) {
+
+  auto last = std::chrono::steady_clock::now();
+  std::chrono::steady_clock::time_point now;
+
+  sf::Vector2f distance(0, 0);
+
+  while (window->isOpen()) { // Total distance
+
+    now = std::chrono::steady_clock::now();
+    deltaTime =
+        std::chrono::duration_cast<std::chrono::microseconds>(now - last);
+    last = now;
+
+    for (auto &move : movements) {
+
+      if (move.max_distance.x <= 0 && move.max_distance.y <= 0) {
+        return;
+      }
+
+      if (move.max_distance.x > 0) {
+        distance.x = move.speed.x * deltaTime.count();
+        move.max_distance.x -= std::abs(distance.x);
+        move.speed.x += move.acceleration.x;
+      } else {
+        distance.x = 0;
+      }
+
+      if (move.max_distance.y > 0) {
+        distance.y = move.speed.y * deltaTime.count();
+        move.max_distance.y -= std::abs(distance.y);
+        move.speed.y += move.acceleration.y;
+      } else {
+        distance.y = 0;
+      }
+
+      sprites[move.sprite].first.move(distance.x, distance.y);
+    }
+
+    drawSprites();
+
+    window->display();
+  }
+}
 
 View::View() {
 
@@ -71,7 +120,6 @@ void View::startScreen() {
         if (event.mouseButton.button == sf::Mouse::Left) {
           if (sprites["play_button"].first.getGlobalBounds().contains(
                   event.mouseButton.x, event.mouseButton.y)) {
-            std::cout << "start\n";
             has_game_started = true;
           }
         }
@@ -88,82 +136,6 @@ void View::startScreen() {
     window->display();
   }
 
-  // sprite, init_speed, acceleration, total_distance
-
-  auto last = std::chrono::steady_clock::now();
-  std::chrono::steady_clock::time_point now;
-
-  float small_move_right_speed = 0.06; // initial speed
-  float total_move = 0;
-
-  while (window->isOpen() && total_move <= 3500) { // Total distance
-
-    now = std::chrono::steady_clock::now();
-
-    deltaTime =
-        std::chrono::duration_cast<std::chrono::milliseconds>(now - last);
-
-    last = now;
-
-    // Move title sprite SMALL_MOVE_RIGHT_DISTANCE
-    float move_r = small_move_right_speed * deltaTime.count();
-    total_move += std::abs(move_r);
-
-    small_move_right_speed +=
-        (total_move < RIGHT_DISPLACEMENT / 2) ? 0.005 : -0.02; // acceleration
-
-    sprites["play_button"].first.move(move_r, 0);
-    sprites["title"].first.move(move_r, 0);
-
-    drawSprites();
-
-    window->display();
-  }
-}
-
-Movement::Movement(std::string sprite, const sf::Vector2f &speed,
-                   const sf::Vector2f &acceleration,
-                   const sf::Vector2f &distance)
-    : sprite(std::move(sprite)), speed(speed), acceleration(acceleration),
-      max_distance(distance) {}
-
-void View::moveSprites(std::vector<Movement> &movements) {
-
-  auto last = std::chrono::steady_clock::now();
-  std::chrono::steady_clock::time_point now;
-
-  sf::Vector2f distance(0, 0);
-
-  while (window->isOpen()) { // Total distance
-
-    now = std::chrono::steady_clock::now();
-    deltaTime =
-        std::chrono::duration_cast<std::chrono::milliseconds>(now - last);
-    last = now;
-
-    for (auto &move : movements) {
-
-      if (move.max_distance.x > 0) {
-        distance.x = move.speed.x * deltaTime.count();
-        move.max_distance.x -= std::abs(distance.x);
-        move.speed.x += move.acceleration.x;
-      } else {
-        distance.x = 0;
-      }
-
-      if (move.max_distance.y > 0) {
-        distance.y = move.speed.y * deltaTime.count();
-        move.max_distance.y -= std::abs(distance.y);
-        move.speed.y += move.acceleration.y;
-      } else {
-        distance.y = 0;
-      }
-
-      sprites[move.sprite].first.move(distance.x, distance.y);
-    }
-
-    drawSprites();
-
-    window->display();
-  }
+  moveSprites({Movement("play_button", {40, 0}, {-10, 0}, {1000, 0}),
+               Movement("title", {40, 0}, {-10, 0}, {1000, 0})});
 }
