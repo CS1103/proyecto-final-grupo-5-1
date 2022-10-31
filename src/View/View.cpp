@@ -6,6 +6,11 @@ const unsigned int HEIGHT = 600;
 const float SPEED_RATIO = 100000;
 const float ACCEL_RATIO = 10000000;
 
+const float SPRITE_INITIAL_SPEED = 40;
+const float SPRITE_INITIAL_ACCEL = 10;
+
+const float SPRITE_MOVEMENT_LEWAY = 500;
+
 Movement::Movement(std::string sprite, sf::Vector2f speed,
                    sf::Vector2f acceleration, sf::Vector2f distance)
     : sprite(std::move(sprite)), speed(speed / SPEED_RATIO),
@@ -25,29 +30,38 @@ void View::moveSprites(std::vector<Movement> movements) {
         std::chrono::duration_cast<std::chrono::microseconds>(now - last);
     last = now;
 
-    for (auto &move : movements) {
+    for (auto movement_it = movements.begin();
+         movement_it != movements.end();) {
 
-      if (move.max_distance.x <= 0 && move.max_distance.y <= 0) {
-        return;
-      }
-
-      if (move.max_distance.x > 0) {
-        distance.x = move.speed.x * deltaTime.count();
-        move.max_distance.x -= std::abs(distance.x);
-        move.speed.x += move.acceleration.x;
+      // TODO Refactor
+      if (movement_it->max_distance.x > 0) {
+        distance.x = movement_it->speed.x * deltaTime.count();
+        movement_it->max_distance.x -= std::abs(distance.x);
+        movement_it->speed.x += movement_it->acceleration.x;
       } else {
         distance.x = 0;
       }
 
-      if (move.max_distance.y > 0) {
-        distance.y = move.speed.y * deltaTime.count();
-        move.max_distance.y -= std::abs(distance.y);
-        move.speed.y += move.acceleration.y;
+      if (movement_it->max_distance.y > 0) {
+        distance.y = movement_it->speed.y * deltaTime.count();
+        movement_it->max_distance.y -= std::abs(distance.y);
+        movement_it->speed.y += movement_it->acceleration.y;
       } else {
         distance.y = 0;
       }
 
-      sprites[move.sprite].first.move(distance.x, distance.y);
+      sprites[movement_it->sprite].first.move(distance.x, distance.y);
+
+      if (movement_it->max_distance.x <= 0 &&
+          movement_it->max_distance.y <= 0) {
+        movement_it = movements.erase(movement_it);
+      } else {
+        movement_it++;
+      }
+    }
+
+    if (movements.empty()) {
+      break;
     }
 
     drawSprites();
@@ -64,38 +78,45 @@ View::View() {
   // sf::VideoMode::getDesktopMode(), "Hex Game");
 
   // Initialize textures
-  if (!sprites["background"].second.loadFromFile("../Static/Background.png")) {
-    throw "Could not load background.png";
-  }
-  if (!sprites["title"].second.loadFromFile("../Static/Title.png")) {
+  if (!sprites["1title"].second.loadFromFile("../Static/Title.png")) {
     throw "Could not load Title.png";
   }
-  if (!sprites["play_button"].second.loadFromFile("../Static/PlayButton.png")) {
+  if (!sprites["1play_button"].second.loadFromFile(
+          "../Static/PlayButton.png")) {
     throw "Could not load PlayButton.png";
+  }
+  if (!sprites["0background"].second.loadFromFile("../Static/Background.png")) {
+    throw "Could not load background.png";
   }
 
   // Initialize sprites
-  sprites["background"].first.setTexture(sprites["background"].second);
-  sprites["title"].first.setTexture(sprites["title"].second);
-  sprites["play_button"].first.setTexture(sprites["play_button"].second);
+  sprites["1title"].first.setTexture(sprites["1title"].second);
+  sprites["1play_button"].first.setTexture(sprites["1play_button"].second);
+  sprites["0background"].first.setTexture(sprites["0background"].second);
 
   // Position sprites on the middle of the screen
-  unsigned int middle = window->getSize().x / 2 -
-                        sprites["title"].first.getGlobalBounds().width / 2;
+  unsigned int middle = window->getSize().x / 2;
 
-  sprites["title"].first.setPosition(
-      middle, window->getSize().y / 2 -
-                  sprites["title"].first.getGlobalBounds().height / 2);
+  sprites["1title"].first.setPosition(
+      middle - sprites["1title"].first.getGlobalBounds().width / 2,
+      window->getSize().y / 2 -
+          sprites["1title"].first.getGlobalBounds().height / 2);
   // Position play_button bellow the title
-  sprites["play_button"].first.setPosition(
-      middle, sprites["title"].first.getPosition().y +
-                  sprites["title"].first.getGlobalBounds().height +
-                  sprites["play_button"].first.getGlobalBounds().height / 4);
+  sprites["1play_button"].first.setPosition(
+      middle - sprites["1play_button"].first.getGlobalBounds().width / 2,
+      sprites["1title"].first.getPosition().y +
+          sprites["1title"].first.getGlobalBounds().height +
+          sprites["1play_button"].first.getGlobalBounds().height / 4);
 }
 
-// For each sprite, draw it on the window
+// For each sprite int spriteNames, draw it on the window
+void View::drawSprites(std::initializer_list<std::string> spriteNames) {
+  for (const auto &sprite_name : spriteNames) {
+    window->draw(sprites[sprite_name].first);
+  }
+}
 void View::drawSprites() {
-  for (auto &sprite : sprites) {
+  for (const auto &sprite : sprites) {
     window->draw(sprite.second.first);
   }
 }
@@ -118,7 +139,7 @@ void View::startScreen() {
 
         // If the left mouse button clicked play_button sprite Do something
         if (event.mouseButton.button == sf::Mouse::Left) {
-          if (sprites["play_button"].first.getGlobalBounds().contains(
+          if (sprites["1play_button"].first.getGlobalBounds().contains(
                   event.mouseButton.x, event.mouseButton.y)) {
             has_game_started = true;
           }
@@ -136,6 +157,84 @@ void View::startScreen() {
     window->display();
   }
 
-  moveSprites({Movement("play_button", {40, 0}, {-10, 0}, {1000, 0}),
-               Movement("title", {40, 0}, {-10, 0}, {1000, 0})});
+  // Distance to leave screen
+  float distance = (window->getSize().x / 2) + SPRITE_MOVEMENT_LEWAY;
+
+  moveSprites({Movement("1play_button", {SPRITE_INITIAL_SPEED, 0},
+                        {-SPRITE_INITIAL_ACCEL, 0}, {distance, 0}),
+               Movement("1title", {-SPRITE_INITIAL_SPEED, 0},
+                        {SPRITE_INITIAL_ACCEL, 0}, {distance, 0})});
+
+  // Remove title and play_button sprites from screen
+  sprites.erase("1title");
+  sprites.erase("1play_button");
+
+  gameScreen();
+}
+
+// show create players and start game options
+
+void View::gameScreen() {
+
+  // Create sprites: create_players, start_game
+  if (!sprites["1new_player"].second.loadFromFile("../Static/new_player.png")) {
+    throw "Could not load new_player.png";
+  }
+  if (!sprites["1new_game"].second.loadFromFile("../Static/new_game.png")) {
+    throw "Could not load new_game.png";
+  }
+
+  // Initialize sprites
+  sprites["1new_player"].first.setTexture(sprites["1new_player"].second);
+  sprites["1new_game"].first.setTexture(sprites["1new_game"].second);
+
+  // Position sprites
+  sprites["1new_game"].first.setPosition(
+      window->getSize().x - sprites["1new_game"].first.getGlobalBounds().width,
+      window->getSize().y);
+  sprites["1new_player"].first.setPosition(
+      window->getSize().x -
+          sprites["1new_player"].first.getGlobalBounds().width,
+      window->getSize().y);
+
+  // Move sprites to position
+  moveSprites({Movement("1new_game", {0, 0}, {0, -15}, {0, 500})});
+  moveSprites({Movement("1new_player", {0, 0}, {0, -15}, {0, 350})});
+
+  sf::Event event;
+
+  // Render gameScreen
+  while (window->isOpen()) {
+
+    drawSprites();
+
+    // Capture title clicked event
+    while (window->pollEvent(event)) {
+      switch (event.type) {
+
+      case sf::Event::MouseButtonPressed:
+
+        // If the left mouse button clicked play_button sprite Do something
+        if (event.mouseButton.button == sf::Mouse::Left) {
+          if (sprites["1start_game"].first.getGlobalBounds().contains(
+                  event.mouseButton.x, event.mouseButton.y)) {
+            // return startGame();
+          }
+          if (sprites["create_players"].first.getGlobalBounds().contains(
+                  event.mouseButton.x, event.mouseButton.y)) {
+            // return createPlayers();
+          }
+        }
+        break;
+
+      case sf::Event::Closed:
+        window->close();
+        break;
+
+      default:
+        break;
+      }
+    }
+    window->display();
+  }
 }

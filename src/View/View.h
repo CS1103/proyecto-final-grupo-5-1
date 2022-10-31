@@ -7,8 +7,8 @@
 #include <cmath>
 #include <initializer_list>
 #include <iostream>
+#include <map>
 #include <memory>
-#include <unordered_map>
 #include <utility>
 
 #include "../utils.h"
@@ -31,14 +31,15 @@ public:
   void startScreen();
 
 private:
-  std::unordered_map<std::string, std::pair<sf::Sprite, sf::Texture>> sprites;
+  std::map<std::string, std::pair<sf::Sprite, sf::Texture>> sprites;
   std::unique_ptr<sf::RenderWindow> window;
   std::chrono::microseconds deltaTime;
 
   // Move mutiple sprites as tuples
   void moveSprites(std::vector<Movement> movements);
-
+  void drawSprites(std::initializer_list<std::string> spriteNames);
   void drawSprites();
+  void gameScreen();
 };
 
 #endif // !VIEW_H
