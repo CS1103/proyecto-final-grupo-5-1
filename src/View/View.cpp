@@ -1,5 +1,7 @@
 #include "View.h"
 
+using std::string;
+
 const unsigned int WIDTH = 800;
 const unsigned int HEIGHT = 600;
 
@@ -74,25 +76,13 @@ View::View() {
 
   // Initialize windows
   this->window = std::make_unique<sf::RenderWindow>(
+
       sf::VideoMode(WIDTH, HEIGHT), "Hex Game");
   // sf::VideoMode::getDesktopMode(), "Hex Game");
 
-  // Initialize textures
-  if (!sprites["1title"].second.loadFromFile("../Static/Title.png")) {
-    throw "Could not load Title.png";
-  }
-  if (!sprites["1play_button"].second.loadFromFile(
-          "../Static/PlayButton.png")) {
-    throw "Could not load PlayButton.png";
-  }
-  if (!sprites["0background"].second.loadFromFile("../Static/Background.png")) {
-    throw "Could not load background.png";
-  }
-
-  // Initialize sprites
-  sprites["1title"].first.setTexture(sprites["1title"].second);
-  sprites["1play_button"].first.setTexture(sprites["1play_button"].second);
-  sprites["0background"].first.setTexture(sprites["0background"].second);
+  loadSprites("title", '1', "Title");
+  loadSprites("play_button", '1', "PlayButton");
+  loadSprites("background", '0', "Background");
 
   // Position sprites on the middle of the screen
   unsigned int middle = window->getSize().x / 2;
@@ -168,25 +158,27 @@ void View::startScreen() {
   // Remove title and play_button sprites from screen
   sprites.erase("1title");
   sprites.erase("1play_button");
-
-  gameScreen();
 }
 
 // show create players and start game options
+void View::loadSprites(const string &name, const char &level) {
+  loadSprites(name, level, name);
+}
 
-void View::gameScreen() {
-
+void View::loadSprites(std::string name, const char &level,
+                       const std::string &file) {
   // Create sprites: create_players, start_game
-  if (!sprites["1new_player"].second.loadFromFile("../Static/new_player.png")) {
-    throw "Could not load new_player.png";
+  name = level + name;
+  if (!sprites[name].second.loadFromFile("../Static/" + file + ".png")) {
+    throw "Could not load" + file + ".png";
   }
-  if (!sprites["1new_game"].second.loadFromFile("../Static/new_game.png")) {
-    throw "Could not load new_game.png";
-  }
+  sprites[name].first.setTexture(sprites[name].second);
+}
 
-  // Initialize sprites
-  sprites["1new_player"].first.setTexture(sprites["1new_player"].second);
-  sprites["1new_game"].first.setTexture(sprites["1new_game"].second);
+char View::newGameOrPlayer() {
+
+  loadSprites("new_player", '1');
+  loadSprites("new_game", '1');
 
   // Position sprites
   sprites["1new_game"].first.setPosition(
@@ -218,10 +210,12 @@ void View::gameScreen() {
         if (event.mouseButton.button == sf::Mouse::Left) {
           if (sprites["1start_game"].first.getGlobalBounds().contains(
                   event.mouseButton.x, event.mouseButton.y)) {
+            return 'g';
             // return startGame();
           }
           if (sprites["create_players"].first.getGlobalBounds().contains(
                   event.mouseButton.x, event.mouseButton.y)) {
+            return 'p';
             // return createPlayers();
           }
         }
@@ -237,4 +231,10 @@ void View::gameScreen() {
     }
     window->display();
   }
+  throw "window uclosed";
+}
+
+// DIsplay message on screen until user clicks it
+void View::showMsg(const std::string &message) {
+  std::cout << message << std::endl;
 }
