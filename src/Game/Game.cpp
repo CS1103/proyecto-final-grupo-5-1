@@ -7,26 +7,26 @@ Game::Game(const Config &config, const std::shared_ptr<Player> &player1,
   // From vist select player colors
 }
 
-std::optional<Player> Game::startGame() {
+std::optional<std::shared_ptr<Player>> Game::startGame() {
 
   // Create board
-  Board game_board = Board(m_config.getSize());
+  Board game_board = Board(m_config.BOARD_SIZE);
 
   // Running game
-  bool hay_ganador = false;
-  bool hay_tiempo = false;
+  bool is_time_up = false;
+  std::optional<P_Color> winner_color;
 
   unsigned int current_player = 0;
   P_Color current_color = P_Color::BLUE;
 
   while (true) {
-    Turn turno = Turn(game_board, current_color, m_config.getTime());
+    Turn turno = Turn(game_board, current_color, m_config.time_limit);
     bool is_valid_play = false;
     unsigned int x_move = 0;
     unsigned int y_move = 0;
     do {
       // GET jugada from vista
-      bool is_time_up = turno.isTimeUp();
+      is_time_up = turno.isTimeUp();
       if (is_time_up) {
         break;
       }
@@ -36,16 +36,22 @@ std::optional<Player> Game::startGame() {
     // Vista.turno terminado(isTimeUp)
 
     turno.stopTimer();
-    std::shared_ptr<Player> winner = turno.isGameOver();
-    if (winner) {
+    winner_color = turno.isGameOver();
+    if (winner_color.has_value()) {
       // vista.printWinner(winner);
-      break;
-    }  
-    current_player =
-        (current_player == 0) ? current_player = 1 : current_player = 0;
-    current_color = (current_color == SQ_Color::BLUE)
-                        ? current_color = SQ_Color::RED
-                        : current_color = SQ_Color::BLUE;
-   
+
+      // Return players from players that matches winner_color
+      switch (winner_color.value()) {
+      case P_Color::BLUE:
+        return players[0];
+      case P_Color::RED:
+        return players[1];
+      case P_Color::NONE:
+        throw std::runtime_error("Winner color is NONE");
+      }
+    }
+    current_player = (current_player == 0) ? 1 : 0;
+    current_color =
+        (current_color == P_Color::BLUE) ? P_Color::RED : P_Color::BLUE;
   }
 }

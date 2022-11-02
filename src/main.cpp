@@ -1,10 +1,6 @@
 #include "System/System.h"
 
-int main (int argc, char *argv[]){
-
-  System sistema = System();
+int main(int argc, char *argv[]) {
+  System sistema;
   sistema.run();
-
-  
-  return 0;
 }

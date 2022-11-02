@@ -49,7 +49,7 @@ bool Player::changeName(const std::string &newName) {
 }
 
 bool operator==(const std::shared_ptr<Player> &pPointer,
-                const std::shared_ptr<Player> &pName) {
+                const std::string &pName) {
 
   return pPointer->getName() == pName;
 }

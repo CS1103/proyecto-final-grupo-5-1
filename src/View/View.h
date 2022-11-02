@@ -37,7 +37,7 @@ public:
   char newGameOrPlayer();
   void showMsg(const std::string &message);
   std::string createPlayer();
-  game_sett createGame(PlayerController);
+  game_sett createGame(const PlayerController &players);
 
 private:
   std::map<std::string, std::pair<sf::Sprite, sf::Texture>> sprites;

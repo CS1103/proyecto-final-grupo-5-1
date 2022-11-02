@@ -1,24 +1,45 @@
 #include "System.h"
-#include <memory>
 
-System::System() {
-  // Construir vista
-  vista controlladoraPersonas PersonController pControler();
-  vectorJuegos
+/*
+  PlayerController players;
+  // Vector de games
+  std::vector<std::unique_ptr<Game>> games;
+
+  View vista;
+*/
+
+void System::addGameOrPlayer() {
+  char option;
+  bool valid_game = false;
+
+  do {
+    option = vista.newGameOrPlayer();
+    if (option == 'g') {
+      if (players < 2) {
+        vista.showMsg("No hay suficientes jugadores");
+        break;
+      }
+      valid_game = true;
+    } else if (option == 'p') {
+
+      while (!players.addPlayer(vista.createPlayer())) {
+        vista.showMsg("Ya existe un jugador con ese nombre");
+      }
+    }
+  } while (!valid_game);
 }
 
 void System::run() {
-  // Datos de jugadores
-  // Config config = vista.getConfig()
+  vista.startScreen();
+  addGameOrPlayer();
 
-  // Configuracion
-  Config config(TipoJ::HUMANO_HUMANO, std::chrono::seconds(180));
+  // TODO REFACTOR
+  game_sett game_settings;
+  game_settings = vista.createGame(players);
+  Config conf = Config(std::get<2>(game_settings), std::get<3>(game_settings),
+                       std::get<4>(game_settings));
+  auto pl1 = players[(std::get<0>(game_settings))];
+  auto pl2 = players[(std::get<1>(game_settings))];
 
-  // Añadir jugadores
-  pController.addPlayer(std::make_shared<Player>(Player("name")))
-      pController.addPlayer(std::make_shared<Player>(Player("name2")))
-
-      // Llamar a game
-      Game juego1(config, pController[0], pController.at(1));
-  juego1.startGame();
+  games.emplace_back(std::make_unique<Game>(Game(conf, pl1, pl2)));
 }

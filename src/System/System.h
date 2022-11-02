@@ -1,24 +1,24 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-#include <vector>
-#include <memory>
-#include "../View/View.h"
-#include "../PlayerController/PlayerController.h"
 #include "../Game/Game.h"
+#include "../PlayerController/PlayerController.h"
+#include "../View/View.h"
+#include <memory>
+#include <tuple>
+#include <vector>
 
-class System{
+class System {
 private:
-    // Vector de players
-    PlayerController players;
-    // Vector de games
-    std::vector<std::unique_ptr<Game>> games;
+  PlayerController players;
+  std::vector<std::unique_ptr<Game>> games;
+  View vista;
 
-    View vista;
+  void addGameOrPlayer();
 
 public:
-  System() = default;
   void run();
+  System() = default;
 };
 
 #endif // !SYSTEM_H

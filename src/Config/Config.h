@@ -18,9 +18,9 @@ const seconds MIN_DURACION = seconds(30);
 
 struct Config {
   // Atributos
-  seconds m_time_limit;
-  TipoJ m_tipo_juego;
-  const unsigned int MC_BOARD_SIZE;
+  seconds time_limit;
+  TipoJ tipo_juego;
+  const unsigned int BOARD_SIZE;
 
   // Constructor
   Config(TipoJ tipoJ = JUEGO_DEFAULT, seconds timeLimit = seconds(0),
@@ -28,8 +28,6 @@ struct Config {
   // Metodos
   void setTimeLimit(std::chrono::seconds timeLimit);
   void setTipoJ(TipoJ tipoJ);
-  unsigned int getSize();
-  seconds getTime();
 };
 
 #endif // !CONFIG_H

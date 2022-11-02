@@ -17,9 +17,10 @@ private:
 public:
   Board(const unsigned int &size);
 
-  bool verifyConnection(const P_Color &color);
+  [[nodiscard]] bool verifyConnection(const P_Color &color) const;
 
-  bool setSquare(unsigned int squareX, unsigned int squareY,
-                 SQ_Color turnColor);
+  [[nodiscard]] bool setSquare(const unsigned int &squareX,
+                               const unsigned int &squareY,
+                               const SQ_Color &turnColor) const;
 };
 #endif // !BOARD_H

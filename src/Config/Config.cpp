@@ -1,7 +1,27 @@
 #include "Config.h"
 
 Config::Config(TipoJ tipoJ, seconds timeLimit, unsigned int size)
-    : m_time_limit(timeLimit), m_tipo_juego(tipoJ), MC_BOARD_SIZE(size) {}
+    : time_limit(timeLimit), tipo_juego(tipoJ), BOARD_SIZE(size) {}
 
-void Config::setTimeLimit(seconds timeLimit) { this->m_time_limit = timeLimit; }
-void Config::setTipoJ(TipoJ tipoJ) { this->m_tipo_juego = tipoJ; }
+void Config::setTimeLimit(seconds timeLimit) { this->time_limit = timeLimit; }
+void Config::setTipoJ(TipoJ tipoJ) { this->tipo_juego = tipoJ; }
+/*
+ *
+const TipoJ JUEGO_DEFAULT = TipoJ::HUMANO_HUMANO;
+const unsigned int TAMANHO_DEFAULT = 9;
+
+const seconds MIN_DURACION = seconds(30);
+
+struct Config {
+  // Atributos
+  seconds m_time_limit;
+  TipoJ m_tipo_juego;
+  const unsigned int MC_BOARD_SIZE;
+
+  // Constructor
+  Config(TipoJ tipoJ = JUEGO_DEFAULT, seconds timeLimit = seconds(0),
+         unsigned int size = TAMANHO_DEFAULT);
+  // Metodos
+  void setTimeLimit(std::chrono::seconds timeLimit);
+  void setTipoJ(TipoJ tipoJ);
+ * */

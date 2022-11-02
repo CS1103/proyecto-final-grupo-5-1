@@ -234,6 +234,13 @@ char View::newGameOrPlayer() {
   throw "window uclosed";
 }
 
+std::string View::createPlayer() { return "player_tmp name"; }
+
+game_sett View::createGame(const PlayerController &players) {
+  // return tuple
+  return game_sett("p1", "p2", TipoJ::HUMANO_HUMANO, 120, 9);
+}
+
 // DIsplay message on screen until user clicks it
 void View::showMsg(const std::string &message) {
   std::cout << message << std::endl;
