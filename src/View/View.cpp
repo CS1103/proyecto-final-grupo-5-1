@@ -169,7 +169,7 @@ void View::loadSprites(std::string name, const char &level,
                        const std::string &file) {
   // Create sprites: create_players, start_game
   name = level + name;
-  if (!sprites[name].second.loadFromFile("../Static/" + file + ".png")) {
+  if (!sprites[name].second.loadFromFile("../src/Static/" + file + ".png")) {
     throw "Could not load" + file + ".png";
   }
   sprites[name].first.setTexture(sprites[name].second);
