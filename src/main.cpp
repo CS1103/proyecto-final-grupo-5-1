@@ -5,23 +5,18 @@ int main(int argc, char *argv[]) {
     sistema.run();
 }*/
 
+// View in consolo y testing
+
 #include "Player/Player.h"
 #include "Board/Board.h"
 #include "Square/Square.h"
 #include "Turn/Turn.h"
+#include "Console_View.cpp"
 
 using namespace std;
 
 int main (int argc, char *argv[])
 {
-    Player player("Player 1", P_Color::RED);
-    Board board(10);
-    Square square(SQ_Color::RED);
-
-    Turn turno(board, P_Color::BLUE, std::chrono::seconds(1));
-
-    board.show();
-
-
+    menu();
     return 0;
 }
