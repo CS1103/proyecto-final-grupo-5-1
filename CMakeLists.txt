@@ -10,8 +10,9 @@ set(CMAKE_CXX_FLAGS "-Wall -g")
 
 # DEFINE desired modules
 
-set(Modules "Board" "Bot" "Config" "Game" "Player" "PlayerController" "Square" "System" "Turn" "View") 
+#set(Modules "Board" "Bot" "Config" "Game" "Player" "PlayerController" "Square" "System" "Turn" "View")
 #set(Modules "Square" "Board" "Player" "Turn")
+set(Modules "Board" "Bot" "Config" "Game" "Player" "PlayerController" "Square" "Turn")
 
 set (INCLUDE_DIRS "src")
 set (SOURCES "")
@@ -32,7 +33,7 @@ include_directories(${INCLUDE_DIRS})
 add_executable(Hex ${SOURCES})
 
 
-target_link_libraries(Hex -lsfml-window -lsfml-audio -lsfml-system -lsfml-graphics)
+#target_link_libraries(Hex -lsfml-window -lsfml-audio -lsfml-system -lsfml-graphics)
 
 
 

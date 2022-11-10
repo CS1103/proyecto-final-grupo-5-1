@@ -148,3 +148,22 @@ bool Board::setSquare(const unsigned int &squareX, const unsigned int &squareY,
                       const SQ_Color &turnColor) const {
   return tablero[squareX][squareY]->setColor(turnColor);
 }
+
+// Mostrar en consola
+
+void Board::show() const {
+  for (const auto &vec : tablero) {
+    for (const auto &casilla : vec) {
+        std::cout << "/ ";
+        if(casilla->getColor() == SQ_Color::EMPTY){
+            std::cout << " ";}
+        else if(casilla->getColor() == SQ_Color::BLUE){
+            std::cout << "B";}
+        else if(casilla->getColor() == SQ_Color::RED){
+            std::cout << "R";
+        }
+        std::cout << " /";
+    }
+        std::cout << std::endl;
+  }
+}
