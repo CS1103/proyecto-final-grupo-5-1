@@ -12,8 +12,8 @@ void jugador_jugador(){
     std::cin>>nombre1;
     std::cout<<"Jugador 2 ingrese su nombre"<<std::endl;
     std::cin>>nombre2;
-    Player player1(nombre1, P_Color::RED);
-    Player player2(nombre2, P_Color::BLUE);
+    Player player1(nombre1, P_Color::BLUE);
+    Player player2(nombre2, P_Color::RED);
     TipoJ t1 = TipoJ::HUMANO_HUMANO;
     Config config(t1);
     Game game(config, std::make_shared<Player>(player1), std::make_shared<Player>(player2));

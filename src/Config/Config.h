@@ -23,7 +23,7 @@ struct Config {
   const unsigned int BOARD_SIZE;
 
   // Constructor
-  Config(TipoJ tipoJ = JUEGO_DEFAULT, seconds timeLimit = seconds(0),
+  Config(TipoJ tipoJ = JUEGO_DEFAULT, seconds timeLimit = seconds(10),
          unsigned int size = TAMANHO_DEFAULT);
   // Metodos
   void setTimeLimit(std::chrono::seconds timeLimit);

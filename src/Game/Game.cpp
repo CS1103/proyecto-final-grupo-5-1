@@ -75,9 +75,9 @@ std::optional<std::shared_ptr<Player>> Game::startGame_2() {
         unsigned int y_move = 0;
 
         do {
-            std::cout<< "Ingrese la coordenada X"<<std::endl;
+            std::cout<< "Ingrese la coordenada X: "<<players[0]->getName()<<std::endl;
             std::cin>>x_move;
-            std::cout<< "Ingrese la coordenada Y" <<std::endl;
+            std::cout<< "Ingrese la coordenada Y" <<players[0]->getName()<<std::endl;
             std::cin>>y_move;
 
             // GET jugada from vista
