@@ -12,7 +12,7 @@ enum class TipoJ : unsigned int {
 
 // Default Config Data
 const TipoJ JUEGO_DEFAULT = TipoJ::HUMANO_HUMANO;
-const unsigned int TAMANHO_DEFAULT = 9;
+const unsigned int TAMANHO_DEFAULT = 11;
 
 const seconds MIN_DURACION = seconds(30);
 

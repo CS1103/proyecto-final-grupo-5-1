@@ -153,7 +153,7 @@ bool Board::setSquare(const unsigned int &squareX, const unsigned int &squareY,
 
 void Board::show() const {
     int cont = 0;
-    std::cout<<"   A  B  C  D  E  F  G  H  I  J  K "<<std::endl;
+    std::cout<<"   0  1  2  3  4  5  6  7  8  9  10 "<<std::endl;
   for (const auto &vec : tablero) {
       std::cout << cont << " ";
     for (const auto &casilla : vec) {
@@ -170,5 +170,6 @@ void Board::show() const {
       std::cout << cont << std::endl;
         cont++;
   }
-    std::cout<<"   A  B  C  D  E  F  G  H  I  J  K "<<std::endl;
+    std::cout<<"   0  1  2  3  4  5  6  7  8  9  10 "<<std::endl;
+
 }

@@ -22,6 +22,7 @@ public:
   Game(const Config &config, const ptr_player &player1,
        const ptr_player &player2);
   std::optional<std::shared_ptr<Player>> startGame();
+  std::optional<std::shared_ptr<Player>> startGame_2();
 };
 
 #endif // !GAME_H

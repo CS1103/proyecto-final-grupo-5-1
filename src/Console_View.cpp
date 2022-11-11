@@ -2,6 +2,8 @@
 #include "Board/Board.h"
 #include "Square/Square.h"
 #include "Turn/Turn.h"
+#include "Config/Config.h"
+#include "Game/Game.h"
 
 void jugador_jugador(){
     std::string nombre1;
@@ -12,10 +14,14 @@ void jugador_jugador(){
     std::cin>>nombre2;
     Player player1(nombre1, P_Color::RED);
     Player player2(nombre2, P_Color::BLUE);
-    Board board(11);
+    TipoJ t1 = TipoJ::HUMANO_HUMANO;
+    Config config(t1);
+    Game game(config, std::make_shared<Player>(player1), std::make_shared<Player>(player2));
+    std::cout<<"Empecemos el juego"<<std::endl;
 
-    Turn turno(board, P_Color::BLUE, std::chrono::seconds(1));
-    board.show();
+    game.startGame_2();
+    //Turn turno(board, P_Color::BLUE, std::chrono::seconds(1));
+
 }
 
 void jugador_computador(){
