@@ -75,9 +75,9 @@ std::optional<std::shared_ptr<Player>> Game::startGame_2() {
         unsigned int y_move = 0;
 
         do {
-            std::cout<< "Ingrese la coordenada X: "<<players[0]->getName()<<std::endl;
+            std::cout<< "Ingrese la coordenada X "<<players[current_player]->getName()<<":"<<std::endl;
             std::cin>>x_move;
-            std::cout<< "Ingrese la coordenada Y" <<players[0]->getName()<<std::endl;
+            std::cout<< "Ingrese la coordenada Y " <<players[current_player]->getName()<<":"<<std::endl;
             std::cin>>y_move;
 
             // GET jugada from vista
@@ -105,6 +105,7 @@ std::optional<std::shared_ptr<Player>> Game::startGame_2() {
                     throw std::runtime_error("Winner color is NONE");
             }
         }
+        game_board.show();
         current_player = (current_player == 0) ? 1 : 0;
         current_color =
                 (current_color == P_Color::BLUE) ? P_Color::RED : P_Color::BLUE;
