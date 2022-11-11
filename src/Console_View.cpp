@@ -12,7 +12,7 @@ void jugador_jugador(){
     std::cin>>nombre2;
     Player player1(nombre1, P_Color::RED);
     Player player2(nombre2, P_Color::BLUE);
-    Board board(10);
+    Board board(11);
 
     Turn turno(board, P_Color::BLUE, std::chrono::seconds(1));
     board.show();

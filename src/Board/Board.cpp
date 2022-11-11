@@ -152,9 +152,12 @@ bool Board::setSquare(const unsigned int &squareX, const unsigned int &squareY,
 // Mostrar en consola
 
 void Board::show() const {
+    int cont = 0;
+    std::cout<<"   A  B  C  D  E  F  G  H  I  J  K "<<std::endl;
   for (const auto &vec : tablero) {
+      std::cout << cont << " ";
     for (const auto &casilla : vec) {
-        std::cout << "/ ";
+        std::cout << "|";
         if(casilla->getColor() == SQ_Color::EMPTY){
             std::cout << " ";}
         else if(casilla->getColor() == SQ_Color::BLUE){
@@ -162,8 +165,10 @@ void Board::show() const {
         else if(casilla->getColor() == SQ_Color::RED){
             std::cout << "R";
         }
-        std::cout << " /";
+        std::cout << "|";
     }
-        std::cout << std::endl;
+      std::cout << cont << std::endl;
+        cont++;
   }
+    std::cout<<"   A  B  C  D  E  F  G  H  I  J  K "<<std::endl;
 }
