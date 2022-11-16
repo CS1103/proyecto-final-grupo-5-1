@@ -24,11 +24,7 @@ bool ValidateName(const std::string &name) {
                ? ""
                : "Name must only contain alphanumeric characters and spaces\n";
 
-  if (error.empty()) {
-    return true;
-  }
-
-  throw std::invalid_argument(error);
+  return error.empty();
 }
 
 Player::Player(const std::string &name, const P_Color &color) : m_color(color) {

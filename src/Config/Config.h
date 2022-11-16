@@ -1,30 +1,27 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-enum class TipoJ : unsigned int {
-  HUMANO_HUMANO = 0,
-  HUMANO_COMPUTADOR = 1,
-  COMPUTADOR_COMPUTADOR = 2
-};
-
 #include "../utils.h"
 #include <chrono>
+#include <optional>
 
 // Default Config Data
 const TipoJ JUEGO_DEFAULT = TipoJ::HUMANO_HUMANO;
 const unsigned int TAMANHO_DEFAULT = 11;
-
-const seconds MIN_DURACION = seconds(30);
+[[maybe_unused]] const seconds MIN_DURATION = seconds(30);
 
 struct Config {
+
   // Atributos
-  seconds time_limit;
+  std::optional<seconds> time_limit;
   TipoJ tipo_juego;
   const unsigned int BOARD_SIZE;
 
   // Constructor
-  Config(TipoJ tipoJ = JUEGO_DEFAULT, seconds timeLimit = seconds(10),
-         unsigned int size = TAMANHO_DEFAULT);
+  Config();
+  Config(TipoJ tipoJ = JUEGO_DEFAULT, unsigned int size = TAMANHO_DEFAULT,
+         std::optional<seconds> timeLimit = std::nullopt);
+
   // Metodos
   void setTimeLimit(std::chrono::seconds timeLimit);
   void setTipoJ(TipoJ tipoJ);

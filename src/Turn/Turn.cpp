@@ -1,12 +1,18 @@
 #include "Turn.h"
 
 Turn::Turn(const Board &board, const P_Color &playerColor,
-           const std::chrono::seconds &timeLimit)
-    : mr_board(board), mc_player_color(playerColor),
+           const std::optional<std::chrono::seconds> &timeLimit)
+    : mr_board(board), mc_player_color(playerColor)
 
-      // Limit the time for the player to make a move
-      m_countdown_timer(std::jthread(
-          [&timeLimit]() { std::this_thread::sleep_for(timeLimit); })) {}
+// Limit the time for the player to make a move
+{
+  if (timeLimit.has_value()) {
+    m_countdown_timer = std::jthread([&timeLimit, this]() {
+      std::this_thread::sleep_for(*timeLimit);
+      m_time_limit_over = true;
+    });
+  }
+}
 
 bool Turn::validPlay(const unsigned int &squareX,
                      const unsigned int &squareY) const {

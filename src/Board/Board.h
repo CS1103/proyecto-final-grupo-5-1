@@ -1,15 +1,17 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include "../utils.h"
+
 #include "../Player/Player.h"
 #include "../Square/Square.h"
 
-#include "../utils.h"
-
+#include <algorithm>
+#include <iostream>
 #include <memory>
+#include <queue>
 #include <vector>
 
-#include "iostream"
 class Board {
 
 private:
@@ -25,6 +27,6 @@ public:
                                const SQ_Color &turnColor) const;
   // Mostrar en Consola
 
-    void show() const;
+  void show() const;
 };
 #endif // !BOARD_H

@@ -1,10 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "../Board/Board.h"
 #include "../Config/Config.h"
 #include "../Player/Player.h"
-#include "../Square/Square.h"
 #include "../Turn/Turn.h"
 #include "../utils.h"
 #include <memory>
@@ -22,7 +20,7 @@ public:
   Game(const Config &config, const ptr_player &player1,
        const ptr_player &player2);
   std::optional<std::shared_ptr<Player>> startGame();
-  std::optional<std::shared_ptr<Player>> startGame_2();
+  std::optional<std::shared_ptr<Player>> startGame2();
 };
 
 #endif // !GAME_H

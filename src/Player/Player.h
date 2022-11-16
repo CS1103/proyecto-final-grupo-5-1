@@ -1,12 +1,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "../utils.h"
 #include <algorithm>
 #include <compare>
 #include <memory>
 #include <stdexcept>
-
-enum class P_Color : char { BLUE = 'b', RED = 'r', NONE = '0' };
 
 class Player {
 

@@ -2,7 +2,6 @@
 #define VIEW_H
 
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
 
 #include <cmath>
 #include <initializer_list>
@@ -11,24 +10,18 @@
 #include <memory>
 #include <utility>
 
-#include "../Config/Config.h"
 #include "../PlayerController/PlayerController.h"
 #include "../utils.h"
+#include "Movement.h"
+#include "TextBox.h"
 
-using game_sett =
-    std::tuple<std::string, std::string, TipoJ, seconds, unsigned int>;
+[[maybe_unused]] const unsigned int VIEW_WIDTH = 800;
+[[maybe_unused]] const unsigned int VIEW_HEIGHT = 600;
 
-// Store sprite, speed, acceleration and distance
-struct Movement {
+[[maybe_unused]] const float SPRITE_INITIAL_SPEED = 40;
+[[maybe_unused]] const float SPRITE_INITIAL_ACCEL = 10;
 
-  std::string sprite;
-  sf::Vector2f speed;
-  sf::Vector2f acceleration;
-  sf::Vector2f max_distance;
-
-  Movement(std::string sprite, sf::Vector2f speed, sf::Vector2f acceleration,
-           sf::Vector2f distance);
-};
+[[maybe_unused]] const float SPRITE_MOVEMENT_LEWAY = 500;
 
 class View {
 public:

@@ -1,7 +1,7 @@
 #ifndef SQUARE_H
 #define SQUARE_H
 
-enum class SQ_Color : char { EMPTY = ' ', RED = 'r', BLUE = 'b' };
+#include "../utils.h"
 
 class Square {
 

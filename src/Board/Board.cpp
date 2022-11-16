@@ -1,6 +1,4 @@
 #include "Board.h"
-#include <algorithm>
-#include <queue>
 
 Board::Board(const unsigned int &size) {
   tablero.resize(size);
@@ -116,8 +114,8 @@ bool Board::verifyConnection(const P_Color &playerColor) const {
     // marking as wall upon successful visitation
     top_casilla->setColor(SQ_Color::EMPTY);
 
-    unsigned int x;
-    unsigned int y = 0;
+    unsigned int x;     // NOLINT: short variable name
+    unsigned int y = 0; // NOLINT short variable name
 
     // Find pos of top_casilla
     for (const auto &vec : formated_tablero) {
@@ -152,24 +150,23 @@ bool Board::setSquare(const unsigned int &squareX, const unsigned int &squareY,
 // Mostrar en consola
 
 void Board::show() const {
-    int cont = 0;
-    std::cout<<"   0  1  2  3  4  5  6  7  8  9  10 "<<std::endl;
+  int cont = 0;
+  std::cout << "   0  1  2  3  4  5  6  7  8  9  10 " << std::endl;
   for (const auto &vec : tablero) {
-      std::cout << cont << " ";
+    std::cout << cont << " ";
     for (const auto &casilla : vec) {
-        std::cout << "|";
-        if(casilla->getColor() == SQ_Color::EMPTY){
-            std::cout << " ";}
-        else if(casilla->getColor() == SQ_Color::BLUE){
-            std::cout << "B";}
-        else if(casilla->getColor() == SQ_Color::RED){
-            std::cout << "R";
-        }
-        std::cout << "|";
+      std::cout << "|";
+      if (casilla->getColor() == SQ_Color::EMPTY) {
+        std::cout << " ";
+      } else if (casilla->getColor() == SQ_Color::BLUE) {
+        std::cout << "B";
+      } else if (casilla->getColor() == SQ_Color::RED) {
+        std::cout << "R";
+      }
+      std::cout << "|";
     }
-      std::cout << cont << std::endl;
-        cont++;
+    std::cout << cont << std::endl;
+    cont++;
   }
-    std::cout<<"   0  1  2  3  4  5  6  7  8  9  10 "<<std::endl;
-
+  std::cout << "   0  1  2  3  4  5  6  7  8  9  10 " << std::endl;
 }

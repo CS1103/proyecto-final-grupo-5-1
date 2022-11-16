@@ -1,83 +1,10 @@
 #include "View.h"
 
-using std::string;
-
-const unsigned int WIDTH = 800;
-const unsigned int HEIGHT = 600;
-
-const float SPEED_RATIO = 100000;
-const float ACCEL_RATIO = 10000000;
-
-const float SPRITE_INITIAL_SPEED = 40;
-const float SPRITE_INITIAL_ACCEL = 10;
-
-const float SPRITE_MOVEMENT_LEWAY = 500;
-
-Movement::Movement(std::string sprite, sf::Vector2f speed,
-                   sf::Vector2f acceleration, sf::Vector2f distance)
-    : sprite(std::move(sprite)), speed(speed / SPEED_RATIO),
-      acceleration(acceleration / ACCEL_RATIO), max_distance(distance) {}
-
-void View::moveSprites(std::vector<Movement> movements) {
-
-  auto last = std::chrono::steady_clock::now();
-  std::chrono::steady_clock::time_point now;
-
-  sf::Vector2f distance(0, 0);
-
-  while (window->isOpen()) { // Total distance
-
-    now = std::chrono::steady_clock::now();
-    deltaTime =
-        std::chrono::duration_cast<std::chrono::microseconds>(now - last);
-    last = now;
-
-    for (auto movement_it = movements.begin();
-         movement_it != movements.end();) {
-
-      // TODO Refactor
-      if (movement_it->max_distance.x > 0) {
-        distance.x = movement_it->speed.x * deltaTime.count();
-        movement_it->max_distance.x -= std::abs(distance.x);
-        movement_it->speed.x += movement_it->acceleration.x;
-      } else {
-        distance.x = 0;
-      }
-
-      if (movement_it->max_distance.y > 0) {
-        distance.y = movement_it->speed.y * deltaTime.count();
-        movement_it->max_distance.y -= std::abs(distance.y);
-        movement_it->speed.y += movement_it->acceleration.y;
-      } else {
-        distance.y = 0;
-      }
-
-      sprites[movement_it->sprite].first.move(distance.x, distance.y);
-
-      if (movement_it->max_distance.x <= 0 &&
-          movement_it->max_distance.y <= 0) {
-        movement_it = movements.erase(movement_it);
-      } else {
-        movement_it++;
-      }
-    }
-
-    if (movements.empty()) {
-      break;
-    }
-
-    drawSprites();
-
-    window->display();
-  }
-}
-
 View::View() {
-
   // Initialize windows
   this->window = std::make_unique<sf::RenderWindow>(
 
-      sf::VideoMode(WIDTH, HEIGHT), "Hex Game");
+      sf::VideoMode(VIEW_WIDTH, VIEW_HEIGHT), "Hex Game");
   // sf::VideoMode::getDesktopMode(), "Hex Game");
 
   loadSprites("title", '1', "Title");
@@ -97,18 +24,6 @@ View::View() {
       sprites["1title"].first.getPosition().y +
           sprites["1title"].first.getGlobalBounds().height +
           sprites["1play_button"].first.getGlobalBounds().height / 4);
-}
-
-// For each sprite int spriteNames, draw it on the window
-void View::drawSprites(std::initializer_list<std::string> spriteNames) {
-  for (const auto &sprite_name : spriteNames) {
-    window->draw(sprites[sprite_name].first);
-  }
-}
-void View::drawSprites() {
-  for (const auto &sprite : sprites) {
-    window->draw(sprite.second.first);
-  }
 }
 
 void View::startScreen() {
@@ -160,25 +75,12 @@ void View::startScreen() {
   sprites.erase("1play_button");
 }
 
-// show create players and start game options
-void View::loadSprites(const string &name, const char &level) {
-  loadSprites(name, level, name);
-}
-
-void View::loadSprites(std::string name, const char &level,
-                       const std::string &file) {
-  // Create sprites: create_players, start_game
-  name = level + name;
-  if (!sprites[name].second.loadFromFile("../src/Static/" + file + ".png")) {
-    throw "Could not load" + file + ".png";
-  }
-  sprites[name].first.setTexture(sprites[name].second);
-}
-
 char View::newGameOrPlayer() {
 
   loadSprites("new_player", '1');
   loadSprites("new_game", '1');
+
+  window->clear();
 
   // Position sprites
   sprites["1new_game"].first.setPosition(
@@ -190,8 +92,8 @@ char View::newGameOrPlayer() {
       window->getSize().y);
 
   // Move sprites to position
-  moveSprites({Movement("1new_game", {0, 0}, {0, -15}, {0, 500})});
-  moveSprites({Movement("1new_player", {0, 0}, {0, -15}, {0, 350})});
+  moveSprites({Movement("1new_game", {0, 0}, {0, -15}, {0, 500}),
+               Movement("1new_player", {0, 0}, {0, -15}, {0, 350})});
 
   sf::Event event;
 
@@ -206,17 +108,15 @@ char View::newGameOrPlayer() {
 
       case sf::Event::MouseButtonPressed:
 
-        // If the left mouse button clicked play_button sprite Do something
         if (event.mouseButton.button == sf::Mouse::Left) {
-          if (sprites["1start_game"].first.getGlobalBounds().contains(
+
+          if (sprites["1new_game"].first.getGlobalBounds().contains(
                   event.mouseButton.x, event.mouseButton.y)) {
             return 'g';
-            // return startGame();
           }
-          if (sprites["create_players"].first.getGlobalBounds().contains(
+          if (sprites["1new_player"].first.getGlobalBounds().contains(
                   event.mouseButton.x, event.mouseButton.y)) {
             return 'p';
-            // return createPlayers();
           }
         }
         break;
@@ -234,7 +134,53 @@ char View::newGameOrPlayer() {
   throw "window uclosed";
 }
 
-std::string View::createPlayer() { return "player_tmp name"; }
+std::string View::createPlayer() {
+
+  std::cout << "here\n";
+  sprites.erase("1new_game");
+  sprites.erase("1new_player");
+
+  window->clear();
+  TextField tfs(20);
+  tfs.setPosition({350, 100});
+
+  loadSprites("create_player", '1');
+
+  sprites["1create_player"].first.setPosition({-100, 300});
+  moveSprites({Movement("1create_player", {10, 0}, {8, 0}, {400, 0})});
+
+  sf::Event event;
+  while (window->isOpen()) {
+
+    while (window->pollEvent(event)) {
+
+      switch (event.type) {
+      case sf::Event::Closed:
+        window->close();
+        break;
+      case sf::Event::MouseButtonPressed:
+        std::cout << "mouse released\n";
+        if (event.mouseButton.button != sf::Mouse::Left) {
+          break;
+        }
+        if (sprites["1create_player"].first.getGlobalBounds().contains(
+                event.mouseButton.x, event.mouseButton.y)) {
+          return tfs.getText();
+        }
+
+        tfs.setFocus(tfs.contains(
+            sf::Vector2f(event.mouseButton.x, event.mouseButton.y)));
+        break;
+      default:
+        tfs.handleInput(event);
+        break;
+      }
+    }
+    drawSprites();
+    tfs.draw(window);
+    window->display();
+  }
+}
 
 game_sett View::createGame(const PlayerController &players) {
   // return tuple
@@ -244,4 +190,79 @@ game_sett View::createGame(const PlayerController &players) {
 // DIsplay message on screen until user clicks it
 void View::showMsg(const std::string &message) {
   std::cout << message << std::endl;
+}
+
+void View::moveSprites(std::vector<Movement> movements) {
+  // Excesive cognity complexity.. crap
+
+  auto last = std::chrono::steady_clock::now();
+  std::chrono::steady_clock::time_point now;
+  Vector2f distance(0, 0);
+
+  while (window->isOpen()) { // Total distance
+
+    now = std::chrono::steady_clock::now();
+    deltaTime =
+        std::chrono::duration_cast<std::chrono::microseconds>(now - last);
+    last = now;
+
+    for (auto movement_it = movements.begin();
+         movement_it != movements.end();) {
+
+      // iterate x and y
+      for (int i = 0; i < 2; i++) {
+        if (movement_it->max_distance[i] > 0) {
+          distance[i] = movement_it->speed[i] * deltaTime.count();
+          movement_it->max_distance[i] -= std::abs(distance[i]);
+          movement_it->speed[i] += movement_it->acceleration[i];
+        } else {
+          distance[i] = 0;
+        }
+      }
+
+      sprites[movement_it->sprite].first.move(distance.x, distance.y);
+
+      if (movement_it->max_distance.x <= 0 &&
+          movement_it->max_distance.y <= 0) {
+        movement_it = movements.erase(movement_it);
+      } else {
+        movement_it++;
+      }
+    }
+
+    if (movements.empty()) {
+      break;
+    }
+
+    drawSprites();
+
+    window->display();
+  }
+}
+
+// For each sprite int spriteNames, draw it on the window
+void View::drawSprites(std::initializer_list<std::string> spriteNames) {
+  for (const auto &sprite_name : spriteNames) {
+    window->draw(sprites[sprite_name].first);
+  }
+}
+void View::drawSprites() {
+  for (const auto &sprite : sprites) {
+    window->draw(sprite.second.first);
+  }
+}
+
+// show create players and start game options
+void View::loadSprites(const std::string &name, const char &level) {
+  loadSprites(name, level, name);
+}
+
+void View::loadSprites(std::string name, const char &level,
+                       const std::string &file) {
+  // Create sprites: create_players, start_game
+  name = level + name;
+  if (!sprites[name].second.loadFromFile("../src/Static/" + file + ".png")) {
+    throw "Could not load" + file + ".png";
+  }
+  sprites[name].first.setTexture(sprites[name].second);
 }

@@ -1,6 +1,7 @@
 #ifndef PLAYER_CONTROLLER_H
 #define PLAYER_CONTROLLER_H
 
+#include "../Player/Player.h"
 #include "../utils.h"
 #include <initializer_list>
 #include <memory>
@@ -17,6 +18,8 @@ public:
   ptr_player operator[](const std::string &name) const;
   bool operator<(size_t size) const;
   bool operator>(size_t size) const;
+
+  std::vector<ptr_player> getPlayers() { return mp_players; }
 
 private:
   std::vector<ptr_player> mp_players;
