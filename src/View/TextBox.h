@@ -15,7 +15,7 @@ const std::string FONT_PATH =
 [[maybe_unused]] const unsigned int WIDTH_MULTIPLIER = 18;
 [[maybe_unused]] const unsigned int BACKSPACE = 8;
 
-class TextField {
+class TextField : public sf::Drawable {
 private:
   unsigned int m_size;
   sf::Text m_text;
@@ -26,7 +26,9 @@ private:
   sf::Texture m_box_texture;
 
 public:
-  void draw(std::unique_ptr<sf::RenderWindow> &window) const;
+  // void draw(std::unique_ptr<sf::RenderWindow> &window) const;
+  void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+
   TextField(unsigned int maxChars, sf::Vector2f = {-10, -10});
   std::string getText() const;
   bool contains(sf::Vector2f point) const;

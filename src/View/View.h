@@ -10,7 +10,6 @@
 #include <memory>
 #include <utility>
 
-#include "../PlayerController/PlayerController.h"
 #include "../utils.h"
 #include "Movement.h"
 #include "TextBox.h"
@@ -30,10 +29,11 @@ public:
   char newGameOrPlayer();
   void showMsg(const std::string &message);
   std::string createPlayer();
-  game_sett createGame(const PlayerController &players);
+  game_sett createGame(const std::vector<std::string> &names);
 
 private:
-  std::map<std::string, std::pair<sf::Sprite, sf::Texture>> sprites;
+  std::map<std::pair<std::string, unsigned int>, std::shared_ptr<sf::Drawable>>
+      sprites;
   std::unique_ptr<sf::RenderWindow> window;
   std::chrono::microseconds deltaTime;
 

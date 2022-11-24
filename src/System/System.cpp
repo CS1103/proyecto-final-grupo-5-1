@@ -22,11 +22,9 @@ void System::addGameOrPlayer() {
       valid_game = true;
     } else if (option == 'p') {
 
+      std::cout << "here";
       if (!players.addPlayer(vista.createPlayer())) {
         vista.showMsg("Ya existe un jugador con ese nombre");
-      }
-      for (auto &player : players.getPlayers()) {
-        std::cout << player->getName() << std::endl;
       }
     }
   } while (!valid_game);
@@ -36,7 +34,7 @@ void System::run() {
   vista.startScreen();
   addGameOrPlayer();
 
-  game_sett game_settings = vista.createGame(players);
+  game_sett game_settings = vista.createGame(players.getNames());
   Config conf = Config(std::get<2>(game_settings), std::get<3>(game_settings),
                        std::get<4>(game_settings));
 

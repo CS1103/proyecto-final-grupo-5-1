@@ -19,7 +19,7 @@ public:
   bool operator<(size_t size) const;
   bool operator>(size_t size) const;
 
-  std::vector<ptr_player> getPlayers() { return mp_players; }
+  std::vector<std::string> getNames();
 
 private:
   std::vector<ptr_player> mp_players;

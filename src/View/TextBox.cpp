@@ -25,9 +25,15 @@ bool TextField::contains(sf::Vector2f point) const {
   return m_rect.getGlobalBounds().contains(point);
 }
 
+/*
 void TextField::draw(std::unique_ptr<sf::RenderWindow> &window) const {
   window->draw(m_rect);
   window->draw(m_text);
+}
+*/
+void TextField::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+  target.draw(m_rect);
+  target.draw(m_text);
 }
 
 void TextField::setFocus(bool focus) {

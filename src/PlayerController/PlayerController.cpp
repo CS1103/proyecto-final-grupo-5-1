@@ -1,5 +1,8 @@
 #include "PlayerController.h"
+#include <algorithm>
 #include <initializer_list>
+
+#include <iostream>
 
 // Constructor with initializer list to construct Players
 PlayerController::PlayerController(
@@ -15,7 +18,12 @@ bool PlayerController::addPlayer(const ptr_player &player) {
       this->mp_players.end()) {
     return false;
   }
-  mp_players.push_back(player);
+  try {
+    mp_players.push_back(player);
+  } catch (const std::invalid_argument &arg) {
+    std::cout << "Invalid argument: " << arg.what() << std::endl;
+    return false;
+  }
   return true;
 }
 
@@ -54,4 +62,16 @@ bool PlayerController::operator<(size_t size) const {
 }
 bool PlayerController::operator>(size_t size) const {
   return mp_players.size() > size;
+}
+
+std::vector<std::string> PlayerController::getNames() {
+
+  std::vector<std::string> names;
+
+  std::transform(mp_players.begin(), mp_players.end(),
+                 std::back_inserter(names),
+                 [](const ptr_player &player) { return player->getName(); });
+
+  // return a vector of names from mp_players
+  return names;
 }

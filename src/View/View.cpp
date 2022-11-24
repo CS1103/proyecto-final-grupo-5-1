@@ -1,4 +1,12 @@
 #include "View.h"
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <stdexcept>
+#include <utility>
+
+#define GET_VARIABLE_NAME(Variable) (#Variable)
+
+const std::string TEXTURE_PATH = "../src/assets/textures";
 
 View::View() {
   // Initialize windows
@@ -6,10 +14,22 @@ View::View() {
 
       sf::VideoMode(VIEW_WIDTH, VIEW_HEIGHT), "Hex Game");
   // sf::VideoMode::getDesktopMode(), "Hex Game");
+}
 
-  loadSprites("title", '1', "Title");
-  loadSprites("play_button", '1', "PlayButton");
-  loadSprites("background", '0', "Background");
+void LoadTexture(sf::Texture &texture, const std::string &textureName) {
+  if (!texture.loadFromFile(TEXTURE_PATH + "/" + textureName)) {
+    throw std::runtime_error("Could not load texture: " + textureName);
+  }
+}
+
+void View::startScreen() {
+
+  sf::Texture background;
+  LoadTexture(background, "background.png");
+  std::shared_ptr<sf::Sprite> background_sprite;
+  background_sprite->setTexture(background);
+
+  sprites[{"background", 1}] = {background_sprite};
 
   // Position sprites on the middle of the screen
   unsigned int middle = window->getSize().x / 2;
@@ -24,9 +44,6 @@ View::View() {
       sprites["1title"].first.getPosition().y +
           sprites["1title"].first.getGlobalBounds().height +
           sprites["1play_button"].first.getGlobalBounds().height / 4);
-}
-
-void View::startScreen() {
 
   sf::Event event;
   bool has_game_started = false;
@@ -76,6 +93,11 @@ void View::startScreen() {
 }
 
 char View::newGameOrPlayer() {
+
+  // unload create_player sprite if exists in sprites
+  if (sprites.find("1create_player") != sprites.end()) {
+    sprites.erase("1create_player");
+  }
 
   loadSprites("new_player", '1');
   loadSprites("new_game", '1');
@@ -136,7 +158,6 @@ char View::newGameOrPlayer() {
 
 std::string View::createPlayer() {
 
-  std::cout << "here\n";
   sprites.erase("1new_game");
   sprites.erase("1new_player");
 
@@ -159,7 +180,6 @@ std::string View::createPlayer() {
         window->close();
         break;
       case sf::Event::MouseButtonPressed:
-        std::cout << "mouse released\n";
         if (event.mouseButton.button != sf::Mouse::Left) {
           break;
         }
@@ -177,14 +197,17 @@ std::string View::createPlayer() {
       }
     }
     drawSprites();
-    tfs.draw(window);
+    window->draw(tfs);
     window->display();
   }
+  throw std::invalid_argument("no name provided");
 }
 
-game_sett View::createGame(const PlayerController &players) {
-  // return tuple
-  return game_sett("p1", "p2", TipoJ::HUMANO_HUMANO, 120, 9);
+game_sett View::createGame(const std::vector<std::string> &names) {
+  // print names
+  for (const auto &name : names) {
+    std::cout << name << std::endl;
+  }
 }
 
 // DIsplay message on screen until user clicks it
@@ -250,11 +273,6 @@ void View::drawSprites() {
   for (const auto &sprite : sprites) {
     window->draw(sprite.second.first);
   }
-}
-
-// show create players and start game options
-void View::loadSprites(const std::string &name, const char &level) {
-  loadSprites(name, level, name);
 }
 
 void View::loadSprites(std::string name, const char &level,
