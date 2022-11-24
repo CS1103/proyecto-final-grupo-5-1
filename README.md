@@ -107,8 +107,7 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 ### Algoritmos y contenedores utilizados
 
 - BFS (Breadth First Search):  
-explicación aqui
-
+El Algoritmo BFS consiste en la busqueda de un nodo en una estructura de datos, ya sea un arbol o un grafico que cumpla con ciertos criterios.
 - Queue:  
 explicación aqui
 
