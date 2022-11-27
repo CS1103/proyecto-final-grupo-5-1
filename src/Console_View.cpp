@@ -20,7 +20,7 @@ void JugadorJugador() {
             std::make_shared<Player>(player2));
   std::cout << "Empecemos el juego" << std::endl;
 
-  game.startGame2();
+  game.startCliGame();
   // Turn turno(board, P_Color::BLUE, std::chrono::seconds(1));
 }
 

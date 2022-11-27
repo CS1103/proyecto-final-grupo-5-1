@@ -99,8 +99,8 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
   std::stack<std::tuple<unsigned int, unsigned int>> moves_red;
 
   for (int i = 11; i > 0; i--) {
-    moves_blue.push(std::make_tuple(i - 1, 0));
-    moves_red.push(std::make_tuple(i - 1, 5));
+      moves_red.push(std::make_tuple(i-1, 0 ));
+      moves_blue.push(std::make_tuple(i-1, 5 ));
   }
 
   // Create board
@@ -111,7 +111,7 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
   std::optional<P_Color> winner_color;
 
   unsigned int current_player = 0;
-  P_Color current_color = P_Color::BLUE;
+  P_Color current_color = P_Color::RED;
 
   while (true) {
     Turn turno = Turn(game_board, current_color, m_config.time_limit);
@@ -167,7 +167,7 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
 
     } while (!is_valid_play);
     // Vista.turno terminado(isTimeUp)
-
+    game_board.show();
     turno.stopTimer();
     winner_color = turno.isGameOver();
     if (winner_color.has_value()) {
@@ -176,8 +176,12 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
       // Return players from players that matches winner_color
       switch (winner_color.value()) {
       case P_Color::BLUE:
+          std::cout << "Blue player (" << players[0]->getName()
+                    << ") wins! \n";
         return players[0];
       case P_Color::RED:
+            std::cout << "Red player (" << players[1]->getName()
+                        << ") wins! \n";
         return players[1];
       case P_Color::NONE:
         throw std::runtime_error("Winner color is NONE");
