@@ -4,6 +4,7 @@
 #include "Player/Player.h"
 #include "Square/Square.h"
 #include "Turn/Turn.h"
+#include "Bot/Bot.h"
 
 void JugadorJugador() {
   std::string nombre1;
@@ -25,7 +26,19 @@ void JugadorJugador() {
 }
 
 void JugadorComputador() {
+    std::string nombre1;
+    std::string nombre2;
+    std::cout << "Jugador  ingrese su nombre" << std::endl;
+    std::cin >> nombre1;
+    Player player1(nombre1, P_Color::BLUE);
+    Bot bot(Difficulty::EASY, P_Color::RED);
+    TipoJ tipo1 = TipoJ::HUMANO_COMPUTADOR;
+    Config config(tipo1);
+    Game game(config, std::make_shared<Player>(player1),
+              std::make_shared<Player>(bot));
+    std::cout << "Empecemos el juego" << std::endl;
 
+    game.startCliGame();
 }
 
 void Menu() {

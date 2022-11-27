@@ -9,10 +9,10 @@ std::string GetRandomName() {
   }
   return "Bot " + code;
 }
-/*
-Bot::Bot(Difficulty difficulty)
-    : Player(GetRandomName()), difficulty(difficulty) {}
-*/
+
+Bot::Bot(Difficulty difficulty,P_Color color)
+    : Player(GetRandomName(),color), difficulty(difficulty) {}
+
 unsigned int EvaluateMove(const movement &movement, const Board &board) {}
 
 movement Bot::computeMove(const Board &board) const { return {2, 4}; }
