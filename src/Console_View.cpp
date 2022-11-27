@@ -60,6 +60,7 @@ void Menu() {
     break;
   case 2:
     std::cout << "ELEGISTE EL MODO JUGADOR VS COMPUTADOR" << std::endl;
+    JugadorComputador();
     break;
   }
 }

@@ -18,7 +18,7 @@ unsigned int EvaluateMove(const movement &movement, const Board &board) {}
 movement Bot::computeMove(const Board &board) const { return {2, 4}; }
 
 //Implementando VerifyConnection:
-
+/*
 bool Board::verifyConnection(const P_Color &playerColor) const {
 
     std::queue<std::shared_ptr<Square>> queue;
@@ -85,3 +85,4 @@ bool Board::verifyConnection(const P_Color &playerColor) const {
     return false;
 }
 
+*/
