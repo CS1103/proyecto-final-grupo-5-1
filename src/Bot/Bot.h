@@ -17,7 +17,7 @@ using UTILS::movement;
 
 class Bot : public Player {
 public:
-    Bot(Difficulty difficulty = Difficulty::EASY,P_Color color = P_Color::BLUE);
+    Bot(Difficulty difficulty = Difficulty::EASY, P_Color color = P_Color::BLUE);
     [[nodiscard]] movement computeMove(const Board &board) const;
 
 
