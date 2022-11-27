@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include "SFML/System/Vector2.hpp" // overloading vector2f
+//#include "SFML/System/Vector2.hpp" // overloading vector2f
 #include <chrono>
 #include <memory>
 #include <optional>
@@ -33,6 +33,7 @@ using seconds = std::chrono::seconds;
 using game_sett = std::tuple<std::string, std::string, TipoJ, unsigned int,
                              std::optional<seconds>>;
 
+/*
 class Vector2f : public sf::Vector2f {
 public:
   Vector2f(float xPos, float yPos) : sf::Vector2f(xPos, yPos) {}
@@ -48,6 +49,7 @@ public:
     throw std::out_of_range("Vector2f::operator[]");
   }
 };
+*/
 
 } // namespace UTILS
 //
