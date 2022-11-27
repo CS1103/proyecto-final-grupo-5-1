@@ -24,7 +24,9 @@ void JugadorJugador() {
   // Turn turno(board, P_Color::BLUE, std::chrono::seconds(1));
 }
 
-void JugadorComputador() {}
+void JugadorComputador() {
+
+}
 
 void Menu() {
   int option = 0;
