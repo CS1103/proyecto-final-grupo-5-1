@@ -7,6 +7,8 @@
 #include <memory>
 #include <vector>
 
+using UTILS::ptr_player;
+
 class PlayerController {
 public:
   PlayerController(const std::initializer_list<std::string> &names);

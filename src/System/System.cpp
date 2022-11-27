@@ -8,6 +8,7 @@
   View vista;
 */
 
+/*
 void System::addGameOrPlayer() {
   char option;
   bool valid_game = false;
@@ -43,4 +44,61 @@ void System::run() {
 
   // Create game object
   games.emplace_back(std::make_unique<Game>(Game(conf, pl1, pl2)));
+}
+*/
+
+std::string System::getPlayer(unsigned int number) {
+  std::string nombre;
+  std::cout << "Jugador " << number << " ingrese su nombre" << std::endl;
+  std::cin >> nombre;
+  while (!players.addPlayer(nombre)) {
+    std::cout << "nombre invalido\n";
+    // clean cin
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin >> nombre;
+  }
+  return nombre;
+}
+
+unsigned int GetGameType() {
+  unsigned int option = 0;
+  std::cout << "Bienevenido al CHIQUIHEX" << std::endl;
+  std::cout << "Seleccione el modo de juego" << std::endl;
+  std::cout << "1. JUGADOR  VS JUGADOR " << std::endl;
+  std::cout << "2. JUGADOR  VS COMPUTADOR " << std::endl;
+
+  std::cin >> option;
+  while (option != 1 && option != 2) {
+    std::cout << "Opcion no valida, ingrese nuevamente" << std::endl;
+    std::cin >> option;
+  }
+  switch (option) {
+  case 1:
+    std::cout << "ELEGISTE EL MODO JUGADOR VS JUGADOR" << std::endl;
+    break;
+  case 2:
+    std::cout << "ELEGISTE EL MODO JUGADOR VS COMPUTADOR" << std::endl;
+    break;
+  default:
+    break;
+  }
+  return option;
+}
+
+void System::run() {
+  std::string pl1;
+  std::string pl2;
+  Config conf;
+  switch (GetGameType()) {
+  case 1:
+    pl1 = getPlayer(1);
+    pl2 = getPlayer(2);
+    break;
+  case 2:
+    // JugadorComputador();
+    break;
+  }
+  Game game(conf, players[pl1], players[pl2]);
+  game.startCliGame();
 }

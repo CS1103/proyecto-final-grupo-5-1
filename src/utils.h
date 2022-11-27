@@ -10,6 +10,8 @@
 class Square;
 class Player;
 
+namespace UTILS {
+
 enum class TipoJ : unsigned int {
   HUMANO_HUMANO = 0,
   HUMANO_COMPUTADOR = 1,
@@ -19,6 +21,8 @@ enum class TipoJ : unsigned int {
 enum class SQ_Color : char { EMPTY = ' ', RED = 'r', BLUE = 'b' };
 
 enum class P_Color : char { BLUE = 'b', RED = 'r', NONE = '0' };
+
+using movement = std::pair<unsigned int, unsigned int>;
 
 using ptr_square = std::shared_ptr<Square>;
 using ptr_player = std::shared_ptr<Player>;
@@ -44,5 +48,11 @@ public:
     throw std::out_of_range("Vector2f::operator[]");
   }
 };
+
+} // namespace UTILS
+//
+bool operator==(UTILS::SQ_Color square, UTILS::P_Color player);
+bool operator==(UTILS::P_Color player, UTILS::SQ_Color square);
+std::ostream &operator<<(std::ostream &oss, const UTILS::SQ_Color &color);
 
 #endif // !#UTILS_H

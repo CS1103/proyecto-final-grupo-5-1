@@ -1,8 +1,11 @@
 #ifndef VIEW_H
 #define VIEW_H
 
+#include "boost/variant.hpp"
 #include <SFML/Graphics.hpp>
 
+#include "Button.h"
+#include "TextField.h"
 #include <cmath>
 #include <initializer_list>
 #include <iostream>
@@ -12,7 +15,9 @@
 
 #include "../utils.h"
 #include "Movement.h"
-#include "TextBox.h"
+
+using movement =
+    boost::variant<Movement<sf::Sprite>, Movement<Button>, Movement<TextField>>;
 
 [[maybe_unused]] const unsigned int VIEW_WIDTH = 800;
 [[maybe_unused]] const unsigned int VIEW_HEIGHT = 600;
@@ -32,18 +37,21 @@ public:
   game_sett createGame(const std::vector<std::string> &names);
 
 private:
-  std::map<std::pair<std::string, unsigned int>, std::shared_ptr<sf::Drawable>>
-      sprites;
   std::unique_ptr<sf::RenderWindow> window;
   std::chrono::microseconds deltaTime;
 
   // Move mutiple sprites as tuples
-  void moveSprites(std::vector<Movement> movements);
-  void drawSprites(std::initializer_list<std::string> spriteNames);
-  void drawSprites();
+  void moveObjects(std::vector<movement> &movements);
+  void drawOnWindow(
+      std::initializer_list<std::reference_wrapper<sf::Drawable>> drawables);
   void loadSprites(std::string name, const char &level,
                    const std::string &file);
   void loadSprites(const std::string &name, const char &level);
+};
+
+class MovementVisitor : public boost::static_visitor<> {
+  template <typename T> void operator()(Movement<T> &m) const { m.move(); }
+  void operator()(Movement<T> &textField) const {}
 };
 
 #endif // !VIEW_H

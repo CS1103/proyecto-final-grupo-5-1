@@ -9,6 +9,8 @@
 #include <optional>
 #include <vector>
 
+using UTILS::ptr_player;
+
 class Game {
 private:
   // Aditional configuration to each game
@@ -20,7 +22,8 @@ public:
   Game(const Config &config, const ptr_player &player1,
        const ptr_player &player2);
   std::optional<std::shared_ptr<Player>> startGame();
-  std::optional<std::shared_ptr<Player>> startGame2();
+  std::optional<std::shared_ptr<Player>> startCliGame();
+  [[nodiscard]] std::tuple<unsigned int, unsigned int> getMove() const;
 };
 
 #endif // !GAME_H

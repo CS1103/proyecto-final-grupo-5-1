@@ -2,10 +2,11 @@
 #define BUTTON_H
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Rect.hpp>
 
-const std::string FONT_PATH =
+const std::string BUTTON_FONT_PATH =
     "../src/Static/SauceCodeProBoldNerdFontCompleteMono.ttf";
-const std::string TEXTURE_PATH = "../src/Static/button.png";
+const std::string BUTTON_TEXTURE_PATH = "../src/Static/button.png";
 
 class Button : public sf::Drawable {
 private:
@@ -17,9 +18,11 @@ private:
 
 public:
   void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
-  Button(std::string text, sf::Vector2f pos);
-  bool contains(sf::Vector2f point) const;
-  void setPosition(sf::Vector2f pos);
+  Button(const std::string &text, const sf::Vector2f &pos = {-100, -100});
+  bool contains(const sf::Vector2f &point) const;
+  void setPosition(const sf::Vector2f &pos);
+  void setPosition(const float &x, const float &y);
+  sf::FloatRect getGlobalBounds() const;
 };
 
 #endif // !#ifndef BUTTON_H

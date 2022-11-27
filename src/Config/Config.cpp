@@ -2,9 +2,6 @@
 
 Config::Config(TipoJ tipoJ, unsigned int size, std::optional<seconds> timeLimit)
     : time_limit(timeLimit), tipo_juego(tipoJ), BOARD_SIZE(size) {}
-Config::Config()
-    : time_limit(std::nullopt), tipo_juego(TipoJ::HUMANO_HUMANO),
-      BOARD_SIZE(TAMANHO_DEFAULT) {}
 
 void Config::setTimeLimit(seconds timeLimit) { this->time_limit = timeLimit; }
 void Config::setTipoJ(TipoJ tipoJ) { this->tipo_juego = tipoJ; }

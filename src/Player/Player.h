@@ -7,6 +7,8 @@
 #include <memory>
 #include <stdexcept>
 
+using UTILS::P_Color;
+
 class Player {
 
 private:

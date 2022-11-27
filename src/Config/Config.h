@@ -5,6 +5,9 @@
 #include <chrono>
 #include <optional>
 
+using UTILS::seconds;
+using UTILS::TipoJ;
+
 // Default Config Data
 const TipoJ JUEGO_DEFAULT = TipoJ::HUMANO_HUMANO;
 const unsigned int TAMANHO_DEFAULT = 11;
@@ -18,7 +21,6 @@ struct Config {
   const unsigned int BOARD_SIZE;
 
   // Constructor
-  Config();
   Config(TipoJ tipoJ = JUEGO_DEFAULT, unsigned int size = TAMANHO_DEFAULT,
          std::optional<seconds> timeLimit = std::nullopt);
 

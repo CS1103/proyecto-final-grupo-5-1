@@ -20,7 +20,7 @@ bool Turn::validPlay(const unsigned int &squareX,
   // One of this must work
   // auto color = static_cast<SQ_Color>(static_cast<char>(mc_player_color));
   auto color = static_cast<SQ_Color>(mc_player_color);
-  return mr_board.setSquare(squareX, squareY, color);
+  return mr_board.setSquareValidation(squareX, squareY, color);
 }
 
 std::optional<P_Color> Turn::isGameOver() const {

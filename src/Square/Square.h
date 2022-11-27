@@ -3,16 +3,19 @@
 
 #include "../utils.h"
 
+using UTILS::SQ_Color;
+
 class Square {
 
 private:
   SQ_Color color;
 
 public:
-  // Square() = default; //WHYYY
+  Square();
   //~Square() = default;
   Square(SQ_Color color);
-  bool setColor(const SQ_Color &color);
+  bool setColorValidation(const SQ_Color &color);
+  void setColor(const SQ_Color &color);
   [[nodiscard]] SQ_Color getColor() const;
 };
 
