@@ -11,8 +11,8 @@ set(CMAKE_CXX_FLAGS "-Wall -g")
 # DEFINE desired modules
 
 #set(Modules "Board" "Bot" "Config" "Game" "Player" "PlayerController" "Square" "System" "Turn")# "View")
-set(Modules "Square" "Board" "Player" "Turn")
-#set(Modules "Board" "Bot" "Config" "Game" "Player" "PlayerController" "Square" "Turn")
+#set(Modules "Square" "Board" "Player" "Turn")
+set(Modules "Board" "Bot" "Config" "Game" "Player" "PlayerController" "Square" "Turn")
 
 
 set (INCLUDE_DIRS "src")
