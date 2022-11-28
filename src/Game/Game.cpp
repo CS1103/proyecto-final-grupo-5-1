@@ -228,23 +228,11 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
                 }
 
                 // predefined moves
-
-                if (!moves_red.empty()) {
-                    switch (current_color) {
-                        case P_Color::BLUE:
-                            std::tie(x_move, y_move) = moves_blue.top();
-                            moves_blue.pop();
-                            break;
-                        case P_Color::RED:
-                            std::tie(x_move, y_move) = moves_red.top();
-                            moves_red.pop();
-                            break;
-                        default:
-                            throw std::runtime_error("Invalid player color");
-                    }
-
-                } else {
+                if (current_player==0) {
                     std::tie(x_move, y_move) = getMove();
+                }
+                else if(current_player==1) {
+                    std::tie(x_move, y_move) = players[0].ComputerMove();
                 }
 
                 // GET jugada from vista
