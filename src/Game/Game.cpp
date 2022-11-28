@@ -93,102 +93,116 @@ std::tuple<unsigned int, unsigned int> Game::getMove() const {
 }
 
 std::optional<std::shared_ptr<Player>> Game::startCliGame() {
+    // Juego para humano vs humano
+    if(m_config.tipo_juego == UTILS::TipoJ::HUMANO_HUMANO) {
 
-  // predefined moves
-  std::stack<std::tuple<unsigned int, unsigned int>> moves_blue;
-  std::stack<std::tuple<unsigned int, unsigned int>> moves_red;
+        // predefined moves
+        std::stack<std::tuple<unsigned int, unsigned int>> moves_blue;
+        std::stack<std::tuple<unsigned int, unsigned int>> moves_red;
 
-  for (int i = 11; i > 0; i--) {
-      moves_red.push(std::make_tuple(i-1, 0 ));
-      moves_blue.push(std::make_tuple(i-1, 5 ));
-  }
-
-  // Create board
-  Board game_board = Board(m_config.BOARD_SIZE);
-
-  // Running game
-  bool is_time_up = false;
-  std::optional<P_Color> winner_color;
-
-  unsigned int current_player = 0;
-  P_Color current_color = P_Color::RED;
-
-  while (true) {
-    Turn turno = Turn(game_board, current_color, m_config.time_limit);
-    bool is_valid_play = false;
-    unsigned int x_move = 0;
-    unsigned int y_move = 0;
-    game_board.show();
-
-    do {
-      // print player color
-      switch (current_color) {
-      case P_Color::BLUE:
-        std::cout << "Blue player (" << players[current_player]->getName()
-                  << ") move: \n";
-        break;
-      case P_Color::RED:
-        std::cout << "Red player (" << players[current_player]->getName()
-                  << ") move: \n";
-        break;
-      default:
-        throw std::runtime_error("Invalid player color");
-      }
-
-      // predefined moves
-
-      if (!moves_red.empty()) {
-        switch (current_color) {
-        case P_Color::BLUE:
-          std::tie(x_move, y_move) = moves_blue.top();
-          moves_blue.pop();
-          break;
-        case P_Color::RED:
-          std::tie(x_move, y_move) = moves_red.top();
-          moves_red.pop();
-          break;
-        default:
-          throw std::runtime_error("Invalid player color");
+        for (int i = 11; i > 0; i--) {
+            moves_red.push(std::make_tuple(i - 1, 0));
+            moves_blue.push(std::make_tuple(i - 1, 5));
         }
 
-      } else {
-        std::tie(x_move, y_move) = getMove();
-      }
+        // Create board
+        Board game_board = Board(m_config.BOARD_SIZE);
 
-      // GET jugada from vista
-      is_time_up = turno.isTimeUp();
-      if (is_time_up) {
-        break;
-      }
-      is_valid_play = turno.validPlay(x_move, y_move);
-      if (!is_valid_play) {
-        std::cout << "Invalid play, try again" << std::endl;
-      }
+        // Running game
+        bool is_time_up = false;
+        std::optional<P_Color> winner_color;
 
-    } while (!is_valid_play);
-    // Vista.turno terminado(isTimeUp)
-    game_board.show();
-    turno.stopTimer();
-    winner_color = turno.isGameOver();
-    if (winner_color.has_value()) {
-      // vista.printWinner(winner);
+        unsigned int current_player = 0;
+        P_Color current_color = P_Color::BLUE;
 
-      // Return players from players that matches winner_color
-      switch (winner_color.value()) {
-      case P_Color::BLUE:
-          std::cout << "Blue player (" << players[0]->getName()
-                    << ") wins! \n";
-        return players[0];
-      case P_Color::RED:
-            std::cout << "Red player (" << players[1]->getName()
-                        << ") wins! \n";
-        return players[1];
-      case P_Color::NONE:
-        throw std::runtime_error("Winner color is NONE");
-      }
+        while (true) {
+            Turn turno = Turn(game_board, current_color, m_config.time_limit);
+            bool is_valid_play = false;
+            unsigned int x_move = 0;
+            unsigned int y_move = 0;
+            game_board.show();
+
+            do {
+                // print player color
+                switch (current_color) {
+                    case P_Color::BLUE:
+                        std::cout << "Blue player (" << players[current_player]->getName()
+                                  << ") move: \n";
+                        break;
+                    case P_Color::RED:
+                        std::cout << "Red player (" << players[current_player]->getName()
+                                  << ") move: \n";
+                        break;
+                    default:
+                        throw std::runtime_error("Invalid player color");
+                }
+
+                // predefined moves
+
+                if (!moves_red.empty()) {
+                    switch (current_color) {
+                        case P_Color::BLUE:
+                            std::tie(x_move, y_move) = moves_blue.top();
+                            moves_blue.pop();
+                            break;
+                        case P_Color::RED:
+                            std::tie(x_move, y_move) = moves_red.top();
+                            moves_red.pop();
+                            break;
+                        default:
+                            throw std::runtime_error("Invalid player color");
+                    }
+
+                } else {
+                    std::tie(x_move, y_move) = getMove();
+                }
+
+                // GET jugada from vista
+                is_time_up = turno.isTimeUp();
+                if (is_time_up) {
+                    break;
+                }
+                is_valid_play = turno.validPlay(x_move, y_move);
+                if (!is_valid_play) {
+                    std::cout << "Invalid play, try again" << std::endl;
+                }
+
+            } while (!is_valid_play);
+            // Vista.turno terminado(isTimeUp)
+            game_board.show();
+            turno.stopTimer();
+            winner_color = turno.isGameOver();
+            if (winner_color.has_value()) {
+                // vista.printWinner(winner);
+
+                // Return players from players that matches winner_color
+                switch (winner_color.value()) {
+                    case P_Color::BLUE:
+                        std::cout << "Blue player (" << players[0]->getName()
+                                  << ") wins! \n";
+                        return players[0];
+                    case P_Color::RED:
+                        std::cout << "Red player (" << players[1]->getName()
+                                  << ") wins! \n";
+                        return players[1];
+                    case P_Color::NONE:
+                        throw std::runtime_error("Winner color is NONE");
+                }
+            }
+            current_player = (current_player == 0) ? 1 : 0;
+            current_color =
+                    (current_color == P_Color::BLUE) ? P_Color::RED : P_Color::BLUE;
+        }
     }
-    current_player = (current_player == 0) ? 1 : 0;
-    current_color =
-        (current_color == P_Color::BLUE) ? P_Color::RED : P_Color::BLUE;
-  }
+    // Juego Humano-Computador
+    else if (m_config.tipo_juego == UTILS::TipoJ::HUMANO_COMPUTADOR){
+        Board game_board = Board(m_config.BOARD_SIZE);
+
+        // Running game
+        bool is_time_up = false;
+        std::optional<P_Color> winner_color;
+
+        unsigned int current_player = 0;
+        P_Color current_color = P_Color::RED;
+    }
 }
