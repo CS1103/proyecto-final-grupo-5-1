@@ -10,7 +10,7 @@ std::string GetRandomName() {
   return "Bot " + code;
 }
 
-unsigned int EvaluateMove(const movement &movement, const Board &board) {}
+//unsigned int EvaluateMove(const movement &movement, const Board &board) {}
 
 //CONSTRUCTOR -------------
 // Constructor de asignacion
@@ -179,11 +179,13 @@ double Bot::getWins(Board &board,SQ_Color color)
             int y = blank[perm[i]].second;
             if (turn)
             {
-                board.place(x, y, UTILS::SQ_Color::RED);
+                //board.place(x, y, UTILS::SQ_Color::RED);
+                board.setSquareValidation(x,y,UTILS::SQ_Color::RED);
             }
             else
             {
-                board.place(x, y, UTILS::SQ_Color::BLUE);
+                //board.place(x, y, UTILS::SQ_Color::BLUE);
+                board.setSquareValidation(x,y,UTILS::SQ_Color::BLUE);
             }
         }
         if (board.winner() == color)

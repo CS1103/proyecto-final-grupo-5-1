@@ -37,9 +37,9 @@ public:
   UTILS::matrix<UTILS::ptr_square> get_tablero();
   void show() const;
 
-  bool inBoard(int x, int y);
+  //bool inBoard(int x, int y);
 
-  bool place(int x, int y, SQ_Color color);
+  //bool place(int x, int y, SQ_Color color);
 
   bool badMove(int x, int y);
 
