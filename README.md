@@ -117,7 +117,12 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 </div>
 
 - **Queue:**  
-explicación aqui
+
+  Las colas o queues son un tipo de adaptadores en contenedores y son compatiblse con una estructura de datos FIFO (el primero en entrar es el primero en salir). Por ejemplo, las personas que hacen cola para entrar a un baño. Se pueden agregar elementos a la parte posterior de la línea y quitarlos de la parte delantera de la línea. Asimismo, se puede inspeccionar tanto la parte delantera como trasera de una línea. La restricción de acceder únicamente a los elementos `front` y `back` de esta manera es el motivo por el que se usa `queue`. 
+
+<div align="center">
+<img src= queue.png format=jpg&name=small" width="500px">
+</div>
 
 ## Instalación
 
