@@ -1,4 +1,5 @@
 #include "System.h"
+#include "../Bot/Bot.h"
 
 /*
   PlayerController players;
@@ -61,6 +62,12 @@ std::string System::getPlayer(unsigned int number) {
   return nombre;
 }
 
+std::string System::getBot() {
+  UTILS::ptr_player bot = std::make_shared<Bot>();
+  players.addPlayer(bot);
+  return bot->getName();
+}
+
 unsigned int GetGameType() {
   unsigned int option = 0;
   std::cout << "Bienevenido al CHIQUIHEX" << std::endl;
@@ -96,7 +103,10 @@ void System::run() {
     pl2 = getPlayer(2);
     break;
   case 2:
-    // JugadorComputador();
+    pl1 = getPlayer(1);
+    pl2 = getBot();
+    break;
+  default:
     break;
   }
   Game game(conf, players[pl1], players[pl2]);

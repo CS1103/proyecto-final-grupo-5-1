@@ -12,16 +12,17 @@ std::string GetRandomName() {
 
 unsigned int EvaluateMove(const movement &movement, const Board &board) {}
 
-//CONSTRUCTOR -------------
-// Constructor de asignacion
-Bot::Bot(Difficulty difficulty,P_Color color)
-    : Player(GetRandomName(),color), difficulty(difficulty) {}
+// CONSTRUCTOR -------------
+//  Constructor de asignacion
+Bot::Bot(Difficulty difficulty, P_Color color)
+    : Player(GetRandomName(), color), difficulty(difficulty) {}
 // METODOS -------------
-movement Bot::computeMove(const Board &board) const {return {2,4};}
+movement Bot::computeMove(const Board &board) const { return {2, 4}; }
 
 // Funcion format
 /*
-UTILS::matrix<UTILS::ptr_square> Bot::formatBot(const P_Color &color,  Board board) const {
+UTILS::matrix<UTILS::ptr_square> Bot::formatBot(const P_Color &color,  Board
+board) const {
 
     UTILS::matrix<UTILS::ptr_square> return_tablero;
 
@@ -66,10 +67,12 @@ UTILS::matrix<UTILS::ptr_square> Bot::formatBot(const P_Color &color,  Board boa
 
         case P_Color::RED: {
 
-            for (auto it = return_tablero.begin(); it != (return_tablero.end() - 1);
+            for (auto it = return_tablero.begin(); it != (return_tablero.end() -
+1);
                  ++it) {
-                it->insert(it->begin(), std::make_shared<Square>(SQ_Color::RED));
-                it->insert(it->end(), std::make_shared<Square>(SQ_Color::RED));
+                it->insert(it->begin(),
+std::make_shared<Square>(SQ_Color::RED)); it->insert(it->end(),
+std::make_shared<Square>(SQ_Color::RED));
             }
 
             return_tablero[size - 1].insert(
@@ -92,7 +95,8 @@ bool Bot::automatizarBot(const P_Color &playerColor, const Board &board) const {
 
     std::queue<std::shared_ptr<Square>> queue;
 
-    std::vector<std::vector<std::shared_ptr<Square>>> formated_tablero = formatBot(playerColor,board);
+    std::vector<std::vector<std::shared_ptr<Square>>> formated_tablero =
+formatBot(playerColor,board);
 
     // push starting point
     queue.push(formated_tablero[0][0]);
@@ -136,13 +140,13 @@ bool Bot::automatizarBot(const P_Color &playerColor, const Board &board) const {
 
         // PUSH THE NEIGHBOURS
         std::vector<std::pair<int, int>> neighbours = {{y, x - 1}, {y, x + 1},
-                                                       {y - 1, x}, {y - 1, x + 1},
-                                                       {y + 1, x}, {y + 1, x - 1}};
+                                                       {y - 1, x}, {y - 1, x +
+1}, {y + 1, x}, {y + 1, x - 1}};
 
         for (const auto &neighbour : neighbours) {
-            if (neighbour.first >= 0 && neighbour.first < formated_tablero.size() &&
-                neighbour.second >= 0 &&
-                neighbour.second < formated_tablero[0].size()) {
+            if (neighbour.first >= 0 && neighbour.first <
+formated_tablero.size() && neighbour.second >= 0 && neighbour.second <
+formated_tablero[0].size()) {
                 queue.push(formated_tablero[neighbour.first][neighbour.second]);
             }
         }
@@ -155,70 +159,61 @@ bool Bot::automatizarBot(const P_Color &playerColor, const Board &board) const {
 }
 */
 
-double Bot::getWins(Board &board,SQ_Color color)
-{
-    auto blank = board.getEmpty();
-    int winCount = 0;
-    std::vector<int> perm(blank.size());
-    for (int i=0; i<perm.size(); i++)
-        perm[i] = i;
-    for (int n=0; n<1000; n++)
-    {
-        int turn = (color == UTILS::SQ_Color::RED ? 0 : 1);
-        for (int i=perm.size(); i>1; i--)
-        {
-            int swap = rand() % i;
-            int temp = perm[i-1];
-            perm[i-1] = perm[swap];
-            perm[swap] = temp; // prand the permutation
-        }
-        for (int i=0; i<perm.size(); i++)
-        {
-            turn = !turn; //easy bool turn tracking
-            int x = blank[perm[i]].first;
-            int y = blank[perm[i]].second;
-            if (turn)
-            {
-                board.place(x, y, UTILS::SQ_Color::RED);
-            }
-            else
-            {
-                board.place(x, y, UTILS::SQ_Color::BLUE);
-            }
-        }
-        if (board.winner() == color)
-            winCount++;
-
-        for (auto itr = blank.begin(); itr != blank.end(); ++itr)
-            board.badMove(itr->first, itr->second); // take back rand moves
+double Bot::getWins(Board &board, SQ_Color color) {
+  auto blank = board.getAvailableMoves();
+  int winCount = 0;
+  std::vector<int> perm(blank.size());
+  for (int i = 0; i < perm.size(); i++)
+    perm[i] = i;
+  for (int n = 0; n < 1000; n++) {
+    int turn = (color == UTILS::SQ_Color::RED ? 0 : 1);
+    for (int i = perm.size(); i > 1; i--) {
+      int swap = rand() % i;
+      int temp = perm[i - 1];
+      perm[i - 1] = perm[swap];
+      perm[swap] = temp; // prand the permutation
     }
-    return static_cast<double>(winCount) / 1000;
+    for (int i = 0; i < perm.size(); i++) {
+      turn = !turn; // easy bool turn tracking
+      int x = blank[perm[i]].first;
+      int y = blank[perm[i]].second;
+      if (turn) {
+        board.place(x, y, UTILS::SQ_Color::RED);
+      } else {
+        board.place(x, y, UTILS::SQ_Color::BLUE);
+      }
+    }
+    if (board.winner() == color)
+      winCount++;
+
+    for (auto itr = blank.begin(); itr != blank.end(); ++itr)
+      board.badMove(itr->first, itr->second); // take back rand moves
+  }
+  return static_cast<double>(winCount) / 1000;
 }
 
 // montecarlo simulation, with getWins() it finds the
 // value of moves by making random permutations and doing simulation moves
 // on each and tracks no. wins. The moves are given the no.wins as a move
 // value, the best value is the best move.
-std::pair<int, int> Bot::next(Board &board, SQ_Color color)
-{
-    auto blank = board.getEmpty();
-    double bestMove = 0;
-    std::pair<int, int> move = blank[0];
+std::pair<int, int> Bot::next(Board &board, SQ_Color color) {
+  auto blank = board.getAvailableMoves();
+  double best_move = 0;
 
-    for (int i=0; i<blank.size(); i++)
-    {
-        int x = blank[i].first;
-        int y = blank[i].second;
-        board.place(x, y, color);
+  // std::pair<int, int> move = blank[0];
 
-        double moveValue = getWins(board, color);
-        if (moveValue > bestMove)
-        {
-            move = blank[i];
-            bestMove = moveValue;
-        }
+  for (auto &move : blank) {
+    int xar = move.first;
+    int yar = move.second;
+    board.place(xar, yar, color);
 
-        board.badMove(x, y);
+    double moveValue = getWins(board, color);
+    if (moveValue > best_move) {
+      move = blank[i];
+      best_move = moveValue;
     }
-    return move;
+
+    board.badMove(x, y);
+  }
+  return move;
 }

@@ -17,7 +17,8 @@ private:
   UTILS::matrix<UTILS::ptr_square> tablero;
   [[nodiscard]] UTILS::matrix<unsigned int>
   createCircuit(UTILS::P_Color color) const;
-  [[nodiscard]] UTILS::matrix<UTILS::ptr_square> format(const UTILS::P_Color &color) const;
+  [[nodiscard]] UTILS::matrix<UTILS::ptr_square>
+  format(const UTILS::P_Color &color) const;
   static int direct[6][2]; // Probando
 
 public:
@@ -43,12 +44,13 @@ public:
 
   bool badMove(int x, int y);
 
-  std::vector<std::pair<int, int>> getEmpty();
+  std::vector<std::pair<unsigned int, unsigned int>> getAvailableMoves();
 
   SQ_Color winner();
 
-    void bfsSearch(std::vector<std::pair<int, int>> &start, std::vector<bool> &condition);
+  void bfsSearch(std::vector<std::pair<int, int>> &start,
+                 std::vector<bool> &condition);
 
-    void borders(int x, int y, std::vector<bool> &condition, SQ_Color side);
+  void borders(int x, int y, std::vector<bool> &condition, SQ_Color side);
 };
 #endif // !BOARD_H

@@ -18,6 +18,7 @@ private:
 
   void addGameOrPlayer();
   std::string getPlayer(unsigned int number);
+  std::string getBot();
 
 public:
   void run();
