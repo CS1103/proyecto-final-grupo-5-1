@@ -232,7 +232,7 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
                     std::tie(x_move, y_move) = getMove();
                 }
                 else if(current_player==1) {
-                    std::tie(x_move, y_move) = players[0].ComputerMove();
+                    std::tie(x_move, y_move) = players[0]->computeMove(game_board);
                 }
 
                 // GET jugada from vista

@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "../utils.h"
+#include "Board.h"
 #include <algorithm>
 #include <compare>
 #include <memory>
@@ -26,6 +27,7 @@ public:
 
     [[nodiscard]] std::string getName() const;
     [[nodiscard]] P_Color getColor() const;
+    [[nodiscard]] movement computeMove(const Board &board) const;
 
     // overload operator == for shared pointers of Player
     friend bool operator==(const std::shared_ptr<Player> &pPointer,
