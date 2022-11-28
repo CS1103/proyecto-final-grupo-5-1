@@ -305,3 +305,58 @@ std::vector<std::pair<int,int>> Board::getEmpty()
     }
     return blankSpots;
 }
+
+void Board::bfsSearch(std::vector<std::pair<int,int>>& start, std::vector<bool>& condition)
+{
+    if(start.size() != 0)
+    {
+        int x = start[0].first;
+        int y = start[0].second;
+        char side = tablero[x][y]->getColor();
+
+        std::vector<std::vector<bool>> visited(tablero.size(), std::vector<bool>(tablero.size()));
+        std::queue<std::pair<int,int>> trace;
+
+
+        for (auto itr = start.cbegin(); itr != start.cend(); ++itr)
+        {
+            trace.push(*itr);
+            visited[itr->first][itr->second] = true;
+        }
+        while(!(trace.empty()))
+        {
+            auto top = trace.front();
+            borders(top.first, top.second, condition, side);
+            trace.pop();
+
+            for(int i = 0; i < 6; i++)
+            {
+                int xCursor = top.first + direct[i][0];
+                int yCursor = top.second + direct[i][1];
+                if(inBoard(xCursor, yCursor) && board[xCursor][yCursor] == side
+                   && visited[xCursor][yCursor] == false)
+                {
+                    visited[xCursor][yCursor] = true;
+                    trace.push(make_pair(xCursor,yCursor));
+                }
+            }
+        }
+    }
+}
+
+
+
+
+// white is necessarily the winner
+SQ_Color Board::winner()
+{
+    std::vector<bool> condition(2, false); // tracks side to side win
+    std::vector<std::pair<int,int>> start;
+    for(int i =0; i<tablero.size(); i++)
+        if(tablero[i][0]->getColor() == UTILS::SQ_Color::BLUE)
+            start.push_back(std::make_pair(i,0));
+
+
+    bfsSearch(start, condition);
+    return (condition[0] && condition[1]) ? UTILS::SQ_Color::BLUE : UTILS::SQ_Color::RED;
+}

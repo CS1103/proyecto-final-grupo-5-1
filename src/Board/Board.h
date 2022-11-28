@@ -44,5 +44,9 @@ public:
     bool badMove(int x, int y);
 
     std::vector<std::pair<int, int>> getEmpty();
+
+    SQ_Color winner();
+
+    void bfsSearch(std::vector<std::pair<int, int>> &start, std::vector<bool> &condition);
 };
 #endif // !BOARD_H
