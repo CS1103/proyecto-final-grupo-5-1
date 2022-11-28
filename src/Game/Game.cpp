@@ -232,10 +232,14 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
                     std::tie(x_move, y_move) = getMove();
                 }
                 else if(current_player==1) {
-                    
+                    Bot bot(Difficulty::EASY, P_Color::RED);
+                    // Verificacion de mejor jugada(camino a seguir)
+                    std::tie(x_move, y_move)=bot.computeMove(game_board);
+
+                    /*
                     x_move=rand()%(m_config.BOARD_SIZE-1) ;
                     y_move=rand()%(m_config.BOARD_SIZE-1) ;
-
+                     */
                     //std::tie(x_move, y_move) = players[current_player]->computeMove(game_board);
                 }
 

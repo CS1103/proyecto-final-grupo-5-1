@@ -5,6 +5,7 @@
 #include "../Player/Player.h"
 #include "../Turn/Turn.h"
 #include "../utils.h"
+#include "../Bot/Bot.h"
 #include <memory>
 #include <optional>
 #include <vector>
