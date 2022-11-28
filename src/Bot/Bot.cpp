@@ -179,13 +179,13 @@ double Bot::getWins(Board &board,SQ_Color color)
             int y = blank[perm[i]].second;
             if (turn)
             {
-                //board.place(x, y, UTILS::SQ_Color::RED);
-                board.setSquareValidation(x,y,UTILS::SQ_Color::RED);
+                board.place(x, y, UTILS::SQ_Color::RED);
+                //board.setSquareValidation(x,y,UTILS::SQ_Color::RED);
             }
             else
             {
-                //board.place(x, y, UTILS::SQ_Color::BLUE);
-                board.setSquareValidation(x,y,UTILS::SQ_Color::BLUE);
+                board.place(x, y, UTILS::SQ_Color::BLUE);
+                //board.setSquareValidation(x,y,UTILS::SQ_Color::BLUE);
             }
         }
         if (board.winner() == color)
@@ -211,8 +211,8 @@ std::pair<int, int> Bot::next(Board &board, SQ_Color color)
     {
         int x = blank[i].first;
         int y = blank[i].second;
-        //board.place(x, y, color);
-        board.setSquareValidation(x, y, color);
+        board.place(x, y, color);
+        //board.setSquareValidation(x, y, color);
 
         double moveValue = getWins(board, color);
         if (moveValue > bestMove)

@@ -267,29 +267,28 @@ bool Board::erifyConnection(const P_Color &playerColor) const {
 UTILS::matrix<UTILS::ptr_square> Board::get_tablero() {
     return tablero;
 }
-/*
+
 // For Bot
 bool Board::inBoard(int x, int y){
     return (x < tablero.size() && y < tablero.size() && x >= 0 && y >= 0);
 }
 
-bool Board::place(int x, int y, SQ_Color color)
-{
-    if(inBoard(x,y) && tablero[x][y]->getColor() == UTILS::SQ_Color::EMPTY)
-    {
-        if(color == UTILS::P_Color::RED)
+bool Board::place(int x, int y, SQ_Color color) {
+    if (inBoard(x, y) && tablero[x][y]->getColor() == UTILS::SQ_Color::EMPTY) {
+        if (color == UTILS::P_Color::RED)
             tablero[x][y]->setColor(UTILS::SQ_Color::RED);
         else
             tablero[x][y]->setColor(UTILS::SQ_Color::BLUE);
         return true;
     }
     return false;
-}*/
+}
 bool Board::badMove(int x, int y)
 {
     if(inBoard(x,y))
     {
         tablero[x][y]->setColor(UTILS::SQ_Color::EMPTY);
+
         return true;
     }
     return false;
