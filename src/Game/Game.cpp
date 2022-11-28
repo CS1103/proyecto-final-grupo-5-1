@@ -203,7 +203,7 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
         std::optional<P_Color> winner_color;
 
         unsigned int current_player = 0;
-        P_Color current_color = P_Color::RED;
+        P_Color current_color = P_Color::BLUE;
 
         while (true) {
             Turn turno = Turn(game_board, current_color, m_config.time_limit);
@@ -232,6 +232,9 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
                     std::tie(x_move, y_move) = getMove();
                 }
                 else if(current_player==1) {
+                    x_move=rand()%(m_config.BOARD_SIZE-1) ;
+                    y_move=rand()%(m_config.BOARD_SIZE-1) ;
+
                     //std::tie(x_move, y_move) = players[current_player]->computeMove(game_board);
                 }
 
