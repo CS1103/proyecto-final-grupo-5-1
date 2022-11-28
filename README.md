@@ -112,10 +112,8 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
  
   BFS va formando un árbol a medida que va recorriendo un grafo y se usa para algoritmos en donde resulta crítico elegir el mejor camino posible en cada momento del recorrido.
 
-<div>
-<p style = 'text-align:center;'>
+<div align="center">
 <img src= img.png format=jpg&name=small" width="500px">
-</p>
 </div>
 
 - **Queue:**  
