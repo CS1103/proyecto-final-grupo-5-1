@@ -14,8 +14,7 @@ Bot::Bot(Difficulty difficulty,P_Color color)
     : Player(GetRandomName(),color), difficulty(difficulty) {}
 
 unsigned int EvaluateMove(const movement &movement, const Board &board) {}
-
-movement Bot::computeMove(const Board &board) const { return {2, 4}; }
+movement Bot::computeMove(const Board &board) const {return {2,4};}
 
 //Implementando VerifyConnection:
 /*

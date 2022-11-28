@@ -64,3 +64,4 @@ void Player::changeColor(P_Color &newColor) { this->m_color = newColor; }
 std::string Player::getName() const { return this->m_name; }
 
 P_Color Player::getColor() const { return this->m_color; }
+
