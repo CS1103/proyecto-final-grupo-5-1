@@ -138,7 +138,7 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
                 }
 
                 // predefined moves
-
+                /*
                 if (!moves_red.empty()) {
                     switch (current_color) {
                         case P_Color::BLUE:
@@ -153,9 +153,11 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
                             throw std::runtime_error("Invalid player color");
                     }
 
-                } else {
-                    std::tie(x_move, y_move) = getMove();
                 }
+                 else {
+                 */
+                    std::tie(x_move, y_move) = getMove();
+                //}
 
                 // GET jugada from vista
                 is_time_up = turno.isTimeUp();

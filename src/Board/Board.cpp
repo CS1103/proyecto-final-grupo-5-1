@@ -10,6 +10,8 @@ const unsigned int INT_TO_CHAR = 65;
 using UTILS::P_Color;
 using UTILS::SQ_Color;
 
+
+
 void PrintMatrix(const std::vector<std::vector<std::shared_ptr<Square>>> &mat) {
   for (const auto &vec : mat) {
     for (const auto &obj : vec) {
@@ -260,4 +262,46 @@ bool Board::erifyConnection(const P_Color &playerColor) const {
   // then there was no element M[i][j] which is 2, then
   // return false
   return false;
+}
+
+UTILS::matrix<UTILS::ptr_square> Board::get_tablero() {
+    return tablero;
+}
+
+bool Board::inBoard(int x, int y){
+    return (x < tablero.size() && y < tablero.size() && x >= 0 && y >= 0);
+}
+
+bool Board::place(int x, int y, SQ_Color color)
+{
+    if(inBoard(x,y) && tablero[x][y]->getColor() == UTILS::SQ_Color::EMPTY)
+    {
+        if(color == UTILS::P_Color::BLUE)
+            tablero[x][y]->setColor(UTILS::SQ_Color::BLUE);
+        else
+            tablero[x][y]->setColor(UTILS::SQ_Color::RED);
+        return true;
+    }
+    return false;
+}
+bool Board::badMove(int x, int y)
+{
+    if(inBoard(x,y))
+    {
+        tablero[x][y]->setColor(UTILS::SQ_Color::EMPTY);
+        return true;
+    }
+    return false;
+}
+
+std::vector<std::pair<int,int>> Board::getEmpty()
+{
+    std::vector<std::pair<int,int>> blankSpots;
+    for(int i=0; i<tablero.size(); i++)
+    {
+        for(int j=0; j<tablero.size(); j++)
+            if(tablero[i][j]->getColor() == UTILS::SQ_Color::EMPTY)
+                blankSpots.push_back(std::make_pair(i,j));
+    }
+    return blankSpots;
 }

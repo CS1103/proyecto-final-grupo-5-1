@@ -33,6 +33,16 @@ public:
                       const UTILS::SQ_Color &turnColor) const;
 
   [[nodiscard]] float evaluateBoard() const;
+  UTILS::matrix<UTILS::ptr_square> get_tablero();
   void show() const;
+
+
+    bool inBoard(int x, int y);
+
+    bool place(int x, int y, SQ_Color color);
+
+    bool badMove(int x, int y);
+
+    std::vector<std::pair<int, int>> getEmpty();
 };
 #endif // !BOARD_H
