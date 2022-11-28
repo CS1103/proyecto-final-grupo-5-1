@@ -232,6 +232,7 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
                     std::tie(x_move, y_move) = getMove();
                 }
                 else if(current_player==1) {
+                    
                     x_move=rand()%(m_config.BOARD_SIZE-1) ;
                     y_move=rand()%(m_config.BOARD_SIZE-1) ;
 
