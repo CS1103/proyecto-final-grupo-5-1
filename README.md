@@ -194,12 +194,18 @@ Si quisieramos utilizar una matriz como contenedor para el tablero, estas serian
 | _3_ | 2,3 | **3,3** | 4,3 |
 | _4_ | 2,4 | 3,4     |     |
 
-<img src="MD_files/square_graph.png" alt="Grafo cuadrado del tablero" width="100%" height="100%"/>
+  
+<div align="center">
+<img src= MD_files/square_graph.png format=jpg&name=small" width="800px">
+</div>
+                                                                 
+
 
 </div>
 
 
 ### Diagrama de clases
+
 
 ![Diagrama](MD_files/digrama_clases.png)
 
