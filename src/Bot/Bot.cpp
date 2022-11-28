@@ -20,6 +20,7 @@ Bot::Bot(Difficulty difficulty,P_Color color)
 movement Bot::computeMove(const Board &board) const {return {2,4};}
 
 // Funcion format
+/*
 UTILS::matrix<UTILS::ptr_square> Bot::formatBot(const P_Color &color,  Board board) const {
 
     UTILS::matrix<UTILS::ptr_square> return_tablero;
@@ -152,6 +153,7 @@ bool Bot::automatizarBot(const P_Color &playerColor, const Board &board) const {
     // return false
     return false;
 }
+*/
 
 double Bot::getWins(Board &board,SQ_Color color)
 {
@@ -162,7 +164,7 @@ double Bot::getWins(Board &board,SQ_Color color)
         perm[i] = i;
     for (int n=0; n<1000; n++)
     {
-        int turn = (color == UTILS::SQ_Color::BLUE ? 0 : 1);
+        int turn = (color == UTILS::SQ_Color::RED ? 0 : 1);
         for (int i=perm.size(); i>1; i--)
         {
             int swap = rand() % i;
@@ -177,11 +179,11 @@ double Bot::getWins(Board &board,SQ_Color color)
             int y = blank[perm[i]].second;
             if (turn)
             {
-                board.place(x, y, UTILS::SQ_Color::BLUE);
+                board.place(x, y, UTILS::SQ_Color::RED);
             }
             else
             {
-                board.place(x, y, UTILS::SQ_Color::RED);
+                board.place(x, y, UTILS::SQ_Color::BLUE);
             }
         }
         if (board.winner() == color)

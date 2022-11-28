@@ -30,12 +30,11 @@ void JugadorComputador() {
     std::string nombre2;
     std::cout << "Jugador  ingrese su nombre" << std::endl;
     std::cin >> nombre1;
-    Player player1(nombre1, P_Color::BLUE);
-    Bot bot(Difficulty::EASY, P_Color::RED);
+    Player player1(nombre1, P_Color::RED);
+    Bot bot(Difficulty::EASY, P_Color::BLUE);
     TipoJ tipo1 = TipoJ::HUMANO_COMPUTADOR;
     Config config(tipo1);
-    Game game(config, std::make_shared<Player>(player1),
-              std::make_shared<Player>(bot));
+    Game game(config,std::make_shared<Player>(bot),std::make_shared<Player>(player1));
     std::cout << "Empecemos el juego" << std::endl;
 
     game.startCliGame();

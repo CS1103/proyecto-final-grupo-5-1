@@ -268,6 +268,7 @@ UTILS::matrix<UTILS::ptr_square> Board::get_tablero() {
     return tablero;
 }
 
+// For Bot
 bool Board::inBoard(int x, int y){
     return (x < tablero.size() && y < tablero.size() && x >= 0 && y >= 0);
 }
@@ -276,10 +277,10 @@ bool Board::place(int x, int y, SQ_Color color)
 {
     if(inBoard(x,y) && tablero[x][y]->getColor() == UTILS::SQ_Color::EMPTY)
     {
-        if(color == UTILS::P_Color::BLUE)
-            tablero[x][y]->setColor(UTILS::SQ_Color::BLUE);
-        else
+        if(color == UTILS::P_Color::RED)
             tablero[x][y]->setColor(UTILS::SQ_Color::RED);
+        else
+            tablero[x][y]->setColor(UTILS::SQ_Color::BLUE);
         return true;
     }
     return false;
@@ -306,13 +307,37 @@ std::vector<std::pair<int,int>> Board::getEmpty()
     return blankSpots;
 }
 
+void Board::borders(int x, int y, std::vector<bool>& condition, SQ_Color side)
+{
+    if(side == SQ_Color::RED)
+    {
+        if(y == 0)
+            condition[0] = true;
+        if(y == tablero.size() - 1)
+            condition[1] = true;
+
+    }
+    else
+    {
+        if(x == 0)
+            condition[0] = true;
+        if(x == tablero.size() - 1)
+            condition[1] = true;
+    }
+}
+
+int Board::direct[6][2] =
+        {
+                {-1, 0}, {-1, 1}, {0,-1}, {0,1}, {1, -1}, {1, 0} // corners
+        };
+
 void Board::bfsSearch(std::vector<std::pair<int,int>>& start, std::vector<bool>& condition)
 {
     if(start.size() != 0)
     {
         int x = start[0].first;
         int y = start[0].second;
-        char side = tablero[x][y]->getColor();
+        SQ_Color side = tablero[x][y]->getColor();
 
         std::vector<std::vector<bool>> visited(tablero.size(), std::vector<bool>(tablero.size()));
         std::queue<std::pair<int,int>> trace;
@@ -333,11 +358,11 @@ void Board::bfsSearch(std::vector<std::pair<int,int>>& start, std::vector<bool>&
             {
                 int xCursor = top.first + direct[i][0];
                 int yCursor = top.second + direct[i][1];
-                if(inBoard(xCursor, yCursor) && board[xCursor][yCursor] == side
+                if(inBoard(xCursor, yCursor) && tablero[xCursor][yCursor]->getColor() == side
                    && visited[xCursor][yCursor] == false)
                 {
                     visited[xCursor][yCursor] = true;
-                    trace.push(make_pair(xCursor,yCursor));
+                    trace.push(std::make_pair(xCursor,yCursor));
                 }
             }
         }
@@ -353,10 +378,11 @@ SQ_Color Board::winner()
     std::vector<bool> condition(2, false); // tracks side to side win
     std::vector<std::pair<int,int>> start;
     for(int i =0; i<tablero.size(); i++)
-        if(tablero[i][0]->getColor() == UTILS::SQ_Color::BLUE)
+        if(tablero[i][0]->getColor() == UTILS::SQ_Color::RED)
             start.push_back(std::make_pair(i,0));
 
 
     bfsSearch(start, condition);
-    return (condition[0] && condition[1]) ? UTILS::SQ_Color::BLUE : UTILS::SQ_Color::RED;
+    return (condition[0] && condition[1]) ? UTILS::SQ_Color::RED : UTILS::SQ_Color::BLUE;
 }
+
