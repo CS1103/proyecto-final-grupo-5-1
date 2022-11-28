@@ -209,7 +209,8 @@ std::pair<int, int> Bot::next(Board &board, SQ_Color color)
     {
         int x = blank[i].first;
         int y = blank[i].second;
-        board.place(x, y, color);
+        //board.place(x, y, color);
+        board.setSquareValidation(x, y, color);
 
         double moveValue = getWins(board, color);
         if (moveValue > bestMove)

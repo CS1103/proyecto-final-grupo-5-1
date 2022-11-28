@@ -267,7 +267,7 @@ bool Board::erifyConnection(const P_Color &playerColor) const {
 UTILS::matrix<UTILS::ptr_square> Board::get_tablero() {
     return tablero;
 }
-
+/*
 // For Bot
 bool Board::inBoard(int x, int y){
     return (x < tablero.size() && y < tablero.size() && x >= 0 && y >= 0);
@@ -284,7 +284,7 @@ bool Board::place(int x, int y, SQ_Color color)
         return true;
     }
     return false;
-}
+}*/
 bool Board::badMove(int x, int y)
 {
     if(inBoard(x,y))
@@ -354,7 +354,7 @@ void Board::bfsSearch(std::vector<std::pair<int,int>>& start, std::vector<bool>&
             borders(top.first, top.second, condition, side);
             trace.pop();
 
-            for(int i = 0; i < 6; i++)
+            for(int i = 0; i < 6; i++) //neighbors
             {
                 int xCursor = top.first + direct[i][0];
                 int yCursor = top.second + direct[i][1];
