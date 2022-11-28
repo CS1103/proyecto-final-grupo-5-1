@@ -94,7 +94,7 @@ std::tuple<unsigned int, unsigned int> Game::getMove() const {
 
 std::optional<std::shared_ptr<Player>> Game::startCliGame() {
 
-  // predifned moves
+  // predefined moves
   std::stack<std::tuple<unsigned int, unsigned int>> moves_blue;
   std::stack<std::tuple<unsigned int, unsigned int>> moves_red;
 

@@ -43,10 +43,11 @@ void JugadorComputador() {
 
 void Menu() {
   int option = 0;
-  std::cout << "Bienevenido al CHIQUIHEX" << std::endl;
-  std::cout << "Seleccione el modo de juego" << std::endl;
+  std::cout << "Bienvenido al CHIQUIHEX" << std::endl;
+  std::cout << "Seleccione el modo de juego (1 o 2):" << std::endl;
   std::cout << "1. JUGADOR  VS JUGADOR " << std::endl;
   std::cout << "2. JUGADOR  VS COMPUTADOR " << std::endl;
+
 
   std::cin >> option;
   while (option != 1 && option != 2) {
