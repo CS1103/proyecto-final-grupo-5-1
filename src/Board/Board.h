@@ -36,18 +36,18 @@ public:
   UTILS::matrix<UTILS::ptr_square> get_tablero();
   void show() const;
 
-  bool inBoard(int x, int y);
+  [[nodiscard]] bool inBoard(int x, int y) const;
 
-  bool place(int x, int y, SQ_Color color);
+  [[nodiscard]] bool place(int x, int y, SQ_Color color) const;
 
-  bool badMove(int x, int y);
+  [[nodiscard]] bool badMove(int x, int y) const;
 
-  std::vector<std::pair<int, int>> getEmpty();
+  [[nodiscard]] std::vector<std::pair<int, int>> getEmpty() const;
 
-  SQ_Color winner();
+  [[nodiscard]] SQ_Color winner() const;
 
-    void bfsSearch(std::vector<std::pair<int, int>> &start, std::vector<bool> &condition);
+    void bfsSearch(std::vector<std::pair<int, int>> &start, std::vector<bool> &condition) const;
 
-    void borders(int x, int y, std::vector<bool> &condition, SQ_Color side);
+    void borders(int x, int y, std::vector<bool> &condition, SQ_Color side) const;
 };
 #endif // !BOARD_H

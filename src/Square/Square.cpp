@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Square.h"
 
 Square::Square() { this->color = SQ_Color::EMPTY; }
@@ -10,8 +11,11 @@ bool Square::setColorValidation(const SQ_Color &color) {
 
   if (this->color == SQ_Color::EMPTY && color != SQ_Color::EMPTY) {
     this->color = color;
+    std::cout<<"true";
+
     return true;
   }
+    std::cout<<"false";
   return false;
 }
 

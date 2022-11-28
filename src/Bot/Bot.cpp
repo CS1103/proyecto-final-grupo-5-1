@@ -155,8 +155,7 @@ bool Bot::automatizarBot(const P_Color &playerColor, const Board &board) const {
 }
 */
 
-double Bot::getWins(Board &board,SQ_Color color)
-{
+double Bot::getWins(const Board &board,SQ_Color color) const {
     auto blank = board.getEmpty();
     int winCount = 0;
     std::vector<int> perm(blank.size());
@@ -179,13 +178,13 @@ double Bot::getWins(Board &board,SQ_Color color)
             int y = blank[perm[i]].second;
             if (turn)
             {
-                board.place(x, y, UTILS::SQ_Color::RED);
-                //board.setSquareValidation(x,y,UTILS::SQ_Color::RED);
+                //board.place(x, y, UTILS::SQ_Color::RED);
+                while(board.setSquareValidation(x,y,UTILS::SQ_Color::RED));
             }
             else
             {
-                board.place(x, y, UTILS::SQ_Color::BLUE);
-                //board.setSquareValidation(x,y,UTILS::SQ_Color::BLUE);
+                //board.place(x, y, UTILS::SQ_Color::BLUE);
+                while(!board.setSquareValidation(x,y,UTILS::SQ_Color::BLUE));
             }
         }
         if (board.winner() == color)
@@ -201,7 +200,7 @@ double Bot::getWins(Board &board,SQ_Color color)
 // value of moves by making random permutations and doing simulation moves
 // on each and tracks no. wins. The moves are given the no.wins as a move
 // value, the best value is the best move.
-std::pair<int, int> Bot::next(Board &board, SQ_Color color)
+std::pair<int, int> Bot::next(const Board &board, SQ_Color color)
 {
     auto blank = board.getEmpty();
     double bestMove = 0;
@@ -211,8 +210,8 @@ std::pair<int, int> Bot::next(Board &board, SQ_Color color)
     {
         int x = blank[i].first;
         int y = blank[i].second;
-        board.place(x, y, color);
-        //board.setSquareValidation(x, y, color);
+        //board.place(x, y, color);
+        while(!board.setSquareValidation(x, y, color)){};
 
         double moveValue = getWins(board, color);
         if (moveValue > bestMove)

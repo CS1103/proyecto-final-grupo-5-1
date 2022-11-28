@@ -269,11 +269,11 @@ UTILS::matrix<UTILS::ptr_square> Board::get_tablero() {
 }
 
 // For Bot
-bool Board::inBoard(int x, int y){
+bool Board::inBoard(int x, int y) const{
     return (x < tablero.size() && y < tablero.size() && x >= 0 && y >= 0);
 }
 
-bool Board::place(int x, int y, SQ_Color color) {
+bool Board::place(int x, int y, SQ_Color color) const{
     if (inBoard(x, y) && tablero[x][y]->getColor() == UTILS::SQ_Color::EMPTY) {
         if (color == UTILS::P_Color::RED)
             tablero[x][y]->setColor(UTILS::SQ_Color::RED);
@@ -283,8 +283,7 @@ bool Board::place(int x, int y, SQ_Color color) {
     }
     return false;
 }
-bool Board::badMove(int x, int y)
-{
+bool Board::badMove(int x, int y) const{
     if(inBoard(x,y))
     {
         tablero[x][y]->setColor(UTILS::SQ_Color::EMPTY);
@@ -294,20 +293,17 @@ bool Board::badMove(int x, int y)
     return false;
 }
 
-std::vector<std::pair<int,int>> Board::getEmpty()
-{
-    std::vector<std::pair<int,int>> blankSpots;
-    for(int i=0; i<tablero.size(); i++)
-    {
-        for(int j=0; j<tablero.size(); j++)
-            if(tablero[i][j]->getColor() == UTILS::SQ_Color::EMPTY)
-                blankSpots.push_back(std::make_pair(i,j));
+std::vector<std::pair<int,int>> Board::getEmpty() const{
+    std::vector<std::pair<int, int>> blankSpots;
+    for (int i = 0; i < tablero.size(); i++) {
+        for (int j = 0; j < tablero.size(); j++)
+            if (tablero[i][j]->getColor() == UTILS::SQ_Color::EMPTY)
+                blankSpots.push_back(std::make_pair(i, j));
     }
     return blankSpots;
 }
 
-void Board::borders(int x, int y, std::vector<bool>& condition, SQ_Color side)
-{
+void Board::borders(int x, int y, std::vector<bool>& condition, SQ_Color side) const{
     if(side == SQ_Color::RED)
     {
         if(y == 0)
@@ -330,8 +326,7 @@ int Board::direct[6][2] =
                 {-1, 0}, {-1, 1}, {0,-1}, {0,1}, {1, -1}, {1, 0} // corners
         };
 
-void Board::bfsSearch(std::vector<std::pair<int,int>>& start, std::vector<bool>& condition)
-{
+void Board::bfsSearch(std::vector<std::pair<int,int>>& start, std::vector<bool>& condition) const{
     if(start.size() != 0)
     {
         int x = start[0].first;
@@ -372,8 +367,8 @@ void Board::bfsSearch(std::vector<std::pair<int,int>>& start, std::vector<bool>&
 
 
 // white is necessarily the winner
-SQ_Color Board::winner()
-{
+SQ_Color Board::winner() const{
+
     std::vector<bool> condition(2, false); // tracks side to side win
     std::vector<std::pair<int,int>> start;
     for(int i =0; i<tablero.size(); i++)
@@ -384,4 +379,6 @@ SQ_Color Board::winner()
     bfsSearch(start, condition);
     return (condition[0] && condition[1]) ? UTILS::SQ_Color::RED : UTILS::SQ_Color::BLUE;
 }
+
+
 

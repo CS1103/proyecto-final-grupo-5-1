@@ -27,9 +27,9 @@ public:
     // Funcion format (traida de board)
     [[nodiscard]] UTILS::matrix<UTILS::ptr_square> formatBot(const P_Color &color, Board board) const;
 
-    double getWins(Board &board,SQ_Color color);
+    double getWins(const Board &board,SQ_Color color) const;
 
-    std::pair<int, int> next(Board &board, SQ_Color color);
+    std::pair<int, int> next(const Board &board, SQ_Color color);
 };
 
 #endif // !BOT_H
