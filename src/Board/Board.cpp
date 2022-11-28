@@ -10,6 +10,20 @@ const unsigned int INT_TO_CHAR = 65;
 using UTILS::P_Color;
 using UTILS::SQ_Color;
 
+Board::Board(UTILS::matrix<UTILS::ptr_square> &matrix)
+    : tablero(std::move(matrix)) {}
+
+Board::Board(const unsigned int &size) {
+  tablero.resize(size);
+  for (auto &vec : tablero) {
+    vec.resize(size);
+    for (auto &casilla : vec) {
+      casilla = std::make_shared<Square>(
+          Square(UTILS::SQ_Color::EMPTY)); // Use Default Constructor
+    }
+  }
+}
+
 void PrintMatrix(const std::vector<std::vector<std::shared_ptr<Square>>> &mat) {
   for (const auto &vec : mat) {
     for (const auto &obj : vec) {
@@ -25,17 +39,6 @@ void PrintQueue(std::queue<std::shared_ptr<Square>> que) {
     que.pop();
   }
   std::cout << std::endl;
-}
-
-Board::Board(const unsigned int &size) {
-  tablero.resize(size);
-  for (auto &vec : tablero) {
-    vec.resize(size);
-    for (auto &casilla : vec) {
-      casilla = std::make_shared<Square>(
-          Square(UTILS::SQ_Color::EMPTY)); // Use Default Constructor
-    }
-  }
 }
 
 UTILS::matrix<UTILS::ptr_square> Board::format(const P_Color &color) const {
@@ -218,54 +221,9 @@ void Board::show() const {
   std::cout << std::endl;
 }
 
-UTILS::matrix<unsigned int> Board::createCircuit(UTILS::P_Color color) const {
-
-  UTILS::matrix<unsigned int> circuit;
-
-  // populate circuit from tablero
-  for (const auto &vec : format(color)) {
-    std::vector<unsigned int> tmp_vec;
-    for (const auto &casilla : vec) {
-      if (casilla->getColor() == color) {
-        tmp_vec.push_back(0);
-      } else if (casilla->getColor() == SQ_Color::EMPTY) {
-        tmp_vec.push_back(1);
-      }
-      // if oposite color
-      else {
-        tmp_vec.push_back(INF);
-      }
-    }
-    circuit.push_back(tmp_vec);
-  }
-  return circuit;
-}
-
-float Board::evaluateBoard() const {
-  // evaluate the board using electric circuits and resistances
-  // https://www.aaai.org/Papers/AAAI/2000/AAAI00-029.pdf
-  UTILS::matrix<unsigned int> red_circuit = createCircuit(P_Color::RED);
-  UTILS::matrix<unsigned int> blue_circuit = createCircuit(P_Color::BLUE);
-  return 1;
-}
-
-bool Board::erifyConnection(const P_Color &playerColor) const {
-
-  std::queue<std::shared_ptr<Square>> queue;
-
-  UTILS::matrix<unsigned int> circuit = createCircuit(playerColor);
-
-  // push the start square
-  // BFS algorithm terminated without returning true
-  // then there was no element M[i][j] which is 2, then
-  // return false
-  return false;
-}
-
-UTILS::matrix<UTILS::ptr_square> Board::getTablero() { return tablero; }
-
 // get available moves
-std::vector<std::pair<unsigned int, unsigned int>> Board::getAvailableMoves() {
+std::vector<std::pair<unsigned int, unsigned int>>
+Board::getAvailableMoves() const {
   std::vector<std::pair<unsigned int, unsigned int>> blank_spots;
   for (int i = 0; i < tablero.size(); i++) {
     for (int j = 0; j < tablero.size(); j++) {
@@ -275,70 +233,4 @@ std::vector<std::pair<unsigned int, unsigned int>> Board::getAvailableMoves() {
     }
   }
   return blank_spots;
-}
-
-void Board::borders(int x, int y, std::vector<bool> &condition, SQ_Color side) {
-  if (side == SQ_Color::RED) {
-    if (y == 0)
-      condition[0] = true;
-    if (y == tablero.size() - 1)
-      condition[1] = true;
-
-  } else {
-    if (x == 0)
-      condition[0] = true;
-    if (x == tablero.size() - 1)
-      condition[1] = true;
-  }
-}
-
-int Board::direct[6][2] = {
-    {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0} // corners
-};
-
-void Board::bfsSearch(std::vector<std::pair<int, int>> &start,
-                      std::vector<bool> &condition) {
-  if (!start.empty()) {
-    int x = start[0].first;
-    int y = start[0].second;
-    SQ_Color side = tablero[x][y]->getColor();
-
-    std::vector<std::vector<bool>> visited(tablero.size(),
-                                           std::vector<bool>(tablero.size()));
-    std::queue<std::pair<int, int>> trace;
-
-    for (auto itr = start.cbegin(); itr != start.cend(); ++itr) {
-      trace.push(*itr);
-      visited[itr->first][itr->second] = true;
-    }
-    while (!(trace.empty())) {
-      auto top = trace.front();
-      borders(top.first, top.second, condition, side);
-      trace.pop();
-
-      for (int i = 0; i < 6; i++) {
-        int xCursor = top.first + direct[i][0];
-        int yCursor = top.second + direct[i][1];
-        if (inBoard(xCursor, yCursor) &&
-            tablero[xCursor][yCursor]->getColor() == side &&
-            visited[xCursor][yCursor] == false) {
-          visited[xCursor][yCursor] = true;
-          trace.push(std::make_pair(xCursor, yCursor));
-        }
-      }
-    }
-  }
-}
-
-// white is necessarily the winner
-SQ_Color Board::winner() {
-  std::vector<bool> condition(2, false); // tracks side to side win
-  std::vector<std::pair<int, int>> start;
-  for (int i = 0; i < tablero.size(); i++)
-    if (tablero[i][0]->getColor() == UTILS::SQ_Color::RED)
-      start.push_back(std::make_pair(i, 0));
-
-  bfsSearch(start, condition);
-  return (condition[0] && condition[1]) ? UTILS::SQ_Color::RED
-                                        : UTILS::SQ_Color::BLUE;
 }

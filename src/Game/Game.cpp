@@ -111,7 +111,7 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
         std::tie(x_move, y_move) = getMove();
       } else {
         std::tie(x_move, y_move) =
-            std::dynamic_pointer_cast<Bot>(players[current_player])
+            std::static_pointer_cast<Bot>(players[current_player])
                 ->next(game_board, static_cast<SQ_Color>(current_color));
       }
 

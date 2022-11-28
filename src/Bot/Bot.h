@@ -2,11 +2,11 @@
 #define BOT_H
 
 enum class Difficulty : unsigned int {
-  NOOB = 0,
-  EASY = 1,
-  MEDIUM = 2,
-  HARD = 3,
-  MOHEX = 4
+  NOOB = 10,
+  EASY = 100,
+  MEDIUM = 200,
+  HARD = 500,
+  MOHEX = 1000
 };
 
 #include "../Board/Board.h"
@@ -22,7 +22,7 @@ private:
 
 public:
   bool isBot = true;
-  Bot(Difficulty difficulty = Difficulty::EASY, P_Color color = P_Color::BLUE);
+  Bot(Difficulty difficulty = Difficulty::EASY);
 
   [[nodiscard]] movement computeMove(const Board &board) const;
   // Juego del bot
@@ -34,7 +34,7 @@ public:
 
   double getWins(Board &board, SQ_Color color);
 
-  std::pair<int, int> next(Board &board, SQ_Color color);
+  std::pair<int, int> next(Board board, SQ_Color color);
 };
 
 #endif // !BOT_H
