@@ -73,7 +73,7 @@ std::tuple<unsigned int, unsigned int> Game::getMove() const {
     std::cin >> x_move;
     std::cout << "Ingrese la coordenada Y: ";
     std::cin >> y_char;
-    y_move = int(y_char) - 96;
+    y_move = int(tolower(y_char)) - 96;
     // muy altas
     if (x_move > m_config.BOARD_SIZE || y_move > m_config.BOARD_SIZE) {
       std::cout << "Coordenada fuera de rango. Intente de nuevo" << std::endl;
