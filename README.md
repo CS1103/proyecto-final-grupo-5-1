@@ -106,9 +106,13 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 
 ### Algoritmos y contenedores utilizados
 
-- BFS (Breadth First Search):  
-El Algoritmo BFS consiste en la busqueda de un nodo en una estructura de datos, ya sea un arbol o un grafico que cumpla con ciertos criterios.
-- Queue:  
+- **BFS (Breadth First Search):** 
+
+  Una búsqueda en anchura (BFS) es un algoritmo de búsqueda, recorre los nodos de un grafo, comenzando en la raíz para luego explorar todos los vecinos de este nodo. Además, para cada uno de los vecinos se exploran sus respectivos vecinos adyacentes, y así hasta que se recorra todo el grafo.
+ 
+  BFS va formando un árbol a medida que va recorriendo un grafo y se usa para algoritmos en donde resulta crítico elegir el mejor camino posible en cada momento del recorrido.
+
+- **Queue:**  
 explicación aqui
 
 ## Instalación
