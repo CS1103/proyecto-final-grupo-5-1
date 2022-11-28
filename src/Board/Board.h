@@ -17,8 +17,7 @@ private:
   UTILS::matrix<UTILS::ptr_square> tablero;
   [[nodiscard]] UTILS::matrix<unsigned int>
   createCircuit(UTILS::P_Color color) const;
-  [[nodiscard]] UTILS::matrix<UTILS::ptr_square>
-  format(const UTILS::P_Color &color) const;
+  [[nodiscard]] UTILS::matrix<UTILS::ptr_square> format(const UTILS::P_Color &color) const;
 
 public:
   Board(const unsigned int &size);

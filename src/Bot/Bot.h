@@ -16,12 +16,15 @@ enum class Difficulty : unsigned int {
 using UTILS::movement;
 
 class Bot : public Player {
+private:
+    Difficulty difficulty;
 public:
     Bot(Difficulty difficulty = Difficulty::EASY, P_Color color = P_Color::BLUE);
-
     [[nodiscard]] movement computeMove(const Board &board) const;
-private:
-  Difficulty difficulty;
+    // Juego del bot
+    bool automatizarBot(const P_Color &playerColor) const;
+    // Funcion format (traida de board)
+    [[nodiscard]] UTILS::matrix<UTILS::ptr_square> formatBot(const P_Color &color) const;
 };
 
 #endif // !BOT_H

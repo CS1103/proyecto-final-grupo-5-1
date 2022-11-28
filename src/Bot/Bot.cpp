@@ -1,5 +1,5 @@
 #include "Bot.h"
-
+// FUNCIONES EXTERNAS -------------
 // random code
 std::string GetRandomName() {
   std::string code;
@@ -10,20 +10,91 @@ std::string GetRandomName() {
   return "Bot " + code;
 }
 
+unsigned int EvaluateMove(const movement &movement, const Board &board) {}
+
+//CONSTRUCTOR -------------
+// Constructor de asignacion
 Bot::Bot(Difficulty difficulty,P_Color color)
     : Player(GetRandomName(),color), difficulty(difficulty) {}
-
-unsigned int EvaluateMove(const movement &movement, const Board &board) {}
+// METODOS -------------
 movement Bot::computeMove(const Board &board) const {return {2,4};}
 
-//Implementando VerifyConnection:
-/*
-bool Board::verifyConnection(const P_Color &playerColor) const {
+// Funcion format
+UTILS::matrix<UTILS::ptr_square> Bot::formatBot(const P_Color &color) const {
+
+    UTILS::matrix<UTILS::ptr_square> return_tablero;
+
+    for (const auto &vec : tablero) {
+
+        std::vector<UTILS::ptr_square> temp;
+
+        for (const auto &elem : vec) {
+            temp.emplace_back(std::make_shared<Square>(Square(elem->getColor())));
+        }
+        return_tablero.push_back(temp);
+    }
+
+    size_t size = return_tablero.size();
+
+    switch (color) {
+        case P_Color::BLUE: {
+
+            std::vector<std::shared_ptr<Square>> tmp_vec;
+            tmp_vec.resize(size - 1);
+            for (auto &obj : tmp_vec) {
+                obj = std::make_shared<Square>(Square(SQ_Color::BLUE));
+            }
+
+            std::vector<std::shared_ptr<Square>> tmp_vec2;
+            tmp_vec2.resize(size - 1);
+            for (auto &obj : tmp_vec2) {
+                obj = std::make_shared<Square>(Square(SQ_Color::BLUE));
+            }
+
+            return_tablero.insert(return_tablero.begin(), move(tmp_vec));
+
+            return_tablero[0].emplace_back(
+                    std::make_shared<StartSquare>(SQ_Color::BLUE));
+
+            return_tablero.insert(return_tablero.end(), move(tmp_vec2));
+            return_tablero[size + 1].emplace_back(
+                    std::make_shared<EndSquare>(SQ_Color::BLUE));
+
+            break;
+        }
+
+        case P_Color::RED: {
+
+            for (auto it = return_tablero.begin(); it != (return_tablero.end() - 1);
+                 ++it) {
+                it->insert(it->begin(), std::make_shared<Square>(SQ_Color::RED));
+                it->insert(it->end(), std::make_shared<Square>(SQ_Color::RED));
+            }
+
+            return_tablero[size - 1].insert(
+                    return_tablero[size - 1].begin(),
+                    std::make_shared<StartSquare>(SQ_Color::RED));
+            return_tablero[size - 1].insert(return_tablero[size - 1].end(),
+                                            std::make_shared<EndSquare>(SQ_Color::RED));
+            break;
+        }
+        case P_Color::NONE: {
+            throw std::runtime_error("Invalid color for active player");
+        }
+    }
+    return return_tablero;
+}
+
+
+
+
+
+//Implementando VerifyConnection
+bool Bot::automatizarBot(const P_Color &playerColor) const {
 
     std::queue<std::shared_ptr<Square>> queue;
 
-    std::vector<std::vector<std::shared_ptr<Square>>> formated_tablero =
-            format(playerColor);
+    std::vector<std::vector<std::shared_ptr<Square>>> formated_tablero = format(playerColor);
 
     // push starting point
     queue.push(formated_tablero[0][0]);
@@ -84,4 +155,3 @@ bool Board::verifyConnection(const P_Color &playerColor) const {
     return false;
 }
 
-*/
