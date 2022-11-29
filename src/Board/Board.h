@@ -46,10 +46,10 @@ public:
   // move evaluation
   //
   // ejecuta el movimiento
-  // evalua la posición
+  // evalua la posició
   // deshace el movimiento
   // retorna la evaluación
-  double evaluateMove(std::pair<unsigned int, unsigned int>, SQ_Color color,
-                      unsigned int depth);
+  [[nodiscard]] double evaluateMove(std::pair<unsigned int, unsigned int>,
+                                    SQ_Color color, unsigned int depth) const;
 };
 #endif // !BOARD_H

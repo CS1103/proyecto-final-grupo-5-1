@@ -13,10 +13,7 @@ std::string GetRandomName() {
 Bot::Bot(Difficulty difficulty)
     : Player(GetRandomName()), difficulty(difficulty) {}
 
-std::pair<int, int> Bot::next(Board board, SQ_Color color) {
-
-  auto copy = board.format(static_cast<P_Color>(color));
-  board = Board(copy);
+std::pair<int, int> Bot::next(const Board &board, SQ_Color color) {
 
   auto blank = board.getAvailableMoves();
 

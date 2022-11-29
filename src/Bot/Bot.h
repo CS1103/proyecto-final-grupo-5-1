@@ -34,7 +34,7 @@ public:
 
   double getWins(Board &board, SQ_Color color);
 
-  std::pair<int, int> next(Board board, SQ_Color color);
+  std::pair<int, int> next(const Board &board, SQ_Color color);
 };
 
 #endif // !BOT_H

@@ -57,4 +57,6 @@ bool operator==(UTILS::SQ_Color square, UTILS::P_Color player);
 bool operator==(UTILS::P_Color player, UTILS::SQ_Color square);
 std::ostream &operator<<(std::ostream &oss, const UTILS::SQ_Color &color);
 
+template <typename T> T GenerarRandomNum(std::pair<T, T> rango);
+
 #endif // !#UTILS_H
