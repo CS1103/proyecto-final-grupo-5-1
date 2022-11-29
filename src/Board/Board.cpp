@@ -234,3 +234,52 @@ Board::getAvailableMoves() const {
   }
   return blank_spots;
 }
+
+
+double Board::evaluateMove(std::pair<unsigned int, unsigned int> move, SQ_Color color, unsigned int depth) {
+    tablero[move.first][move.second]->setColor(color);
+    auto blank = getAvailableMoves();
+    int winCount = 0;
+    std::vector<int> perm(blank.size());
+    for (int i=0; i<perm.size(); i++)
+        perm[i] = i;
+    for (int n=0; n<depth; n++)
+    {
+        for (int i=perm.size(); i>1; i--)
+        {
+            int swap = rand() % i;
+            int temp = perm[i-1];
+            perm[i-1] = perm[swap];
+            perm[swap] = temp; // prand the permutation
+        }
+        for (int i=0; i<perm.size(); i++)
+        {
+
+            int x = blank[perm[i]].first;
+            int y = blank[perm[i]].second;
+
+
+            if(!tablero[x][y].) throw std::runtime_error("Invalid move");
+
+        }
+        if (board.winner() == color)
+            winCount++;
+
+        for (auto itr = blank.begin(); itr != blank.end(); ++itr)
+            board.badMove(itr->first, itr->second); // take back rand moves
+    }
+    tablero[move.first][move.second]->setColor(UTILS::SQ_Color::EMPTY);
+    return static_cast<double>(winCount) / 1000;
+}
+
+SQ_Color Board::winner()
+{
+    vector<bool> condition(2, false); // tracks side to side win
+    vector<pair<int,int>> start;
+    for(int i =0; i<tablero.size; i++)
+        if(tablero[i][0] == black)
+            start.push_back(make_pair(i,0));
+
+    bfsSearch(start, condition);
+    return (condition[0] && condition[1]) ? Player::BLACK : Player::WHITE;
+}
