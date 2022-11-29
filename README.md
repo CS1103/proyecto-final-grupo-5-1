@@ -202,7 +202,10 @@ Si quisieramos utilizar una matriz como contenedor para el tablero, estas serian
 
 
 </div>
-
+                                                                        
+## Video de youtube
+https://drive.google.com/drive/folders/1PuyXshL9sv8BIPtPuWmuKuQGoyduDPui?usp=sharing
+                                                                      
 
 ### Diagrama de clases
 
