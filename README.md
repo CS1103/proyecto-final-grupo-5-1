@@ -1,6 +1,7 @@
 ![portada_hexG](https://user-images.githubusercontent.com/91573449/196766044-b95a4451-7a28-4bc0-a9d3-2f65911f2c4f.png)
 
-<!-- Mejor compatibilidad --> 
+<!-- Mejor compatibilidad -->
+
 <a name="readme-top"></a>
 
 <!-- PROJECT SHIELDS -->
@@ -18,7 +19,6 @@
   Hemos aplicado conocimientos aprendidos durante el curso de Programación para desarrollar el juego Hex en C++.
   </p>
 </div>
-
 
 <details open>
   <summary>Tabla de contenidos:</summary>
@@ -71,13 +71,13 @@
 
 ### Descripción
 
-El proyecto consiste en la elaboración del juego Hex tradicional pero con la implementación adicional de nuevas características. El juego tiene como objetivo ser más flexible para el usuario ya que se da la posibilidad de hacer cambios a las características de su juego antes, durante y después de haber sido empezado. Por otro lado, el usuario tiene la opción de elegir dos opciones de juego, puede ser contra otro jugador de forma local o contra la computadora. 
+El proyecto consiste en la elaboración del juego Hex tradicional pero con la implementación adicional de nuevas características. El juego tiene como objetivo ser más flexible para el usuario ya que se da la posibilidad de hacer cambios a las características de su juego antes, durante y después de haber sido empezado. Por otro lado, el usuario tiene la opción de elegir dos opciones de juego, puede ser contra otro jugador de forma local o contra la computadora.
 
 ### Características
 
 #### Características Principales
 
-- **Swap:** 
+- **Swap:**
 
   El juego se realiza en un intercambio de un movimiento de una casilla por jugador. El juego no ejecuta ninguna acción para el jugador cuando intenta realizar movimientos durante el turno del otro jugador.
 
@@ -106,19 +106,19 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 
 ### Algoritmos y contenedores utilizados
 
-- **BFS (Breadth First Search):** 
+- **BFS (Breadth First Search):**
 
   Una búsqueda en anchura (BFS) es un algoritmo de búsqueda, recorre los nodos de un grafo, comenzando en la raíz para luego explorar todos los vecinos de este nodo. Además, para cada uno de los vecinos se exploran sus respectivos vecinos adyacentes, y así hasta que se recorra todo el grafo.
- 
+
   BFS va formando un árbol a medida que va recorriendo un grafo y se usa para algoritmos en donde resulta crítico elegir el mejor camino posible en cada momento del recorrido.
 
 <div align="center">
 <img src= img.png format=jpg&name=small" width="500px">
 </div>
 
-- **Queue:**  
+- **Queue:**
 
-  Las colas o queues son un tipo de adaptadores en contenedores y son compatibles con una estructura de datos FIFO (el primero en entrar es el primero en salir). Por ejemplo, las personas que hacen cola para entrar a un baño. Se pueden agregar elementos a la parte posterior de la línea y quitarlos de la parte delantera de la línea. Asimismo, se puede inspeccionar tanto la parte delantera como trasera de una línea. La restricción de acceder únicamente a los elementos `front` y `back` de esta manera es el motivo por el que se usa `queue`. 
+  Las colas o queues son un tipo de adaptadores en contenedores y son compatibles con una estructura de datos FIFO (el primero en entrar es el primero en salir). Por ejemplo, las personas que hacen cola para entrar a un baño. Se pueden agregar elementos a la parte posterior de la línea y quitarlos de la parte delantera de la línea. Asimismo, se puede inspeccionar tanto la parte delantera como trasera de una línea. La restricción de acceder únicamente a los elementos `front` y `back` de esta manera es el motivo por el que se usa `queue`.
 
 <div align="center">
 <img src= queue.png format=jpg&name=small" width="500px">
@@ -144,13 +144,14 @@ git clone https://github.com/CS1103/proyecto-final-grupo-5-1
 3. Ejecutar el instalador con
 
 ```bash
-
+cd proyecto-final-grupo-5-1/build
+make
 ```
 
 4. Ejecutar el juego Hex con
 
 ```bash
-
+./Hex
 ```
 
 ## Instrucciones de uso
@@ -160,10 +161,10 @@ git clone https://github.com/CS1103/proyecto-final-grupo-5-1
 ### Reglas de juego
 
 El juego Hex se lleva a cabo en un tablero de tamaño NxN. Adicionalmente, es jugado por dos jugadores.
- 
+
 - Al comienzo de cada partida el tablero está vacío.
-- Cada jugador cuenta con fichas de un color, este color no puede ser igual para ambos jugadores. 
-- Cada jugador elige con qué color va a jugar y, por tanto, cuáles son los bordes que debe conectar; como los bordes a conectar deben ser opuestos, han de conectarse el noroeste con el sureste para un jugador, y el nordeste con el suroeste para el otro. 
+- Cada jugador cuenta con fichas de un color, este color no puede ser igual para ambos jugadores.
+- Cada jugador elige con qué color va a jugar y, por tanto, cuáles son los bordes que debe conectar; como los bordes a conectar deben ser opuestos, han de conectarse el noroeste con el sureste para un jugador, y el nordeste con el suroeste para el otro.
 - Los movimientos se harán por turnos alternativos de cada jugador y es una ficha por turno.
 - La finalidad del juego es ir formando una hilera de fichas ininterrumpida entre uno de los lados del rombo que es el tablero y el opuesto, uniendo de este modo ambos lados.
 - Los jugadores no podrán mover las fichas ya incorporadas.
@@ -189,29 +190,26 @@ Si quisieramos utilizar una matriz como contenedor para el tablero, estas serian
 <div align="center">
 
 | _1_ | _2_ | _3_     | _4_ |
-|-----|-----|---------|-----|
+| --- | --- | ------- | --- |
 | _2_ |     | 3,2     | 4,2 |
 | _3_ | 2,3 | **3,3** | 4,3 |
 | _4_ | 2,4 | 3,4     |     |
 
-  
 <div align="center">
 <img src= MD_files/square_graph.png format=jpg&name=small" width="800px">
 </div>
-                                                                 
 
 
 </div>
                                                                         
 ### Diagrama de clases
 
-
 ![Diagrama](MD_files/digrama_clases.png)
 
-
 ## Link del video
+
 https://drive.google.com/drive/folders/1PuyXshL9sv8BIPtPuWmuKuQGoyduDPui?usp=sharing
-                                                                        
+
 ## Autores
 
 - Allyson Tiphany Sánchez Báez
@@ -224,9 +222,9 @@ https://drive.google.com/drive/folders/1PuyXshL9sv8BIPtPuWmuKuQGoyduDPui?usp=sha
 ## Referencias y links
 
 - [The Game of Hex: An Automatic Theorem Proving Approach to Game
-Programming](https://www.aaai.org/Papers/AAAI/2000/AAAI00-029.pdf)  
-  Paper que explica un teorema para analizar posiciones en el juego Hex.  
-  Anshelevich, V.V. (2000). The Game of Hex: An Automatic Theorem Proving Approach to Game Programming. AAAI/IAAI.
+  Programming](https://www.aaai.org/Papers/AAAI/2000/AAAI00-029.pdf)  
+   Paper que explica un teorema para analizar posiciones en el juego Hex.  
+   Anshelevich, V.V. (2000). The Game of Hex: An Automatic Theorem Proving Approach to Game Programming. AAAI/IAAI.
 
 - [PLAYING AND SOLVING THE GAME OF HEX](https://era.library.ualberta.ca/items/dd8ce116-183f-4ad0-b7e6-618d38f132ff/view/2aadbc49-e39e-4554-ad29-1e2de4d98aab/Henderson-Philip-Fall2010.pdf)  
   Paper extenso que explica a detalle como crear un programa de Hex.  
@@ -243,7 +241,6 @@ Programming](https://www.aaai.org/Papers/AAAI/2000/AAAI00-029.pdf)
 - [https://github.com/cgao3/neurobenzene](https://github.com/cgao3/neurobenzene)  
   Repositorio de código de Neurobenzene, Red neuronal usada en MoHex3, incluye un instalable de MoHex3.
 
-
 ## Convenciones
 
 #### Naming conventions
@@ -253,13 +250,14 @@ Programming](https://www.aaai.org/Papers/AAAI/2000/AAAI00-029.pdf)
 - constants = CONSTANT_VARIABLE
 - variables = simple_variable_name
 - functions = VerbPascalCase (start with verb)
+
   - function parameters = camelCaseParameter
 
 - prepending variables (optional):
-  - attribute = m_... (class member)
-  - pointers = p_...
-  - reference = r_...
-  - constants = c_...
+  - attribute = m\_... (class member)
+  - pointers = p\_...
+  - reference = r\_...
+  - constants = c\_...
 
 #### Header token definition
 
