@@ -161,9 +161,12 @@ bool Board::verifyConnection(const P_Color &playerColor) const {
                                                    {y + 1, x}, {y + 1, x - 1}};
 
     for (const auto &neighbour : neighbours) {
-      if (neighbour.first >= 0 && neighbour.first < formated_tablero.size() &&
+      if (neighbour.first >= 0 &&
+          static_cast<unsigned int>(neighbour.first) <
+              formated_tablero.size() &&
           neighbour.second >= 0 &&
-          neighbour.second < formated_tablero[0].size()) {
+          static_cast<unsigned int>(neighbour.second) <
+              formated_tablero[0].size()) {
         queue.push(formated_tablero[neighbour.first][neighbour.second]);
       }
     }
@@ -227,8 +230,8 @@ void Board::show() const {
 std::vector<std::pair<unsigned int, unsigned int>>
 Board::getAvailableMoves() const {
   std::vector<std::pair<unsigned int, unsigned int>> blank_spots;
-  for (int i = 0; i < tablero.size(); i++) {
-    for (int j = 0; j < tablero.size(); j++) {
+  for (unsigned int i = 0; i < tablero.size(); i++) {
+    for (unsigned int j = 0; j < tablero.size(); j++) {
       if (tablero[i][j]->getColor() == UTILS::SQ_Color::EMPTY) {
         blank_spots.emplace_back(i, j);
       }
@@ -261,13 +264,12 @@ double Board::evaluateMove(UTILS::movement move, SQ_Color color,
         break;
       }
 
-      if(verifyConnection(static_cast<P_Color>(color)){
+      if (verifyConnection(static_cast<P_Color>(color))) {
         win_count++;
       }
 
-
-      UTILS::movement random_move =
-          blank_spots[GenerarRandomNum<int>({0, blank_spots.size() - 1})];
+      UTILS::movement random_move = blank_spots[GenerarRandomNum<unsigned int>(
+          {0, blank_spots.size() - 1})];
       // set random move
       tablero[random_move.first][random_move.second]->setColor(current_color);
 

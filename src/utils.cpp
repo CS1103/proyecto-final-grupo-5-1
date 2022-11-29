@@ -1,5 +1,4 @@
 #include "utils.h"
-#include <random>
 
 using namespace UTILS;
 
@@ -26,6 +25,7 @@ std::ostream &operator<<(std::ostream &oss, const UTILS::SQ_Color &color) {
   return oss;
 }
 
+/*
 template <typename T> T GenerarRandomNum(std::pair<T, T> rango) {
 
   std::random_device r_d;
@@ -42,3 +42,4 @@ template <typename T> T GenerarRandomNum(std::pair<T, T> rango) {
 
   return ranum;
 }
+*/

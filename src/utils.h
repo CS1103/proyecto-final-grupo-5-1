@@ -5,6 +5,7 @@
 #include <chrono>
 #include <memory>
 #include <optional>
+#include <random>
 #include <vector>
 
 class Square;
@@ -52,11 +53,26 @@ public:
 */
 
 } // namespace UTILS
-// namespace UTILS
+
 bool operator==(UTILS::SQ_Color square, UTILS::P_Color player);
 bool operator==(UTILS::P_Color player, UTILS::SQ_Color square);
 std::ostream &operator<<(std::ostream &oss, const UTILS::SQ_Color &color);
 
-template <typename T> T GenerarRandomNum(std::pair<T, T> rango);
+template <typename T> T GenerarRandomNum(std::pair<T, T> rango) {
+
+  std::random_device r_d;
+  std::default_random_engine generator(r_d());
+
+  T ranum;
+  if constexpr (std::is_integral<T>::value) {
+    std::uniform_int_distribution<T> rand_num(rango.first, rango.second);
+    ranum = rand_num(generator);
+  } else if constexpr (std::is_floating_point<T>::value) {
+    std::uniform_real_distribution<T> rand_num(rango.first, rango.second);
+    ranum = rand_num(generator);
+  }
+
+  return ranum;
+}
 
 #endif // !#UTILS_H
