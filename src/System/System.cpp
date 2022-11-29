@@ -50,10 +50,10 @@ void System::run() {
 
 std::string System::getPlayer(unsigned int number) {
   std::string nombre;
-  std::cout << "Jugador " << number << " ingrese su nombre" << std::endl;
+  std::cout << "\n❏ Jugador " << number << " ingrese su nombre ▷ " << std::endl;
   std::cin >> nombre;
   while (!players.addPlayer(nombre)) {
-    std::cout << "nombre invalido\n";
+    std::cout << "❌ nombre invalido\n";
     // clean cin
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -70,22 +70,22 @@ std::string System::getBot() {
 
 unsigned int GetGameType() {
   unsigned int option = 0;
-  std::cout << "Bienevenido al CHIQUIHEX" << std::endl;
-  std::cout << "Seleccione el modo de juego" << std::endl;
-  std::cout << "1. JUGADOR  VS JUGADOR " << std::endl;
-  std::cout << "2. JUGADOR  VS COMPUTADOR " << std::endl;
+    std::cout << "\n\t\t ├┴┬┴█≣█┴┬┴┤ 🔹🔸 BIENVENIDO AL CHIQUIHEX 🔹🔸 ├┴┬┴█≣█┴┬┴┤ \n" << std::endl;
+    std::cout << "\n❏ Seleccione el modo de juego (1 o 2):  " << std::endl;
+    std::cout << "\n\t 1. JUGADOR  VS JUGADOR " << std::endl;
+    std::cout << "\n\t 2. JUGADOR  VS COMPUTADOR " << std::endl;
 
   std::cin >> option;
   while (option != 1 && option != 2) {
-    std::cout << "Opcion no valida, ingrese nuevamente" << std::endl;
+      std::cout << "\n❌ Opcion no valida, ingrese nuevamente ❌" << std::endl;
     std::cin >> option;
   }
   switch (option) {
   case 1:
-    std::cout << "ELEGISTE EL MODO JUGADOR VS JUGADOR" << std::endl;
+      std::cout << "\n Elegiste el modo JUGADOR VS JUGADOR 🧑🧑" << std::endl;
     break;
   case 2:
-    std::cout << "ELEGISTE EL MODO JUGADOR VS COMPUTADOR" << std::endl;
+      std::cout << "\n Elegiste el modo JUGADOR VS COMPUTADOR 🧑‍💻" << std::endl;
     break;
   default:
     break;
