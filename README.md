@@ -141,19 +141,6 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 git clone https://github.com/CS1103/proyecto-final-grupo-5-1
 ```
 
-3. Ejecutar el instalador con
-
-```bash
-cd proyecto-final-grupo-5-1/build
-make
-```
-
-4. Ejecutar el juego Hex con
-
-```bash
-./Hex
-```
-
 ## Instrucciones de uso
 
 ### Instrucciones
@@ -209,6 +196,8 @@ Si quisieramos utilizar una matriz como contenedor para el tablero, estas serian
 ## Link del video
 
 https://drive.google.com/drive/folders/1PuyXshL9sv8BIPtPuWmuKuQGoyduDPui?usp=sharing
+
+https://youtu.be/FrCEwY3Vw84
 
 ## Autores
 
