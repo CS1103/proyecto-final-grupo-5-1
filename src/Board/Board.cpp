@@ -148,7 +148,6 @@ bool Board::verifyConnection(const P_Color &playerColor) const {
 
     // if top_casilla == formated_tablero[last][last]
     if (formated_tablero[y][x] == formated_tablero.back().back()) {
-      std::cout << "\nture\n\true\n\nteue\ntrue\n\n";
       return true;
     }
 
@@ -247,7 +246,7 @@ double Board::evaluateMove(UTILS::movement move, SQ_Color color,
   unsigned int win_count = 0;
 
   // iterate for depth
-  while (depth-- > 0) {
+  for (unsigned int i = 0; i < depth; i++) {
 
     std::vector<UTILS::movement> played_moves;
 
@@ -268,10 +267,20 @@ double Board::evaluateMove(UTILS::movement move, SQ_Color color,
         win_count++;
       }
 
+      // if enemy won
+      P_Color enemy_color =
+          color == SQ_Color::BLUE ? P_Color::RED : P_Color::BLUE;
+
+      if (verifyConnection(enemy_color)) {
+        break;
+      }
+
       UTILS::movement random_move = blank_spots[GenerarRandomNum<unsigned int>(
           {0, blank_spots.size() - 1})];
       // set random move
-      tablero[random_move.first][random_move.second]->setColor(current_color);
+      tablero[random_move.first][random_move.second]->setColorValidation(
+          current_color);
+      played_moves.push_back(random_move);
 
       current_color =
           current_color == SQ_Color::BLUE ? SQ_Color::RED : SQ_Color::BLUE;
@@ -281,6 +290,8 @@ double Board::evaluateMove(UTILS::movement move, SQ_Color color,
       tablero[move.first][move.second]->setColor(UTILS::SQ_Color::EMPTY);
     }
   }
+
+  tablero[move.first][move.second]->setColor(UTILS::SQ_Color::EMPTY);
 
   return win_count / depth;
 }

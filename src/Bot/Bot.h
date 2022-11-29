@@ -2,11 +2,11 @@
 #define BOT_H
 
 enum class Difficulty : unsigned int {
-  NOOB = 10,
-  EASY = 100,
-  MEDIUM = 200,
-  HARD = 500,
-  MOHEX = 1000
+  NOOB = 1,
+  EASY = 5,
+  MEDIUM = 10,
+  HARD = 20,
+  MOHEX = 50
 };
 
 #include "../Board/Board.h"
@@ -21,8 +21,7 @@ private:
   Difficulty difficulty;
 
 public:
-  bool isBot = true;
-  Bot(Difficulty difficulty = Difficulty::EASY);
+  Bot(Difficulty difficulty = Difficulty::NOOB);
 
   [[nodiscard]] movement computeMove(const Board &board) const;
   // Juego del bot

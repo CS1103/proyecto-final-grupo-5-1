@@ -17,7 +17,7 @@ private:
 
 public:
   // CONSTRUCTORES ---------
-  bool isBot = false;
+  bool isBot;
   Player();
   Player(const std::string &name, const P_Color &color = P_Color::NONE);
 

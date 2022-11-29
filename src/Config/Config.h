@@ -19,7 +19,6 @@ struct Config {
   std::optional<seconds> time_limit;
   TipoJ tipo_juego;
   const unsigned int BOARD_SIZE;
-
   // Constructor
   Config(TipoJ tipoJ = JUEGO_DEFAULT, unsigned int size = TAMANHO_DEFAULT,
          std::optional<seconds> timeLimit = std::nullopt);

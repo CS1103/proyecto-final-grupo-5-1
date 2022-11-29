@@ -1,4 +1,5 @@
 #include "Square.h"
+#include <iostream>
 
 Square::Square() { this->color = SQ_Color::EMPTY; }
 

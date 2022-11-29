@@ -11,7 +11,9 @@ std::string GetRandomName() {
 }
 
 Bot::Bot(Difficulty difficulty)
-    : Player(GetRandomName()), difficulty(difficulty) {}
+    : Player(GetRandomName()), difficulty(difficulty) {
+  isBot = true;
+}
 
 std::pair<int, int> Bot::next(const Board &board, SQ_Color color) {
 

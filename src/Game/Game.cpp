@@ -113,6 +113,7 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
         std::tie(x_move, y_move) =
             std::static_pointer_cast<Bot>(players[current_player])
                 ->next(game_board, static_cast<SQ_Color>(current_color));
+        std::cout << "Bot move: " << x_move << " " << y_move << std::endl;
       }
 
       is_time_up = turno.isTimeUp();
@@ -126,7 +127,6 @@ std::optional<std::shared_ptr<Player>> Game::startCliGame() {
 
     } while (!is_valid_play);
     // Vista.turno terminado(isTimeUp)
-    game_board.show();
     turno.stopTimer();
     winner_color = turno.isGameOver();
     if (winner_color.has_value()) {

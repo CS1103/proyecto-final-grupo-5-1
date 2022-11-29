@@ -1,5 +1,6 @@
 #include "System.h"
 #include "../Bot/Bot.h"
+#include "../Config/Config.h"
 
 /*
   PlayerController players;
@@ -63,29 +64,62 @@ std::string System::getPlayer(unsigned int number) {
 }
 
 std::string System::getBot() {
-  UTILS::ptr_player bot = std::make_shared<Bot>();
+
+  // difficutly
+  std::cout << "❏ Seleccione la dificultad del bot (1-5) ▷ " << std::endl;
+  unsigned int difficulty = 0;
+
+  while (difficulty <= 0 || difficulty > 5) {
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin >> difficulty;
+  }
+
+  Difficulty diff;
+
+  switch (difficulty) {
+  case 1:
+    diff = Difficulty::NOOB;
+    break;
+  case 2:
+    diff = Difficulty::EASY;
+    break;
+  case 3:
+    diff = Difficulty::MEDIUM;
+    break;
+  case 4:
+    diff = Difficulty::HARD;
+    break;
+  case 5:
+    diff = Difficulty::MOHEX;
+    break;
+  }
+
+  UTILS::ptr_player bot = std::make_shared<Bot>(diff);
   players.addPlayer(bot);
   return bot->getName();
 }
 
 unsigned int GetGameType() {
   unsigned int option = 0;
-    std::cout << "\n\t\t ├┴┬┴█≣█┴┬┴┤ 🔹🔸 BIENVENIDO AL CHIQUIHEX 🔹🔸 ├┴┬┴█≣█┴┬┴┤ \n" << std::endl;
-    std::cout << "\n❏ Seleccione el modo de juego (1 o 2):  " << std::endl;
-    std::cout << "\n\t 1. JUGADOR  VS JUGADOR " << std::endl;
-    std::cout << "\n\t 2. JUGADOR  VS COMPUTADOR " << std::endl;
+  std::cout << "\n\t\t ├┴┬┴█≣█┴┬┴┤ 🔹🔸 BIENVENIDO AL CHIQUIHEX 🔹🔸 ├┴┬┴█≣█┴┬┴┤ \n"
+            << std::endl;
+  std::cout << "\n❏ Seleccione el modo de juego (1 o 2):  " << std::endl;
+  std::cout << "\n\t 1. JUGADOR  VS JUGADOR " << std::endl;
+  std::cout << "\n\t 2. JUGADOR  VS COMPUTADOR " << std::endl;
 
   std::cin >> option;
   while (option != 1 && option != 2) {
-      std::cout << "\n❌ Opcion no valida, ingrese nuevamente ❌" << std::endl;
+    std::cout << "\n❌ Opcion no valida, ingrese nuevamente ❌" << std::endl;
     std::cin >> option;
   }
   switch (option) {
   case 1:
-      std::cout << "\n Elegiste el modo JUGADOR VS JUGADOR 🧑🧑" << std::endl;
+    std::cout << "\n Elegiste el modo JUGADOR VS JUGADOR 🧑🧑" << std::endl;
     break;
   case 2:
-      std::cout << "\n Elegiste el modo JUGADOR VS COMPUTADOR 🧑‍💻" << std::endl;
+    std::cout << "\n Elegiste el modo JUGADOR VS COMPUTADOR 🧑‍💻"
+              << std::endl;
     break;
   default:
     break;
@@ -105,6 +139,7 @@ void System::run() {
   case 2:
     pl1 = getPlayer(1);
     pl2 = getBot();
+    conf.setTipoJ(TipoJ::HUMANO_COMPUTADOR);
     break;
   default:
     break;
