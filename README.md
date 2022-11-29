@@ -94,7 +94,7 @@ El proyecto consiste en la elaboración del juego Hex tradicional pero con la im
 ### Tecnologías
 
 - Lenguaje de programación C++17 o posterior
-- Graphvz, sintaxis para diseñar grafos.
+- Graphvz, sintaxis para diseñar grafos en imagen png.
 - Librería GUI SFML, API de C++ para animación gráfica.
 
 ### Temas de interés
